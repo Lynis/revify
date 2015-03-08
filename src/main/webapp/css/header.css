@@ -1,0 +1,82 @@
+/*
+	CSS for Header
+*/
+
+*{
+	/*border: 1px solid red;*/
+	font-family: 'Quicksand', sans-serif;
+
+}
+
+.navbar-background {
+	background-color: #5d9cec;/*#6541A4;*/
+	border-color:#7847B2;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22); 
+
+}
+
+.navbar{
+	max-height: 50px;
+}
+
+.login{
+
+	font-size: 16px;
+	color: white;
+	float: right;
+	margin-top: 7px;
+	font-weight: bold;
+}
+
+
+a:hover {
+	color: rgb(245, 142, 89)!important;
+	text-decoration: none !important;
+}
+
+.logo{
+	font-size: 32px;
+	font-weight: bold;
+	color: white;
+	padding-left: 20px;
+}
+
+.main-content {
+	padding: 48px 0;
+	margin-bottom: 30px;
+}
+
+ul{
+	list-style: none;
+}
+
+
+.category-container{
+	overflow:auto;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+	/*max-width: 150px;
+	/*margin-left: 20px;*/
+}
+
+.category{
+	padding: 10px;
+
+}
+
+.category div{
+	background-color: #5d9cec;
+	width: 64px;
+	height: 64px;
+	border-radius: 32px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+}
+
+.category img{
+	padding: 8px;	
+}
+
+.review{
+
+}
