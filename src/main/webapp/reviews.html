@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Read Reviews</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Quicksand">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="css/card.css">
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/reviews.js"></script>
+       
+        <style>
+            .image{
+                margin-left: 30px;
+                margin-top: 20px;
+            }
+            .col-md-5{
+                margin-top: 130px;
+                width: 50%;
+            }
+            .category{
+                margin-top: 100px;
+            }
+            .col-md-4{
+                margin-top: 130px;
+                width: 25%;
+            }
+            .col-md-3{
+                width: 10%;
+            }
+        </style>
+    </head>
+    <body onload="loadProducts('camera')">
+        <header>
+                <nav class="navbar navbar-background navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="row">	
+                            <div class="col-md-6">
+                                <span class="logo">Revify</span>
+                            </div>
+                            <div class="col-md-6 login">
+                                <a class="login" href="">Log In</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div class="col-md-3">
+            <aside class="aside">
+<!--                <div class="aside-inner category-container">-->
+                    <ul class="category-list">
+                        <li class="category">
+                            <div>
+                                <img src="images/camera.png" onclick="loadProducts('camera')" alt="">
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="images/phone.png" onclick="loadProducts('mobile')" alt="">
+                            </div>
+                        </li>
+                        <li class="category">
+                            <div>
+                                <img src="images/laptop.png" onclick="loadProducts('laptop')" alt="">
+                            </div>
+                        </li>
+                    </ul>
+<!--                </div>-->
+            </aside>
+            </div>
+    <div class="content" id="contentID">
+        <div class="leftColumn" id="leftColumnID">
+<!--            <div class="card" id="cardID1"> 
+                <div class ="left" id="leftID">
+                    <image id="product" src="img/mobile_image1.jpg" width="150" height="150" alt=""/>
+                </div>
+                <div class="right" id="rightID">                                      
+                    <div id="featureCardID" class="featureCard">   
+                        <div class="pin-left" id="pin-leftID">
+                            <img src="img/blue.png" width="35" height="35" alt=""/>
+                        </div>
+                        <div class="pin-right" id="pin-rightID">
+                            <img src="img/blue.png" width="35" height="35"/>
+                        </div> 
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature1.png" width="30" height="30" alt=""/>                              
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>                            
+                        </div>
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature2.png" width="30" height="30" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                        </div>
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature3.png" width="30" height="30" alt=""/>  
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="card"> 
+                <div class ="left">
+                    <image id="product" src="img/mobile_image1.jpg" width="150" height="150" alt=""/>
+                </div>
+                <div class="right">           
+                    <div id="featureCard" class="featureCard">  
+                        <div class="pin-left">
+                            <img src="img/blue.png" width="35" height="35" alt=""/>
+                        </div>
+                        <div class="pin-right">
+                            <img src="img/blue.png" width="35" height="35" alt=""/>
+                        </div>
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature1.png" width="30" height="30" alt=""/>                              
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" alt=""/>                            
+                        </div>
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature2.png" width="30" height="30"/>
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40" />
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40"/>
+                        </div>
+                        <div class="featureDetails">
+                            <img src="img/mobile_feature3.png" width="30" height="30"/>  
+                            <img src="http://yoursmiles.org/bsmile/fun/b0212.gif" width="40" height="40"/>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+        
+    <div class="footer">
+        All images copyright 2015 <a href="revify" target="_blank">Revify Team</a>. 
+    </div>
+    </body>
+</html>
