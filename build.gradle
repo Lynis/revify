@@ -1,3 +1,29 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
+
+// Uses JDK 7
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
+// Get dependencies from Maven central repository
+repositories {
+    mavenCentral()
+}
+
+//Project dependencies
+dependencies {
+    compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+    compile 'jstl:jstl:1.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
+    compile 'org.springframework.data:spring-data-jpa:1.7.2.RELEASE'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.8.Final'
+    compile 'org.hibernate:hibernate-core:4.3.8.Final'
+
+    //mysql connector
+    compile 'mysql:mysql-connector-java:5.1.34'
+
+    //include in compile only, exclude in the war
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+}
