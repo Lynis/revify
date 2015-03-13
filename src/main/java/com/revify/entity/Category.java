@@ -12,10 +12,13 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "category_id")
     private Long categoryID;
 
+    @Column(name = "category_name")
     private String categoryName;
 
+    @Column(name="icon")
     private String icon;
 
     public void setCategoryID(Long categoryID) {

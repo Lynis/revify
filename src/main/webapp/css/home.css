@@ -1,181 +1,249 @@
-/*
-	CSS for Header
-*/
 
-*{
-	/*border: 1px solid red;*/
-	font-family: 'Quicksand', sans-serif;
+html{
+    direction: ltr;
+    height: 100%;
+}
 
+body{
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 12px;
 }
 
 div {
-	display: block;
+    display: block;
 }
+
+.row-table{
+    display: table;
+    table-layout: fixed;
+    height:100%;
+    width: 100%;
+    margin: 0!important;
+}
+
 .wrapper{
-	position: relative;
-	width: 100%;
-	height: auto;
-	min-height: 100%;
-	overflow-x: hidden; 
-}
-
-.wrapper>.aside{
-	display: block;
-	position: absolute;
-	padding-top: 110px;
-	width: 220px;
-	top:0;
-	bottom: 0;
-	left: 0;
-}
-
-.wrapper>.aside .aside-inner{
-	height: 100%;
-	width: 220px;
-	overflow: hidden;
-}
-
-.wrapper>section{
-	display: block;
-	position: relative;
-	height: 100%;
-	margin-left: 0;
-	margin-top: 50px;
-	margin-bottom: 60px !important;
-	background-color: #f5f7fa;
-	margin-left: 220px;
-}
-
-.content-wrapper{
-	padding: 20px;
-	width: 100%;
-	border-top: 1px solid rgba(0,0,0,.15);
-	margin-top: -1px;
-}
-
-.content-wrapper>h3{
-	display: block;
-	font-family: inherit;
-	line-height: 1.1;
-	font-size: 24px;
-	color: #929292;
-	margin: -20px -20px 20px -20px;
-	padding: 20px;
-	font-weight: 400;
-	background-color: #fafbfc;
-	border-bottom: 1px solid #cfdbe2;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-color: #f2f2f2;
+    /*overflow-x: hidden; */
 }
 
 .navbar-background {
-	/*background-color: #5d9cec*/;/*#6541A4;*/
-	background:  linear-gradient(to right, #AECEF6 ,#5d9cec);
-	/*border-color:#7847B2;*/
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22); 
+    /*background-color: #5d9cec*/;/*#6541A4;*/
+    background: #3a3f51; /*linear-gradient(to left, #AECEF6 ,#548CD4);*/
+    /*border-color:#7847B2;*/
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 
 }
 
 .navbar{
-	max-height: 50px;
+    max-height: 50px;
 }
 
 .login{
 
-	font-size: 16px;
-	color: white;
-	float: right;
-	margin-top: 7px;
-	font-weight: bold;
+    font-size: 16px;
+    color: white;
+    float: right;
+    margin-top: 7px;
+    font-weight: bold;
 }
 
 
 a:hover {
-	color: rgb(245, 142, 89)!important;
-	text-decoration: none !important;
+    color: rgb(245, 142, 89)!important;
+    text-decoration: none !important;
 }
 
 .logo{
-	font-size: 32px;
-	font-weight: bold;
-	color: white;
-	padding-left: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    padding-left: 20px;
 }
 
-.main-content {
+.wrapper>.aside{
+    position: absolute;
+    padding-top: 20px;/*110px;*/
+    top:0;
+    bottom: 0;
+    left: 0;
+}
+
+.wrapper>.aside .aside-inner{
+    height: 100%;
+    width: 220px;
+    /*#f5f7fa;*/
+
+    /*overflow: hidden;*/
+}
+
+.wrapper>section{
+    position: relative;
+    height: 100%;
+    margin-left: 0;
+    margin-top: 50px;
+    /*margin-bottom: 60px !important;*/
+    background-color: #f2f2f2;/*#f5f7fa;*/
+    margin-left: 220px;
+}
+
+.content-wrapper{
+    padding: 20px;
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,.15);
+    margin-top: -1px;
+}
+
+.content-wrapper>h3{
+    display: block;
+    font-family: inherit;
+    line-height: 1.1;
+    font-size: 24px;
+    color: #929292;
+    margin: -20px -20px 20px -20px;
+    padding: 20px;
+    font-weight: 400;
+    background-color: #fafbfc;
+    border-bottom: 1px solid #cfdbe2;
+}
+
+
+
+/*.main-content {
 	padding: 48px 0;
 	margin-bottom: 30px;
-}
+}*/
 
 ul{
-	list-style: none;
+    list-style: none;
 }
 
 
 .category-container{
-	background-color: #fff;
-	border-radius: 6px;
-	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
-	height: 100% !important;
-	overflow: hidden;
-	/*max-width: 150px;
-	/*margin-left: 20px;*/
+    /*background-color: #fff;*/
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.22);
+    height: 100% !important;
+    /*overflow: hidden;*/
+    /*max-width: 150px;
+    /*margin-left: 20px;*/
 }
 
 .category{
-	padding: 10px;
+    padding: 10px;
 
 }
 
 .category div{
-	background-color: #5d9cec;
-	width: 64px;
-	height: 64px;
-	border-radius: 32px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    background-color: #3a3f51;/*#5d9cec;*/
+    width: 64px;
+    height: 64px;
+    border: 1px solid transparent;
+    border-radius: 32px;
+    box-shadow: 0 4px 8px rgba(0,0,0,.28);/*5px 5px 2px rgba(0, 0, 0, 0.22);*/
 }
 
-.category img{
+/* .category img{
 	padding: 8px;	
 }
-
-.widget-row{
+ */
+/***********************review-card ********************************/
+/*.widget-row{
 	margin: 0px 15px 15px 15px;
 }
+*/
+.review-card{
+    margin-bottom: 20px;
+    border: 0;
+}
 
-.review-widget{
-	background-color: #fff;/*#5d9cec;*/
+
+.review-panel{
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 6px;/*4px;*/
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.22);
+}
+
+.review-panel-body{
+    background-color: #3a3f51;/*#27c24c;*/
+    color: #fff !important;
+}
+
+.review-panel-body>a{
+    color: #fff !important;
+}
+
+.pv-lg{
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.bg-icon-dark{
+    background-color:#292C39;
+}
+
+.h1{
+    font-size: 16px!important;
+}
+
+.text-bold{
+    font-weight: 700!important;
+}
+.m0{
+    margin: 0!important;
+}
+
+/*.review-widget{
 	border-radius: 4px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
-p{	
-		text-align: center;
-		font-size: 25px;
-		color:#747704;
+.widget-body{
+	background-color: #27c24c;	
+}*/
+
+p{
+    text-align: center;
+    font-size: 25px;
+    color:#747704;
 }
 
-.count{
+/*.count{
 	font-size: 22px;
 	padding-top: 25px;
 	color:#747704;
 	font-weight: bold;
-}
+}*/
 
 
 .wrapper>footer{
-	display: block;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 60px;
-	border-top: 1px solid #e4eaec;
-	padding: 20px;
-	z-index: 109;
-	background-color: #f5f7fa; 
-	margin-left: 220px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60px;
+    border-top: 1px solid #e4eaec;
+    padding: 20px;
+    z-index: 109;
+    background-color: #f5f7fa;
+    /*margin-left: 220px;*/
 }
 
-@media only screen and (min-width: 768px)
+/*@media only screen and (min-width: 768px)
 .wrapper>footer{
 	margin-left: 220px;
+}*/
+
+hr{
+    margin: 0 !important;
+    padding: 0 !important;
+    border-color: #000 !important;
 }
