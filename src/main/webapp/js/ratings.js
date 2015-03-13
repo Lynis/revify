@@ -1,101 +1,95 @@
-
 function loadProducts(category)
 {
-    reset();
-    if(category == 1)
+    removeProducts(category);
+    var leftColumn = document.getElementById("leftColumnID");
+    for(var i = 1; i < 3; i++)
     {
-        reset();
-        var img1 = "img/nexus4.jpg";
-        var img2 = "img/iphone6.jpg";
-        var label1 = "Nexus 4";
-        var label2 = "iPhone 6"
-        var feature1 = "img/camera.png";
-        var feature2 = "img/battery.png";
-        var feature3 = "img/wifi.png";
-        var featureRating1 = "2 stars";
-        var featureRating2 = "2 stars";
-        var featureRating3 = "2 stars";
-        loadProductImage(img1, img2);
-        loadProductLabel(label1, label2);
-        loadFeatures(feature1, feature2, feature3);
-        loadFeaturesRatings(featureRating1, featureRating2, featureRating3);
-    }
-    
-    if(category == 2)
-    {
-        var img1 = "img/sonycamera.jpg";
-        var img2 = "img/nikon.jpg";   
-        var label1 = "Sony";
-        var label2 = "Nikon";
-        var feature1 = "img/sonylens.jpg";
-        var feature2 = "img/sonylens.jpg";
-        var feature3 = "img/sonylens.jpg";
-        var featureRating1 = "2 stars";
-        var featureRating2 = "2 stars";
-        var featureRating3 = "2 stars";
-        loadProductImage(img1, img2);
-        loadProductLabel(label1, label2);
-        loadFeatures(feature1, feature2, feature3);
-        loadFeaturesRatings(featureRating1, featureRating2, featureRating3);
-    }            
-}
+        //creating card for product and feature
+        var cardDiv = document.createElement('div');
+        cardDiv.className = "card";
+        cardDiv.id = category+"cardID_"+i;
 
-function loadProductImage(img1, img2)
-{
-    document.getElementById("img1").src = img1;
-    document.getElementById("img2").src = img2;
-}
+        // create left div on card
+        var leftDiv = document.createElement('div');
+        leftDiv.className = "left";
 
-function loadFeatures(feature1, feature2, feature3)
-{
-    document.getElementById("featureimg1").src=feature1;
-    document.getElementById("featureimg2").src=feature2;
-    document.getElementById("featureimg3").src=feature3;
-    
-    document.getElementById("featureimg4").src=feature1;
-    document.getElementById("featureimg5").src=feature2;
-    document.getElementById("featureimg6").src=feature3;
-    
-}
+        // create right div on card
+        var rightDiv = document.createElement('div');
+        rightDiv.className = "right";
 
-function loadProductLabel(label1, label2)
-{
-    document.getElementById("product1").innerHTML = label1;
-    document.getElementById("product2").innerHTML = label2;    
-}
+        // create feature card div for feature icons, pins and feature details
+        var featureDiv = document.createElement('div');
+        featureDiv.className = "featureCard";
 
-function loadFeaturesRatings(featureRating1,featureRating2,featureRating3)
-{
-    document.getElementById("feature1").innerHTML = (featureRating1);
-    document.getElementById("feature2").innerHTML = (featureRating2);
-    document.getElementById("feature3").innerHTML = (featureRating3);
-    document.getElementById("feature4").innerHTML = (featureRating1);
-    document.getElementById("feature5").innerHTML = (featureRating2);
-    document.getElementById("feature6").innerHTML = (featureRating3);
-//    document.getElementById("img1").style.display = 'none';
-}
+        // create feature details card
+        var featureDetailsDiv = document.createElement('div');
+        featureDetailsDiv.className = "featureDetails";
 
-function sort()
-{
-    var selection = document.getElementById("list").value;    
-    if(selection == "Camera")
-    {
-        document.getElementById("featureimg2").style.display = 'none';
-        document.getElementById("featureimg3").style.display = 'none';
-        document.getElementById("featureimg5").style.display = 'none';
-        document.getElementById("featureimg6").style.display = 'none';
-        
-        document.getElementById("feature2").innerHTML = ("");
-        document.getElementById("feature3").innerHTML = ("");        
-        document.getElementById("feature5").innerHTML = ("");
-        document.getElementById("feature6").innerHTML = ("");        
+        // create left pin
+        var pinLeft  = document.createElement('div');
+        pinLeft.className = "pin-left";
+
+        // create right pin
+        var pinRight  = document.createElement('div');
+        pinRight.className = "pin-right";
+
+        // create feature image
+        var featureImage = document.createElement('img');
+        featureImage.src = "img/"+category+"_feature1.jpg";
+        featureImage.width = 40;
+        featureImage.height = 40;
+
+        // create product image
+        var productImage = document.createElement('img');
+        productImage.src = "images/"+category+"_image1.jpg";
+        productImage.width = 150;
+        productImage.height = 150;
+
+        //create left pin image
+        var pinImageLeft = document.createElement('img');
+        pinImageLeft.src = "images/blue.png";
+        pinImageLeft.width = 35;
+        pinImageLeft.height = 35;
+
+        // create right pin image
+        var pinImageRight = document.createElement('img');
+        pinImageRight.src = "images/blue.png";
+        pinImageRight.width = 35;
+        pinImageRight.height = 35;
+
+        pinLeft.appendChild(pinImageLeft);
+        pinRight.appendChild(pinImageRight);
+
+        featureDetailsDiv.appendChild(featureImage);
+
+        featureDiv.appendChild(pinLeft);
+        featureDiv.appendChild(pinRight);
+        featureDiv.appendChild(featureDetailsDiv);
+
+        leftDiv.appendChild(productImage);
+        rightDiv.appendChild(featureDiv);
+
+        cardDiv.appendChild(leftDiv);
+        cardDiv.appendChild(rightDiv);
+
+        leftColumn.appendChild(cardDiv);
     }
 }
 
-function reset()
+function removeProducts(cat)
 {
-    document.getElementById("featureimg2").style.visiblity = 'visible';
-    document.getElementById("featureimg3").style.display = '';
-    document.getElementById("featureimg5").style.display = 'visible';
-    document.getElementById("featureimg6").style.display = 'visible';
+    var cardDiv = document.getElementsByClassName("card");
+    var len = cardDiv.length;
+    var category = ["mobile", "camera"];
+    for(var k = 0; k < category.length; k++)
+    {
+        if(category[k]!=cat)
+        {
+            for(var i = 1; i<= len; i++)
+            {
+                var card = document.getElementById(category[k]+"cardID_"+i);
+                card.parentNode.removeChild(card);
+            }
+        }
+    }
 }
