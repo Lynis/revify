@@ -5,7 +5,6 @@ import com.revify.dto.CategoryDTO;
 import com.revify.entity.Category;
 import com.revify.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
