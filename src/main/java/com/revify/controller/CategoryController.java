@@ -1,5 +1,8 @@
 package com.revify.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revify.dto.CategoryDTO;
 import com.revify.entity.Category;
 
 import com.revify.service.CategoryService;
@@ -23,8 +26,8 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @RequestMapping(value = "/categories", method = RequestMethod.GET, produces="application/json")
-    public List<Category> getCategories(){
-        List<Category> categories = categoryService.findAllCategories();
+    public List<CategoryDTO> getCategories() throws JsonProcessingException {
+        List<CategoryDTO> categories = categoryService.findAllCategories();
         return categories;
     }
 

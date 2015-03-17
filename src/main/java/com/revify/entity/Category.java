@@ -2,6 +2,7 @@ package com.revify.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by jchengottusseriy on 3/8/2015.
@@ -12,7 +13,7 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "category_id")
+    @Column(name = "category_id", nullable = false)
     private Long categoryID;
 
     @Column(name = "category_name")
@@ -20,6 +21,28 @@ public class Category implements Serializable {
 
     @Column(name="icon")
     private String icon;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = PurchasedProduct.class, mappedBy = "category")
+    private List<PurchasedProduct> productList;
+
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Feature.class, mappedBy = "category")
+    private List<Feature> featureList;
+
+    public List<Feature> getFeatureList() {
+        return featureList;
+    }
+
+    public void setFeatureList(List<Feature> featureList) {
+        this.featureList = featureList;
+    }
+
+    public List<PurchasedProduct> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<PurchasedProduct> productList) {
+        this.productList = productList;
+    }
 
     public void setCategoryID(Long categoryID) {
         this.categoryID = categoryID;

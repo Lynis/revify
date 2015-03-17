@@ -1,5 +1,6 @@
 package com.revify.service;
 
+import com.revify.dto.CategoryDTO;
 import com.revify.entity.Category;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface CategoryService {
 
-    public List<Category> findAllCategories();
+    public List<CategoryDTO> findAllCategories();
 }
