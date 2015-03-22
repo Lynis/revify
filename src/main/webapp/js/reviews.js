@@ -1,3 +1,8 @@
+/**
+ * Created by kalyaninirmal on 3/22/2015.
+ */
+
+
 function loadProducts(category)
 {
     removeProducts(category);
@@ -34,16 +39,26 @@ function loadProducts(category)
         pinRight.className = "pin-right";
 
         // create feature image
-        var featureImage = document.createElement('img');
-        featureImage.src = "img/"+category+"_feature1.jpg";
-        featureImage.width = 40;
-        featureImage.height = 40;
+        var featureImage_1 = document.createElement('img');
+        featureImage_1.src = "images/"+category+"_feature1.jpg";
+        featureImage_1.width = 40;
+        featureImage_1.height = 40;
+
+        var featureImage_2 = document.createElement('img');
+        featureImage_2.src = "images/"+category+"_feature2.jpg";
+        featureImage_2.width = 40;
+        featureImage_2.height = 40;
+
+        var featureImage_3 = document.createElement('img');
+        featureImage_3.src = "images/"+category+"_feature3.jpg";
+        featureImage_3.width = 40;
+        featureImage_3.height = 40;
 
         // create product image
         var productImage = document.createElement('img');
         productImage.src = "images/"+category+"_image1.jpg";
-        productImage.width = 150;
-        productImage.height = 150;
+        productImage.width = 200;
+        productImage.height = 200;
 
         //create left pin image
         var pinImageLeft = document.createElement('img');
@@ -57,10 +72,21 @@ function loadProducts(category)
         pinImageRight.width = 35;
         pinImageRight.height = 35;
 
+        // populate feature list
+        var
+
+
         pinLeft.appendChild(pinImageLeft);
         pinRight.appendChild(pinImageRight);
 
-        featureDetailsDiv.appendChild(featureImage);
+        featureDetailsDiv.appendChild(featureImage_1);
+        featureDetailsDiv.appendChild(document.createElement('br'));
+        featureDetailsDiv.appendChild(document.createElement('br'));
+        featureDetailsDiv.appendChild(featureImage_2);
+        featureDetailsDiv.appendChild(document.createElement('br'));
+        featureDetailsDiv.appendChild(document.createElement('br'));
+        featureDetailsDiv.appendChild(featureImage_3);
+
 
         featureDiv.appendChild(pinLeft);
         featureDiv.appendChild(pinRight);

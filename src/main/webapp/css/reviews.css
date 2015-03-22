@@ -1,0 +1,146 @@
+.image{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+.col-md-5{
+    margin-top: 130px;
+    width: 50%;
+}
+.category{
+    margin-top: 100px;
+}
+.col-md-4{
+    margin-top: 130px;
+    width: 25%;
+}
+.col-md-3{
+    width: 10%;
+}
+
+.inner {
+    margin-top: 30px;
+    margin-left: 50px;
+    background:#FFF;
+    border:1px solid #AAA;
+    border-bottom:3px solid #BBB;
+    padding:0px;
+    overflow:hidden;
+    width: 60px;
+    height: 60px;
+}
+
+.header {
+    text-align:center;
+    position:fixed;
+    height:30px;
+    left:0px;
+    right:0px;
+    background:#FFF;
+    padding:25px 0px 5px 0px;
+    border-bottom:5px solid #CCC;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.content {
+    position:fixed;
+    top:62px;
+    bottom:0px;
+    left:100px;
+    right:0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling:touch;
+    margin-bottom:30px;
+}
+
+.footer {
+    position:fixed;
+    height:22px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background:#FFF;
+    color:#888;
+    text-align:center;
+    padding:5px 0px 0px 0px;
+    border-top:5px solid #CCC;
+    font-size:12px;
+}
+
+.pin-left{
+    margin-top: -22px;
+    margin-left: 2px;
+    position: absolute;
+}
+.pin-right{
+    margin-top: -22px;
+    margin-left: 250px;
+    position: absolute;
+}
+
+.card {
+    width: 700px;
+    height: 300px;
+    background: #FFF;
+    border:0px solid #AAA;
+    box-shadow: -10px 10px 5px #888888;
+    padding:0px;
+    margin:15px;
+    overflow:hidden;
+}
+
+.featureCard{
+    background-color:#FFF;
+    padding:20px;
+    border:2px solid #AAA;
+    box-shadow: -10px 10px 5px #888888;
+    width: 270px;
+    height: 250px;
+    margin-left: 10px;
+    padding:0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.featureDetails{
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.leftColumn {
+    display:inline-block;
+    margin-left: 100px;
+    width: 80%;
+    vertical-align:top;
+}
+
+.left {
+    display:inline-block;
+    margin-left: 80px;
+    margin-top:12px;
+    width: 10;
+    vertical-align:top;
+}
+
+.right{
+    display:inline-block;
+    margin-left: 150px;
+    margin-top : 13px;
+    width:20%;
+    vertical-align:top;
+}
+
+
+.rightColumn{
+    display:inline-block;
+    margin-top: 100px;
+    margin-left: 70px;
+    vertical-align:top;
+}
+
+.column {
+    display:inline-block;
+    vertical-align:top;
+}
+
