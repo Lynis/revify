@@ -73,7 +73,6 @@ function loadProducts(category)
         pinImageRight.height = 35;
 
         // populate feature list
-        var
 
 
         pinLeft.appendChild(pinImageLeft);
