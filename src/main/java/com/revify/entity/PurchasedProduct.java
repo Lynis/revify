@@ -3,6 +3,7 @@ package com.revify.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +30,11 @@ public class PurchasedProduct implements Serializable {
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
+
     @OneToMany(cascade = CascadeType.ALL, targetEntity = ProductReview.class, mappedBy = "product")
     private List<ProductReview> reviews;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "purchased_product_user",
                joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "product_id"),
                inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id")
@@ -45,6 +47,17 @@ public class PurchasedProduct implements Serializable {
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
+    }
+*/
+    @OneToMany(mappedBy = "product")
+    private List <PurchasedProductUser> productUsers;
+
+    public List<PurchasedProductUser> getProductUsers() {
+        return productUsers;
+    }
+
+    public void setProductUsers(List<PurchasedProductUser> productUsers) {
+        this.productUsers = productUsers;
     }
 
     public List<ProductReview> getReviews() {
