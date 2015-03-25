@@ -14,8 +14,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/reviews.js"></script>
-</head>
-<body onload="loadProducts('mobile')">
+    <style>
+        body {
+            background-color: #b0c4de;
+        }
+    </style>
+    </head>
+<body onload="loadProducts('mobile', ['Battery', 'Connectivity', 'Camera'])">
 <header>
     <nav class="navbar navbar-background navbar-fixed-top">
         <div class="container-fluid">
@@ -36,12 +41,12 @@
         <ul class="category-list">
             <li class="category">
                 <div>
-                    <img src="images/camera.png" onclick="loadProducts('camera')" alt="">
+                    <img src="images/camera.png" onclick="loadProducts('camera',['lens', 'Shutter Speed'])" alt="">
                 </div>
             </li>
             <li class="category">
                 <div>
-                    <img src="images/phone.png" onclick="loadProducts('mobile')" alt="">
+                    <img src="images/phone.png" onclick="loadProducts('mobile', ['Battery', 'Connectivity', 'Camera'])" alt="">
                 </div>
             </li>
             <li class="category">
@@ -57,13 +62,10 @@
     <div class="leftColumn" id="leftColumnID"></div>
     <div class="rightColumn">
         <fieldset>
-            <legend>Selecting features</legend>
-                <select id = "featureList">
-                    <option value = "1">one</option>
-                    <option value = "2">two</option>
-                    <option value = "3">three</option>
-                    <option value = "4">four</option>
-                </select>
+            <legend><strong> Select feature</strong></legend>
+            <input type="text" name = "featureDropdown" list="featureDropdown" id="featureDropdownValue"/>
+            <datalist id = "featureDropdown"></datalist>
+            <button type="button" class="btn btn-success" onclick="selectedValue()">Filter</button>
         </fieldset>
     </div>
 </div>
