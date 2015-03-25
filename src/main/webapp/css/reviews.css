@@ -83,7 +83,7 @@
     width: 700px;
     height: 300px;
     background: #FFF;
-    border:0px solid #AAA;
+    border:1px solid #000;
     box-shadow: -10px 10px 5px #888888;
     padding:0px;
     margin:15px;
@@ -97,7 +97,7 @@
     box-shadow: -10px 10px 5px #888888;
     width: 270px;
     height: 250px;
-    margin-left: 10px;
+    margin-left: 20px;
     padding:0px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -110,8 +110,15 @@
 
 .leftColumn {
     display:inline-block;
-    margin-left: 100px;
-    width: 80%;
+    margin-left: 80px;
+    width: 50%;
+    vertical-align:top;
+}
+
+.rightColumn{
+    display:inline-block;
+    margin-top: 100px;
+    margin-left: 250px;
     vertical-align:top;
 }
 
@@ -119,23 +126,15 @@
     display:inline-block;
     margin-left: 80px;
     margin-top:12px;
-    width: 10;
+    width: 10%;
     vertical-align:top;
 }
 
 .right{
     display:inline-block;
-    margin-left: 150px;
+    margin-left: 200px;
     margin-top : 13px;
     width:20%;
-    vertical-align:top;
-}
-
-
-.rightColumn{
-    display:inline-block;
-    margin-top: 100px;
-    margin-left: 70px;
     vertical-align:top;
 }
 
