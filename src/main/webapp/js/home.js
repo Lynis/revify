@@ -16,14 +16,13 @@ var loadCategories = function(){
 var categoryOnSuccess = function(response, status, xhr){
 	try{
 		var categories = response;
-		var categoryContainer = $('.category-list');
+		var categoryMenu = $('.dl-menu');
 		for(var i in categories){
 			var category = categories[i];
-			var li = "<li class=\"category\"><div><a href=\"\">" +
-					"<img src=\""+ category.icon + "\" alt=\""+ category.categoryName +"\"></a>" +
-					"<span style='font-size:16px;' class='text-right'>" + category.categoryName + "</span></div></li>";
+			var li = "<li><div><img src=\"" + category.icon +"\"><a href=\"\">"+
+					  "<span>" + category.categoryName + "</span></a></div></li>";
 			
-			categoryContainer.append(li);
+			categoryMenu.append(li);
 		}
 	}catch(e){
 		console.log(e);
@@ -35,5 +34,12 @@ var categoryOnError = function(xhr, status, e){
 	console.log(e);
 	alert("Error in loading categories. Please try again");
 };
+
+$(".dl-menuwrapper").hover(function(){
+	$(".dl-menu").addClass("dl-menuopen");
+}, function(){
+	$(".dl-menu").removeClass("dl-menuopen");
+});
+
 
 loadCategories();
