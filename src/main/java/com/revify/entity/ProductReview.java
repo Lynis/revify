@@ -2,6 +2,8 @@ package com.revify.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -18,7 +20,7 @@ public class ProductReview {
     private Long productReviewID;
 
     @Column(name = "review_date")
-    private Date reviewDate;
+    private Timestamp reviewDate;
 
     @Column(name = "overall_rating")
     private int overallRating;
@@ -34,7 +36,6 @@ public class ProductReview {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productReview" , targetEntity = FeatureReview.class)
     private List<FeatureReview> featureReviewList;
 
-
     public Long getProductReviewID() {
         return productReviewID;
     }
@@ -43,11 +44,11 @@ public class ProductReview {
         this.productReviewID = productReviewID;
     }
 
-    public Date getReviewDate() {
+    public Timestamp getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(Date reviewDate) {
+    public void setReviewDate(Timestamp reviewDate) {
         this.reviewDate = reviewDate;
     }
 
