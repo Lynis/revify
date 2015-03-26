@@ -1,6 +1,7 @@
 package com.revify.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +16,11 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private String userID;
 
-    @ManyToMany(mappedBy = "userList")
-    private List<PurchasedProduct> purchasedProductList;
+   /* @ManyToMany(mappedBy = "userList")
+    private List<PurchasedProduct> purchasedProductList;*/
+
+    @OneToMany(mappedBy = "user")
+    private List<PurchasedProductUser> productUsers;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewer", targetEntity = ProductReview.class)
     private List<ProductReview> productReviewList;
@@ -29,13 +33,13 @@ public class User {
         this.userID = userID;
     }
 
-    public List<PurchasedProduct> getPurchasedProductList() {
+    /*public List<PurchasedProduct> getPurchasedProductList() {
         return purchasedProductList;
     }
 
     public void setPurchasedProductList(List<PurchasedProduct> purchasedProductList) {
         this.purchasedProductList = purchasedProductList;
-    }
+    }*/
 
     public List<ProductReview> getProductReviewList() {
         return productReviewList;
@@ -43,5 +47,13 @@ public class User {
 
     public void setProductReviewList(List<ProductReview> productReviewList) {
         this.productReviewList = productReviewList;
+    }
+
+    public List<PurchasedProductUser> getProductUsers() {
+        return productUsers;
+    }
+
+    public void setProductUsers(List<PurchasedProductUser> productUsers) {
+        this.productUsers = productUsers;
     }
 }
