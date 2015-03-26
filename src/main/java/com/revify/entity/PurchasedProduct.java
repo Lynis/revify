@@ -94,4 +94,21 @@ public class PurchasedProduct implements Serializable {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PurchasedProduct that = (PurchasedProduct) o;
+
+        if (!productID.equals(that.productID)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return productID.hashCode();
+    }
 }
