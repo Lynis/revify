@@ -3,10 +3,8 @@ package com.revify.service;
 import com.revify.dto.FeatureDTO;
 import com.revify.dto.ProductDTO;
 import com.revify.dto.ProductReviewDTO;
-import com.revify.entity.Feature;
-import com.revify.entity.ProductReview;
-import com.revify.entity.PurchasedProduct;
-import com.revify.entity.User;
+import com.revify.entity.*;
+import com.revify.repository.PurchasedProductUserRepository;
 import com.revify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,9 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PurchasedProductUserRepository purchasedProductUserRepository;
+
     @Override
     @Transactional
     public List<ProductDTO> getProductsPurchasedByEbayUser(String userID, String token) {
@@ -36,10 +37,11 @@ public class GameServiceImpl implements GameService {
         //6. Merge 4 an 5.
         User user = userRepository.findOne(userID);
         List<ProductReview> reviewedProducts = user.getProductReviewList();
-        List<PurchasedProduct> purchasedProducts = user.getPurchasedProductList();
+        List<PurchasedProductUser> purchasedProductUserList = purchasedProductUserRepository.findByUser(userID);
 
         List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
-        for (PurchasedProduct purchasedProduct: purchasedProducts){
+        for (PurchasedProductUser purchasedProductUser: purchasedProductUserList){
+            PurchasedProduct purchasedProduct = purchasedProductUser.getProduct();
             ProductDTO productDTO = new ProductDTO();
             productDTO.setImage(purchasedProduct.getImage());
             productDTO.setProductName(purchasedProduct.getProductName());
