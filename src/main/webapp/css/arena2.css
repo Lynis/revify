@@ -262,3 +262,25 @@ a:hover {
     transform: rotate(4deg);*/
 
 }
+
+.score {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    right: 80px;
+    bottom: 50px;
+    width: 150px;
+    height: 96px;
+    color: #000;
+    background-color: coral;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    border-radius: 5px;
+    padding: 32px;
+}
+
+#score.show .score{
+    display: block;
+}

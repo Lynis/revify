@@ -1,0 +1,104 @@
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    background-color: #f5f7fa;
+    margin: 0;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+
+}
+
+.wrapper>header{
+    background-color: #3a3f51;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+}
+
+.wrapper>header>span {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    padding-left: 35px;
+}
+
+.wrapper>section {
+    position: absolute;
+    top: 81px;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    background-size: 100% 100%;
+    overflow-x: hidden;
+}
+
+.wrapper>footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    border-top: 1px solid #e4eaec;
+    padding: 10px;
+    background-color: coral;
+    text-align: center;
+    font-weight: bold;
+}
+
+.navbar-background {
+    /*background-color: #5d9cec*/;/*#6541A4;*/
+    background: #fff;/*#3a3f51; /*linear-gradient(to left, #AECEF6 ,#548CD4);*/
+    /*border-color:#7847B2;*/
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+
+}
+
+.navbar{
+    height: 80px;
+    font-size: 14px !important;
+    font-weight: 600;
+    transform: translate3d(0,0,0);
+    z-index: 4;
+    background-position: 0 -724px;
+}
+
+.navbar>.container>.row {
+    margin: 10px 0;
+}
+
+.login>a{
+
+    font-size: 16px;
+    color: #643771;
+    float: right;
+    margin-top: 7px;
+    font-weight: bold;
+}
+
+.login>img{
+    float: right;
+}
+
+a:hover {
+    color: rgb(245, 142, 89)!important;
+    text-decoration: none !important;
+}
+
+.logo{
+    font-size: 32px;
+    font-weight: bold;
+    color: #643771;
+    padding-left: 20px;
+    float: left;
+}
