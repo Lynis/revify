@@ -16,6 +16,10 @@ div {
     display: block;
 }
 
+ul{
+    list-style: none;
+}
+
 .row-table{
     display: table;
     table-layout: fixed;
@@ -30,15 +34,11 @@ div {
     height: auto;
     min-height: 100%;
     background-color: #f2f2f2;
-    /*overflow-x: hidden; */
 }
 
 .navbar-background {
-    /*background-color: #5d9cec*/;/*#6541A4;*/
-    background: #fff;/*#3a3f51; /*linear-gradient(to left, #AECEF6 ,#548CD4);*/
-    /*border-color:#7847B2;*/
+    background: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-
 }
 
 .navbar{
@@ -51,7 +51,7 @@ div {
 }
 
 .navbar>.container>.row {
-    margin: 10px 0;
+    margin: 12px 0;
 }
 
 .login>a{
@@ -59,12 +59,13 @@ div {
     font-size: 16px;
     color: #643771;
     float: right;
-    margin-top: 7px;
+    margin-top: 10px;
     font-weight: bold;
 }
 
 .login>img{
     float: right;
+    margin-top: 5px; 
 }
 
 a:hover {
@@ -81,12 +82,14 @@ a:hover {
 }
 
 
+
 .wrapper>section{
     position: relative;
     height: 100%;
     margin-left: 0;
-    margin-top: 80px; /*margin-bottom: 60px !important;*/
-    background-color: #f2f2f2;/*#f5f7fa;*/    
+    background-color: #f2f2f2;
+    margin-top: 80px;
+    background-color: #f2f2f2;    
 }
 
 .content-wrapper{
@@ -110,23 +113,14 @@ a:hover {
 
 .review-card-wrapper{
    padding-left: 40px;
-    padding-right: 40px;
+   padding-right: 40px;
 }
 
 
-ul{
-    list-style: none;
-}
-
-
-.category-container{
-    /*background-color: #fff;*/
+/*.category-container{
     border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.22);
     height: 100% !important;
-    /*overflow: hidden;*/
-    /*max-width: 150px;
-    /*margin-left: 20px;*/
 }
 
 .category{
@@ -135,14 +129,14 @@ ul{
 }
 
 .category div{
-    background-color: #3a3f51;/*#5d9cec;*/
+    background-color: #3a3f51;
     width: 64px;
     height: 64px;
     border: 1px solid transparent;
     border-radius: 32px;
-    box-shadow: 0 4px 8px rgba(0,0,0,.28);/*5px 5px 2px rgba(0, 0, 0, 0.22);*/
+    box-shadow: 0 4px 8px rgba(0,0,0,.28);
 }
-
+*/
 /***********************review-card ********************************/
 
 .review-card{
