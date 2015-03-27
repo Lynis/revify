@@ -4,6 +4,7 @@
  */
 
 var currentFeature = 0;
+var selectedProduct;
 
 var createFeatureContainer = function(featureIcon, featureName){
     var el = "<div id='feature-container'><img src='images/bird.gif'><div class='feature'><img src='" + featureIcon +"' ><span>" + featureName +"</span></div></div>";
@@ -63,4 +64,10 @@ $('.push-button').click(function() {
     //update total score
 });
 
-var selectedProduct = JSON.parse(window.sessionStorage.getItem("selectedProduct"));
+function init(){
+    selectedProduct = JSON.parse(window.sessionStorage.getItem("selectedProduct"));
+    $('.product-region>img').attr('src',selectedProduct.image);
+    $('.product-region>marquee').text(selectedProduct.productName);
+}
+
+init();

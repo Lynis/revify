@@ -3,7 +3,7 @@
  * Start screen JS
  */
 var productUrl = "http://localhost:8080/revify/services/products";
-var userID = "joe";//hard-coded for now
+var userID = "1";//hard-coded for now
 var purchasedProducts = [];
 
 var loadProductsPurchasedByUser = function(user,token){
