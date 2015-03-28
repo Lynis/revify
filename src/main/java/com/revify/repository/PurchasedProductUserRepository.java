@@ -2,6 +2,7 @@ package com.revify.repository;
 
 import com.revify.entity.PurchasedProductUser;
 import com.revify.entity.PurchasedProductUserId;
+import com.revify.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.*;
@@ -12,5 +13,5 @@ import java.util.List;
  */
 public interface PurchasedProductUserRepository extends JpaRepository<PurchasedProductUser, PurchasedProductUserId>{
 
-    public List<PurchasedProductUser> findByUser(String user);
+    public List<PurchasedProductUser> findByUser(User user);
 }
