@@ -1,6 +1,7 @@
 package com.revify.controller;
 
 import com.revify.dto.LatestReviewDTO;
+import com.revify.dto.ReviewDTO;
 import com.revify.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +24,16 @@ public class ReviewController {
     @RequestMapping(method = RequestMethod.GET, params = "range=latest", produces = "application/json")
     public List<LatestReviewDTO> getLatestReviews(@RequestParam(required = true, value = "categoryID") Long categoryID){
             return reviewService.getLatestReviews(categoryID);
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, params = "range=aggregated", produces = "application/json")
+    public List<ReviewDTO> getAggregatedReviews(@RequestParam(required = true, value = "categoryID") Long categoryID){
+        return reviewService.getAggregatedReviews(categoryID);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, params = "range=individual", produces = "application/json")
+    public List<ReviewDTO> getIndividualReview(@RequestParam(required = true, value = "productID") Long productID){
+        return reviewService.getIndividualReview(productID);
     }
 }

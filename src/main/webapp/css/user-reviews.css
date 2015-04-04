@@ -189,6 +189,10 @@ li{
 	background: #9c0;
 }
 
+.fill-light-red{
+    background: #FF3300;
+}
+
 .fill-red{
 	background: #c00;
 }
@@ -216,6 +220,11 @@ li{
 .light-green{
 	border-color: #9c0;
 }
+
+.light-red{
+    border-color: #FF3300;
+}
+
 
 .red{
 	border-color: #c00;
