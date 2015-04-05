@@ -24,6 +24,16 @@ public class ReviewDTO {
 
     private List<FeatureDTO> featureDTOs;
 
+    private List<ProductReviewDTO> productReviewDTOs;
+
+    public List<ProductReviewDTO> getProductReviewDTOs() {
+        return productReviewDTOs;
+    }
+
+    public void setProductReviewDTOs(List<ProductReviewDTO> productReviewDTOs) {
+        this.productReviewDTOs = productReviewDTOs;
+    }
+
     public String getProductName() {
         return productName;
     }
