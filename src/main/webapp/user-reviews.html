@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script src="js/user-reviews.js"></script>
 </head>
 
 <body>
@@ -33,18 +32,24 @@
 				</div>
 			</nav>
 		</header>
-
 		<section id="section">
 			<div class="container-fluid" id="container">
-				<div class="row category-heading text-center">
-					<span>Camera Reviews</span>
-				</div>
+                <div class="row category-heading text-center">
+                    <span>Camera Reviews</span>
+                        <!--<div class="row text-right">-->
+                        <div>
+                            <input style="height: 35px; font-size: 13px; alignment: center;" placeholder="Select feature..." type="text" name = "featureDropdown" list="featureDropdown" id="featureDropdownValue" onclick="showButton()"/>
+                            <datalist id = "featureDropdown"></datalist>
+                            <button id="filter" type="button" class="btn btn-success" disabled="true" onclick="selectedValue()">Filter</button>
+                        </div>
+                </div>
             </div>
 		</section>
     <footer>
         <p>©Company Copyright</p>
     </footer>
         <script src="js/home.js"></script>
+        <script src="js/user-reviews.js"></script>
 	</div>
 </body>
 </html>

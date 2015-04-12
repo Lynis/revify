@@ -13,4 +13,5 @@ public interface ReviewService {
     public List<LatestReviewDTO> getLatestReviews(Long categoryID);
     public List<ReviewDTO> getAggregatedReviews(Long categoryID);
     public List<ReviewDTO> getIndividualReview(Long productID);
+    public List<ReviewDTO> getSortedReviews(Long categoryID, String featureName);
 }

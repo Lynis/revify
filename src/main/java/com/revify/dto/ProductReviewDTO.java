@@ -12,7 +12,7 @@ public class ProductReviewDTO {
 
     private String reviewerID;
 
-    private int overallRating;
+    private double overallRating;
 
     private Timestamp reviewDate;
 
@@ -52,11 +52,11 @@ public class ProductReviewDTO {
         this.reviewerID = reviewerID;
     }
 
-    public int getOverallRating() {
+    public double getOverallRating() {
         return overallRating;
     }
 
-    public void setOverallRating(int overallRating) {
+    public void setOverallRating(double overallRating) {
         this.overallRating = overallRating;
     }
 

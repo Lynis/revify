@@ -149,6 +149,14 @@ li{
 	line-height: 18px;
 }
 
+.parent .popup {
+    display: none;
+}
+
+.parent:hover .popup {
+    display: block;
+}
+
 
 .feature-review-bars{
 	width: 340px;

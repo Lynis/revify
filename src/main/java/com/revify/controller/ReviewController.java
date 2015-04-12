@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Vijaya on 3/24/2015.
@@ -36,4 +37,13 @@ public class ReviewController {
     public List<ReviewDTO> getIndividualReview(@RequestParam(required = true, value = "productID") Long productID){
         return reviewService.getIndividualReview(productID);
     }
+
+    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+    public List<ReviewDTO> getSortedReviews(@RequestParam Map<String, String> requestParams){
+        String categoryIDStr = requestParams.get("categoryID");
+        String featureName = requestParams.get("featureName");
+        Long categoryID = Long.valueOf(categoryIDStr);
+        return reviewService.getSortedReviews(categoryID, featureName);
+    }
+
 }
