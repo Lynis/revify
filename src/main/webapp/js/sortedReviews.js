@@ -133,10 +133,8 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             col_md_5.appendChild(col_md_9);
 
             var priceDiv = document.createElement('div');
-            priceDiv.id = "popup_"+product.productDTO.productID;
+            priceDiv.className = "product-heading";
             priceDiv.innerText = "Price : $" + product.productDTO.price ;
-            priceDiv.style.display = "none";
-
             col_md_4.appendChild(priceDiv);
 
             var product_heading = document.createElement('div');
@@ -144,19 +142,13 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             product_heading.innerText = product.productDTO.productName;
             product_heading.id = product.productDTO.productID;
 
-            product_heading.onmouseover = function() {
-                document.getElementById("popup_"+this.id).style.display = 'block';
-            }
-            product_heading.onmouseout = function() {
-                document.getElementById("popup_"+this.id).style.display = 'none';
-            }
-
             col_md_5.appendChild(product_heading);
             row.appendChild(col_md_5);
             row.appendChild(col_md_4);
             review_wrapper.appendChild(row);
             container.appendChild(review_wrapper);
             section.appendChild(container);
+            sessionStorage.clear();
         }
     }
     else{

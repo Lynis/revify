@@ -251,7 +251,7 @@ function selectedValue(){
     var selectedFeature = document.getElementById('featureDropdownValue');
     if(selectedFeature.value != "") {
         sessionStorage.setItem("featureName", selectedFeature.value);
-        sessionStorage.setItem("categoryID", "1");
+        sessionStorage.setItem("categoryID", "3");
         window.location.href = "sortedReviews.html";
     }
 }

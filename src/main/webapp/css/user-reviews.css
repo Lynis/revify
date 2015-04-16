@@ -110,6 +110,7 @@ a:hover {
 	padding: 20px 0;
 }
 
+
 ul{
 	margin: 0!important;
 	padding: 0!important;
@@ -156,7 +157,6 @@ li{
 .parent:hover .popup {
     display: block;
 }
-
 
 .feature-review-bars{
 	width: 340px;
