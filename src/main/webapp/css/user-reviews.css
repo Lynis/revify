@@ -110,6 +110,7 @@ a:hover {
 	padding: 20px 0;
 }
 
+
 ul{
 	margin: 0!important;
 	padding: 0!important;
@@ -149,6 +150,13 @@ li{
 	line-height: 18px;
 }
 
+.parent .popup {
+    display: none;
+}
+
+.parent:hover .popup {
+    display: block;
+}
 
 .feature-review-bars{
 	width: 340px;
@@ -189,6 +197,10 @@ li{
 	background: #9c0;
 }
 
+.fill-light-red{
+    background: #FF3300;
+}
+
 .fill-red{
 	background: #c00;
 }
@@ -216,6 +228,11 @@ li{
 .light-green{
 	border-color: #9c0;
 }
+
+.light-red{
+    border-color: #FF3300;
+}
+
 
 .red{
 	border-color: #c00;
