@@ -1,4 +1,4 @@
-package com.revify.controller;
+package controller;
 
 import com.revify.dto.ReviewDTO;
 import com.sun.jersey.api.client.Client;
@@ -24,6 +24,7 @@ public class ReviewControllerTest {
 
    // @Test
     public void testGetLatestReviews() throws Exception {
+        System.out.println();
         WebResource webResource = client.resource("http://localhost:8080/revify/services/reviews?categoryID=1&range=latest");
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         Assert.assertEquals(response.getStatus(), 200);
@@ -33,32 +34,47 @@ public class ReviewControllerTest {
 
     @Test
     public void testGetAggregatedReviews() throws Exception {
+        System.out.println("Testing getAggregatedReviews.. ");
         WebResource webResource = client.resource("http://localhost:8080/revify/services/reviews?categoryID=1&range=aggregated");
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         Assert.assertEquals(response.getStatus(), 200);
         String aggReviews = response.getEntity(String.class);
-        JSONObject jsonObject = new JSONObject(aggReviews);
-        System.out.println(jsonObject);
-        //JSONArray jsonArray = jsonObject.getJSONArray();
-        System.out.println(aggReviews);
+        JSONArray jsonArray = new JSONArray(aggReviews);
+        JSONObject jsonObjectProduct = jsonArray.getJSONObject(0);
+        JSONObject jsonObjectName = jsonObjectProduct.getJSONObject("productDTO");
+        Assert.assertEquals(jsonObjectName.getString("productName"), "Olympus 24x Zoom Camera");
     }
 
-    //@Test
+    @Test
     public void testGetIndividualReview() throws Exception {
+        System.out.println("Testing getIndividualReviews.. ");
         WebResource webResource = client.resource("http://localhost:8080/revify/services/reviews?productID=1&range=individual");
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         Assert.assertEquals(response.getStatus(), 200);
         String individualReview = response.getEntity(String.class);
-        System.out.println(individualReview);
+        JSONArray jsonArrayIndiReviews = new JSONArray(individualReview);
+        JSONObject jsonObjectProduct = jsonArrayIndiReviews.getJSONObject(0);
+        JSONObject jsonObjectName = jsonObjectProduct.getJSONObject("productDTO");
+        String productReviewDTOs = jsonObjectName.getString("productReviewDTOs");
+        JSONArray jsonArrayProductReviews = new JSONArray(productReviewDTOs);
+        Assert.assertEquals(jsonArrayProductReviews.length(),2);
+        Assert.assertEquals(jsonObjectName.getString("productName"), "Olympus 24x Zoom Camera");
     }
 
-    //@Test
+    @Test
     public void testGetSortedReviews() throws Exception{
-        WebResource webResource = client.resource("http://localhost:8080//revify/services/reviews?categoryID=1&featureName=Lens");
+        System.out.println("Testing getGetSortedReviews .. ");
+        WebResource webResource = client.resource("http://localhost:8080/revify/services/reviews?categoryID=1&featureName=Lens");
         ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
         Assert.assertEquals(response.getStatus(), 200);
         String sortedReviews = response.getEntity(String.class);
-        System.out.println(sortedReviews);
+        JSONArray jsonArraySortedReviews = new JSONArray(sortedReviews);
+        JSONObject jsonObjectProduct = jsonArraySortedReviews.getJSONObject(0);
+        JSONObject jsonObjectName = jsonObjectProduct.getJSONObject("productDTO");
+        String jsonFeatures = jsonObjectName.getString("features");
+        JSONArray jsonArraySortedReview = new JSONArray(jsonFeatures);
+        Assert.assertEquals(jsonArraySortedReview.length(), 1);
+        Assert.assertEquals(jsonObjectName.getString("productName"), "Olympus 24x Zoom Camera");
     }
 
     @After
