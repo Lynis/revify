@@ -23,6 +23,7 @@ ul{
 	list-style: none;
 }
 
+
 .wrapper{
 	position: relative;
 	height: auto;
@@ -133,6 +134,10 @@ li{
 	text-align: center;
 }
 
+.product-overall-rating>a{
+    color: #3333FF!important;
+}
+
 .rating{
 	height: 74px;
 	padding: 0px 0px 6px;
@@ -145,7 +150,7 @@ li{
 .review-count{
 	display: inline-block;
 	padding: 6px 0 0;
-	font-size: 13px;
+	font-size: 14px;
 	line-height: 18px;
 }
 
@@ -189,6 +194,10 @@ li{
 	background: #9c0;
 }
 
+.fill-light-red{
+    background: #ff7519;
+}
+
 .fill-red{
 	background: #c00;
 }
@@ -219,6 +228,10 @@ li{
 
 .red{
 	border-color: #c00;
+}
+
+.light-red{
+    border-color: #ff7519;
 }
 
 .clear{

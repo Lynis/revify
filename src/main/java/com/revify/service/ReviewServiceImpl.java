@@ -24,6 +24,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+    private static final int REVIEWS_PER_ROW = 4;
+
     @Autowired
     public ReviewServiceImpl(PurchasedProductRepository productRepository, ReviewRepository reviewRepository){
         this.productRepository = productRepository;
@@ -46,10 +48,10 @@ public class ReviewServiceImpl implements ReviewService {
 
         List<ProductReview> reviewList = reviewRepository.findByReviewDateBetweenOrderByReviewDateDesc(startTime, endTime);
 
+        // Only the required number of reviews will be returned
+        int cnt = REVIEWS_PER_ROW;
         for(ProductReview review: reviewList){
-            if(review.getProduct().getCategory().getCategoryID().equals(categoryID)) {
-
-                System.out.println(review.getProduct().getProductName());
+            if(review.getProduct().getCategory().getCategoryID().equals(categoryID) && cnt!=0) {
                 LatestReviewDTO reviewDTO = new LatestReviewDTO();
                 reviewDTO.setProductID(review.getProduct().getProductID());
                 reviewDTO.setProductName(review.getProduct().getProductName());
@@ -59,9 +61,9 @@ public class ReviewServiceImpl implements ReviewService {
                 reviewDTO.setReviwer(review.getReviewer().getUserID());
 
                 reviewDTOList.add(reviewDTO);
+                cnt--;
             }
         }
-
         return reviewDTOList;
     }
 

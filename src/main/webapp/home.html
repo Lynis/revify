@@ -12,6 +12,7 @@
     
 </head>
 <body>
+<div id="disablingDiv" ></div>
 <div class="wrapper">
     <header>
         <nav class="navbar navbar-background navbar-fixed-top">
@@ -26,12 +27,15 @@
                         </div>
                     </div>
                     <div class="login col-md-6">
-                        <a class="text-uppercase" href="">Log In</a>
+                        <a id="login" class="text-uppercase" href="#">Log In</a>
                         <img src="images/login-icon-purple.png">
                     </div>
                 </div>
             </div>
         </nav>
+        <div id="spinner" class="spinner" style="display:none;">
+            <img id="img-spinner" src="images/ajax-loader-circle1.gif" alt="Loading"/>
+        </div>
     </header>
 
     <section>
@@ -49,7 +53,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">                      
                          <div class="item active hot-product-background">
-                            <img src="images/hot-products/hot-iphone6plus-background.png" class-"img-responsive">
+                            <img src="images/hot-products/hot-iphone6plus-background1.png" class-"img-responsive">
                      
                             <!-- <div class="carousel-caption">
                                 <span style="font-size:20px">iPhone 6</span>
@@ -57,7 +61,7 @@
                          </div>
 
                          <div class="item hot-product-background">
-                            <img src="images/hot-products/hot-michael-kors-mens-watch-background.png" class-"img-responsive">
+                            <img src="images/hot-products/hot-michael-kors-mens-watch-background1.png" class-"img-responsive">
                             
                            <!--  <div class="carousel-caption">
                                 <span style="font-size:20px">iPhone 6</span>
@@ -93,7 +97,7 @@
                                 <div class="review-panel review-card">
                                     <div class="review-card-image review-border">
                                         <a href="">
-                                            <img class="img-responsive" src="images/products/iPhone6-plus.jpg">
+                                            <img class="img-responsive" src="images/products/iphone6-plus.jpg">
                                         </a>
                                     </div>    
                                     <div class="review-panel-body">

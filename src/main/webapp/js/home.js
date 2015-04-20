@@ -34,6 +34,40 @@ var categoryOnError = function(xhr, status, e){
 	console.log(e);
 	alert("Error in loading categories. Please try again");
 };
+//******************** sign in ******************************/
+
+var signinURL = "https://localhost:8443/revify/services/signin";
+
+var spinnerOn = function(){
+    $('#disablingDiv').attr("display","block");
+    //$('#spinner').show();
+}
+
+var spinnerOff = function(){
+   // $('#spinner').hide();
+    $('#disablingDiv').attr("display", "none");
+}
+
+var signin = function(){
+    spinnerOn();
+    jQuery.ajax(signinURL, {
+        dataType: "text",
+        success: signinOnSuccess,
+        error: signinOnError
+    });
+};
+
+var signinOnSuccess = function(response, status, xhr){
+  window.open(response);
+  spinnerOff();
+};
+
+var signinOnError = function(xhr, status, e){
+    console.log(e);
+    alert("Error while signing in");
+};
+
+$('#login').click(signin);
 
 $(".dl-menuwrapper").hover(function(){
 	$(".dl-menu").addClass("dl-menuopen");
