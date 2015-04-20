@@ -78,7 +78,7 @@ public class ReviewServiceImpl implements ReviewService {
 
             if(purchasedProduct.getCategory().getCategoryID().equals(categoryID)){
 
-                Map<Long, Integer> featureReviewMap = new LinkedHashMap<>();
+                Map<Long, Integer> featureReviewMap = new LinkedHashMap<Long,Integer>();
 
                 ReviewDTO reviewDTO = new ReviewDTO();
 
@@ -97,7 +97,7 @@ public class ReviewServiceImpl implements ReviewService {
 
                 for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
                     productOverAllRating = productOverAllRating/totalNoReviews;
@@ -156,13 +156,13 @@ public class ReviewServiceImpl implements ReviewService {
 
                 List<ProductReview> productReviewList = purchasedProduct.getReviews();
                 List<FeatureDTO> featureDTOList = null;
-                List<ProductReviewDTO> productReviewDTOList = new ArrayList<>();
+                List<ProductReviewDTO> productReviewDTOList = new ArrayList<ProductReviewDTO>();
 
                 int productOverAllRating = 0;
 
                     for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
                     ProductReviewDTO productReviewDTO = new ProductReviewDTO();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
@@ -207,7 +207,7 @@ public class ReviewServiceImpl implements ReviewService {
 
             if(purchasedProduct.getCategory().getCategoryID().equals(categoryID)){
 
-                Map<Long, Integer> featureReviewMap = new LinkedHashMap<>();
+                Map<Long, Integer> featureReviewMap = new LinkedHashMap<Long,Integer>();
 
                 ReviewDTO reviewDTO = new ReviewDTO();
                 ProductDTO productDTO = new ProductDTO();
@@ -226,7 +226,7 @@ public class ReviewServiceImpl implements ReviewService {
 
                 for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
                     productOverAllRating = productOverAllRating/totalNoReviews;

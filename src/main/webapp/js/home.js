@@ -46,13 +46,13 @@ var categoryOnError = function(xhr, status, e){
 var signinURL = "https://localhost:8443/revify/services/signin";
 
 var spinnerOn = function(){
-    $('#disablingDiv').attr("display","block");
-    //$('#spinner').show();
+    $('.disablingDiv').show();
+    $('#spinner').show();
 }
 
 var spinnerOff = function(){
-   // $('#spinner').hide();
-    $('#disablingDiv').attr("display", "none");
+    $('#spinner').hide();
+    $('.disablingDiv').hide();
 }
 
 var signin = function(){
@@ -65,7 +65,7 @@ var signin = function(){
 };
 
 var signinOnSuccess = function(response, status, xhr){
-  window.open(response);
+  window.open(response, "_self");
   spinnerOff();
 };
 

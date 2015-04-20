@@ -299,25 +299,14 @@ hr{
     height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
 }
 
-#disablingDiv
+.disablingDiv
 {
-    /* Do not display it on entry */
-    display: none;
-
-    /* Display it on the layer with index 1001.
-       Make sure this is the highest z-index value
-       used by layers on that page */
-    z-index:1001;
-
-    /* make it cover the whole screen */
+    background-color: rgba(250, 250, 250, 0.8);
+    z-index: 999;
     position: absolute;
-    top: 0%;
-    left: 0%;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-
-    /* make it white but fully transparent */
-    background-color: white;
-    opacity:.00;
-    filter: alpha(opacity=00);
+    display: none;
 }
