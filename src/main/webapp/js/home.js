@@ -2,16 +2,23 @@
  * 
  */
 
-var categoryURL = "http://localhost:8080/revify/services/categories";
+var categoryPath = "/revify/services/categories";
 
 var loadCategories = function(){
-
-	jQuery.ajax(categoryURL, {
+    var url = extractBaseUrl() + categoryPath;
+	jQuery.ajax(url, {
 		dataType : "json",
 		success : categoryOnSuccess,
 		error : categoryOnError		
 	});
 };
+
+var extractBaseUrl = function(){
+    var urlArr = location.href.split('/');
+    var protocol = urlArr[0];
+    var host = urlArr[2];
+    return protocol + '//' + host;
+}
 
 var categoryOnSuccess = function(response, status, xhr){
 	try{

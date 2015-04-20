@@ -37,7 +37,7 @@ public class GameServiceImpl implements GameService {
         //6. Merge 4 an 5.
         User user = userRepository.findOne(userID);
         List<ProductReview> reviewedProducts = user.getProductReviewList();
-        List<PurchasedProductUser> purchasedProductUserList = purchasedProductUserRepository.findByUser(userID);
+        List<PurchasedProductUser> purchasedProductUserList = purchasedProductUserRepository.findByUser(user);
 
         List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
         for (PurchasedProductUser purchasedProductUser: purchasedProductUserList){

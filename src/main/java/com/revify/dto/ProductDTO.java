@@ -12,6 +12,44 @@ public class ProductDTO {
     private String image;
     private List<FeatureDTO> features;
     private boolean reviewed;
+    private int noOfReviews;
+    private int overallRating;
+    private double price;
+    private List<ProductReviewDTO> productReviewDTOs;
+
+
+    public List<ProductReviewDTO> getProductReviewDTOs() {
+        return productReviewDTOs;
+    }
+
+    public void setProductReviewDTOs(List<ProductReviewDTO> productReviewDTOs) {
+        this.productReviewDTOs = productReviewDTOs;
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getNoOfReviews() {
+        return noOfReviews;
+    }
+
+    public void setNoOfReviews(int noOfReviews) {
+        this.noOfReviews = noOfReviews;
+    }
+
+    public int getOverallRating() {
+        return overallRating;
+    }
+
+    public void setOverallRating(int overallRating) {
+        this.overallRating = overallRating;
+    }
 
     public String getProductID() {
         return productID;

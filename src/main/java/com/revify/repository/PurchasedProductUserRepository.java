@@ -17,4 +17,7 @@ public interface PurchasedProductUserRepository extends JpaRepository<PurchasedP
     public List<PurchasedProductUser> findByUser(String user);
 
     public List<User> findByProduct(PurchasedProduct product);
+
+    public List<PurchasedProductUser> findByUser(User user);
+
 }

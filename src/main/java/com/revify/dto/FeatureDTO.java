@@ -8,7 +8,24 @@ public class FeatureDTO {
     private long featureID;
     private String featureName;
     private String icon;
+    private int overallRating;
+    private String reviewer;
 
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public int getOverallRating() {
+        return overallRating;
+    }
+
+    public void setOverallRating(int overallRating) {
+        this.overallRating = overallRating;
+    }
     public long getFeatureID() {
         return featureID;
     }

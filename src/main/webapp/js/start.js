@@ -2,19 +2,24 @@
  *
  * Start screen JS
  */
-var productUrl = "http://localhost:8080/revify/services/products";
-var userID = "joe";//hard-coded for now
+var productPath = "/revify/services/products";
+var userID = "1";//hard-coded for now
 var purchasedProducts = [];
 
 var loadProductsPurchasedByUser = function(user,token){
-    var url = productUrl + '/' + encodeURIComponent(user) + '?token=' + token;
+    var url = extractBaseUrl() + productPath + '/' + encodeURIComponent(user) + '?token=' + token;
     jQuery.ajax(url, {
         dataType : "json",
         success : loadProductsOnSuccess,
         error : loadProductsOnError
     });
 };
-
+var extractBaseUrl = function(){
+    var urlArr = location.href.split('/');
+    var protocol = urlArr[0];
+    var host = urlArr[2];
+    return protocol + '//' + host;
+}
 var loadProductsOnSuccess = function(response, status, xhr){
     try{
         purchasedProducts = response;

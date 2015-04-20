@@ -56,9 +56,54 @@ ul {
     margin: 3px 0 15px;
 }
 
-.bar-wrap .votes-wrap {
-    background-color: #b80000;
-    border: 1px solid #b80000;
+.bar-wrap .votes-wrap{
+    background-color: #c00;
+    border: 1px solid #c00;
+    border-radius: 3px;
+    display: block;
+    height: 10px;
+    position: absolute;
+}
+
+.votes-wrap-red {
+    background-color: #c00;
+    border: 1px solid #c00;
+    border-radius: 3px;
+    display: block;
+    height: 10px;
+    position: absolute;
+}
+
+.votes-wrap-light-red {
+    background-color: #FF3300;
+    border: 1px solid #FF3300;
+    border-radius: 3px;
+    display: block;
+    height: 10px;
+    position: absolute;
+}
+
+.votes-wrap-yellow {
+    background-color: #ffac00;
+    border: 1px solid #ffac00;
+    border-radius: 3px;
+    display: block;
+    height: 10px;
+    position: absolute;
+}
+
+.votes-wrap-light-green {
+    background-color: #9c0;
+    border: 1px solid #9c0;
+    border-radius: 3px;
+    display: block;
+    height: 10px;
+    position: absolute;
+}
+
+.votes-wrap-green {
+    background-color: #390;
+    border: 1px solid #390;
     border-radius: 3px;
     display: block;
     height: 10px;
