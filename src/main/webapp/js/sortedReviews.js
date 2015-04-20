@@ -57,7 +57,14 @@ var sortedReviewOnSuccess = function (response, status, xhr){
                 window.location.href = "detailedReviews.html";
             };
 
+            var product_heading = document.createElement('div');
+            product_heading.className = "text-center product-heading";
+            product_heading.innerText = product.productDTO.productName;
+            product_heading.id = product.productDTO.productID;
+
             col_md_3.appendChild(image);
+            col_md_3.appendChild(product_heading);
+
 
             var col_md_5 = document.createElement('div');
             col_md_5.className = "col-md-5";
@@ -134,15 +141,12 @@ var sortedReviewOnSuccess = function (response, status, xhr){
 
             var priceDiv = document.createElement('div');
             priceDiv.className = "product-heading";
-            priceDiv.innerText = "Price : $" + product.productDTO.price ;
+            priceDiv.innerText = "$" + product.productDTO.price ;
             col_md_4.appendChild(priceDiv);
 
-            var product_heading = document.createElement('div');
-            product_heading.className = "text-center product-heading";
-            product_heading.innerText = product.productDTO.productName;
-            product_heading.id = product.productDTO.productID;
 
-            col_md_5.appendChild(product_heading);
+
+            //col_md_5.appendChild(product_heading);
             row.appendChild(col_md_5);
             row.appendChild(col_md_4);
             review_wrapper.appendChild(row);

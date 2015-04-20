@@ -60,8 +60,9 @@ var reviewOnSuccess = function (response, status, xhr){
             var product_heading = document.createElement('div');
             product_heading.className = "text-center product-heading";
             product_heading.innerText = product.productDTO.productName;
-            col_md_3.appendChild(product_heading);
+
             col_md_3.appendChild(image);
+            col_md_3.appendChild(product_heading);
             var col_md_5 = document.createElement('div');
             col_md_5.className = "col-md-5";
             var product_overall_rating = document.createElement('div');
@@ -70,7 +71,7 @@ var reviewOnSuccess = function (response, status, xhr){
             //a.href = "detailedReviews.html";
             var span1 = document.createElement('span');
             span1.className = "review-count";
-            if(product.noOfReviews > 1)
+            if(product.productDTO.noOfReviews > 1)
                 span1.innerText = product.productDTO.noOfReviews + " Reviews";
             else
                 span1.innerText = product.productDTO.noOfReviews + " Review";
