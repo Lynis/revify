@@ -26,8 +26,8 @@ var categoryOnSuccess = function(response, status, xhr){
 		var categoryMenu = $('.dl-menu');
 		for(var i in categories){
 			var category = categories[i];
-			var li = "<li><div><img src=\"" + category.icon +"\"><a href=\"\">"+
-					  "<span>" + category.categoryName + "</span></a></div></li>";
+			var li = "<li><div><img src=\"" + category.icon +"\"><a href='user-reviews.html?cid=" + category.categoryID
+                + "'><span>" + category.categoryName + "</span></a></div></li>";
 			
 			categoryMenu.append(li);
 		}

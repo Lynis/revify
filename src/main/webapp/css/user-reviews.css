@@ -32,7 +32,7 @@ ul{
 
 
 .navbar-background {
-    background: #fff;
+    background: #3a3f51;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 }
 
@@ -52,7 +52,7 @@ ul{
 .login>a{
 
     font-size: 16px;
-    color: #643771;
+    color: #fff;
     float: right;
     margin-top: 10px;
     font-weight: bold;
@@ -71,7 +71,7 @@ a:hover {
 .logo{
     font-size: 32px;
     font-weight: bold;
-    color: #643771;
+    color: #fff;
     padding-left: 20px;
     float: left;
 }
