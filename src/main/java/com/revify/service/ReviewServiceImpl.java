@@ -22,6 +22,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewRepository reviewRepository;
 
+    private static final int REVIEWS_PER_ROW = 4;
+
     @Autowired
     public ReviewServiceImpl(PurchasedProductRepository productRepository, ReviewRepository reviewRepository){
         this.productRepository = productRepository;
@@ -45,10 +47,10 @@ public class ReviewServiceImpl implements ReviewService {
 
         List<ProductReview> reviewList = reviewRepository.findByReviewDateBetweenOrderByReviewDateDesc(startTime, endTime);
 
+        // Only the required number of reviews will be returned
+        int cnt = REVIEWS_PER_ROW;
         for(ProductReview review: reviewList){
-            if(review.getProduct().getCategory().getCategoryID().equals(categoryID)) {
-
-                System.out.println(review.getProduct().getProductName());
+            if(review.getProduct().getCategory().getCategoryID().equals(categoryID) && cnt!=0) {
                 LatestReviewDTO reviewDTO = new LatestReviewDTO();
                 reviewDTO.setProductID(review.getProduct().getProductID());
                 reviewDTO.setProductName(review.getProduct().getProductName());
@@ -58,9 +60,9 @@ public class ReviewServiceImpl implements ReviewService {
                 reviewDTO.setReviwer(review.getReviewer().getUserID());
 
                 reviewDTOList.add(reviewDTO);
+                cnt--;
             }
         }
-
         return reviewDTOList;
     }
 
@@ -76,7 +78,7 @@ public class ReviewServiceImpl implements ReviewService {
 
             if(purchasedProduct.getCategory().getCategoryID().equals(categoryID)){
 
-                Map<Long, Integer> featureReviewMap = new LinkedHashMap<>();
+                Map<Long, Integer> featureReviewMap = new LinkedHashMap<Long,Integer>();
 
                 ReviewDTO reviewDTO = new ReviewDTO();
 
@@ -95,7 +97,7 @@ public class ReviewServiceImpl implements ReviewService {
 
                 for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
                     productOverAllRating = productOverAllRating/totalNoReviews;
@@ -154,13 +156,13 @@ public class ReviewServiceImpl implements ReviewService {
 
                 List<ProductReview> productReviewList = purchasedProduct.getReviews();
                 List<FeatureDTO> featureDTOList = null;
-                List<ProductReviewDTO> productReviewDTOList = new ArrayList<>();
+                List<ProductReviewDTO> productReviewDTOList = new ArrayList<ProductReviewDTO>();
 
                 int productOverAllRating = 0;
 
                     for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
                     ProductReviewDTO productReviewDTO = new ProductReviewDTO();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
@@ -205,7 +207,7 @@ public class ReviewServiceImpl implements ReviewService {
 
             if(purchasedProduct.getCategory().getCategoryID().equals(categoryID)){
 
-                Map<Long, Integer> featureReviewMap = new LinkedHashMap<>();
+                Map<Long, Integer> featureReviewMap = new LinkedHashMap<Long,Integer>();
 
                 ReviewDTO reviewDTO = new ReviewDTO();
                 ProductDTO productDTO = new ProductDTO();
@@ -224,7 +226,7 @@ public class ReviewServiceImpl implements ReviewService {
 
                 for(ProductReview productReview : productReviewList){
 
-                    featureDTOList = new ArrayList<>();
+                    featureDTOList = new ArrayList<FeatureDTO>();
 
                     productOverAllRating = productOverAllRating + productReview.getOverallRating();
                     productOverAllRating = productOverAllRating/totalNoReviews;
