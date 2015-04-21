@@ -44,14 +44,15 @@
 		<section id="section">
 			<div class="container-fluid" id="container">
                 <div class="row category-heading text-center">
-                    <span>Camera Reviews</span>
+                    <span style="margin-left: 10%">Camera Reviews</span>
                         <!--<div class="row text-right">-->
-                        <div>
-                            <input style="height: 33px; font-size: 14px; alignment: center;" placeholder="Select feature..." type="text" name = "featureDropdown" list="featureDropdown" id="featureDropdownValue" onclick="showButton()"/>
-                            <datalist id = "featureDropdown"></datalist>
-                            <button id="filter" type="button" class="btn btn-success" disabled="true" onclick="selectedValue()">Filter</button>
-                        </div>
+                    <span style="float:right; margin-top:-0.5%">
+                        <input style="height: 33px; font-size: 14px; alignment: center;" placeholder="Select feature..." type="text" name = "featureDropdown" list="featureDropdown" id="featureDropdownValue" onclick="showButton()"/>
+                        <datalist id = "featureDropdown"></datalist>
+                        <button style="margin-top: 3%" id="filter" type="button" class="btn btn-success" disabled="true" onclick="selectedValue()">Filter</button>
+                    </span>
                 </div>
+
             </div>
 		</section>
     <footer>

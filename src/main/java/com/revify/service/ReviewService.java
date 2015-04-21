@@ -5,9 +5,6 @@ import com.revify.dto.ReviewDTO;
 
 import java.util.List;
 
-/**
- * Created by Vijaya on 3/23/2015.
- */
 public interface ReviewService {
 
     public List<LatestReviewDTO> getLatestReviews(Long categoryID);
