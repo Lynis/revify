@@ -56,4 +56,21 @@ public class User {
     public void setProductUsers(List<PurchasedProductUser> productUsers) {
         this.productUsers = productUsers;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!userID.equals(user.userID)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return userID.hashCode();
+    }
 }
