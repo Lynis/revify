@@ -185,7 +185,7 @@ a:hover {
 }
 
 .text-bold{
-    font-weight: 700!important;
+    font-weight: 400!important;
 }
 .m0{
     margin: 0!important;
@@ -284,4 +284,29 @@ hr{
 
 .hot-product-background{
     background: url('../images/hot-product-background.jpg');
+}
+
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; /* half width of the spinner gif */
+    margin-top: -50px; /* half height of the spinner gif */
+    text-align:center;
+    z-index:1234;
+    overflow: auto;
+    width: 100px; /* width of the spinner gif */
+    height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+
+.disablingDiv
+{
+    background-color: rgba(250, 250, 250, 0.8);
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
 }

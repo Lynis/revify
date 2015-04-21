@@ -24,7 +24,7 @@ public class FeatureServiceImpl implements  FeatureService{
     @Override
     public List<FeatureDTO> getFeatures(Long categoryID) {
 
-        List<FeatureDTO> featureDTOs = new ArrayList<>();
+        List<FeatureDTO> featureDTOs = new ArrayList<FeatureDTO>();
         List<FeatureReview> features = featureRepository.findAll();
 
         for(FeatureReview featureReview : features){

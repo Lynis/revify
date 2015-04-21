@@ -28,6 +28,10 @@ dependencies {
     //mysql connector
     compile 'mysql:mysql-connector-java:5.1.34'
 
+    //eBay Java SDK files
+    //compile files('eBaySDKJava897/*.jar')
+    compile fileTree(dir: 'eBaySDKJava897', include: '*.jar')
+
     //include in compile only, exclude in the war
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 }

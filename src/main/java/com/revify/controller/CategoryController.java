@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
-
-/**
- * Created by jchengottusseriy on 3/8/2015.
- */
 @RestController
 public class CategoryController {
 
@@ -23,5 +19,4 @@ public class CategoryController {
         List<CategoryDTO> categories = categoryService.findAllCategories();
         return categories;
     }
-
 }

@@ -9,4 +9,5 @@ import javax.persistence.*;
  */
 public interface PurchasedProductRepository extends JpaRepository<PurchasedProduct, String> {
 
+
 }
