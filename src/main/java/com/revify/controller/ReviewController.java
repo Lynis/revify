@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Vijaya on 3/24/2015.
- */
 @RestController
 @RequestMapping("/reviews")
 public class ReviewController {
@@ -45,5 +42,4 @@ public class ReviewController {
         Long categoryID = Long.valueOf(categoryIDStr);
         return reviewService.getSortedReviews(categoryID, featureName);
     }
-
 }
