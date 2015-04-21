@@ -282,9 +282,6 @@ hr{
     border-color: #000 !important;
 }
 
-.hot-product-background{
-    background: url('../images/hot-product-background.jpg');
-}
 
 .spinner {
     position: fixed;
