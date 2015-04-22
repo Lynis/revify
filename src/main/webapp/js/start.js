@@ -7,6 +7,11 @@ var userID = location.href.split("=")[1].replace("#","");
 var toBeReviewedProducts = [];
 var reviewedProducts = [];
 
+String.prototype.trunc = String.prototype.trunc ||
+function(n){
+    return this.length>n ? this.substr(0,n-1)+'&hellip;' : this;
+};
+
 var loadProductsPurchasedByUser = function(user,token){
     var url = extractBaseUrl() + productPath + '/' + encodeURIComponent(user) + '?token=' + token;
     jQuery.ajax(url, {
@@ -60,7 +65,7 @@ var populate = function () {
         var product = toBeReviewedProducts[i];
         var imageTag = "<img class='product-img' src='"+product.image + "'>";
         var anchorTag = "<a id='p_" + i + "' href='#' class='marker'>" + imageTag + "</a>";
-        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product'>" + anchorTag + " </div><div class='product-name'><span class='badge'>" + product.productName + "</span></div><div>";
+        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product'>" + anchorTag + " </div><div class='product-name'><span class='badge'>" + product.productName.trunc(20) + "</span></div><div>";
         cardsRow.append(col);
         cnt++;
     }
@@ -69,7 +74,7 @@ var populate = function () {
     for(var i in reviewedProducts){
         var product = reviewedProducts[i];
         var imageTag = "<img class='product-img' src='"+product.image + "'>";
-        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product reviewed'>" + imageTag + " </div><div class='product-name'><span class='badge'>" + product.productName + "</span></div><div>";
+        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product reviewed'>" + imageTag + " </div><div class='product-name'><span class='badge'>" + product.productName.trunc(20) + "</span></div><div>";
         cardsRow.append(col);
         cnt++;
     }
@@ -85,6 +90,7 @@ var toBeReviewedProductsOnClick = function(){
     var el = $(this)[0];
     var id = el.id.split('_')[1];
     window.sessionStorage.setItem("selectedProduct", JSON.stringify(toBeReviewedProducts[id]));
+    window.sessionStorage.setItem("userName", userID);
     setTimeout(loadArena, 2000);
 };
 
@@ -101,21 +107,10 @@ $(".main>ul>li>a").click(function(){
     if (id == 'leaderboard'){
         $(".row").html('<div class="table-responsive"><table class="table table-striped">' +
         '<thead><tr><th>Player</th><th># of Products Reviewed</th><th>Points</th></tr></thead><tbody>'+
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
-        '<tr><td>joe</td><td>3</td><td>300</td></tr>' +
+        '<tr><td>testuser_revify_vijaya</td><td>2</td><td>800</td></tr>' +
+        '<tr><td>@joe</td><td>1</td><td>400</td></tr>' +
+        '<tr><td>@mohul</td><td>1</td><td>400</td></tr>' +
+        '<tr><td>@kalyani</td><td>1</td><td>400</td></tr>' +
         '</tbody></table></div>');
 
 

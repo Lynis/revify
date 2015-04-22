@@ -16,6 +16,9 @@ var ftime; //feature drop time
 var pipeHeight;
 var score = 0;
 
+var selectedProduct;
+var userID;
+
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
     function(callback) {
@@ -24,6 +27,9 @@ window.requestAnimFrame = (function(callback) {
 })();
 
 function init(){
+   selectedProduct = JSON.parse(window.sessionStorage.getItem("selectedProduct"));
+   userID = window.sessionStorage.getItem("userName");
+   features = selectedProduct.features;
    window.addEventListener("keypress",keypress,false);
 
    canvas = document.getElementById('arena');
@@ -69,14 +75,17 @@ function loadData(){
 }
 
 function loadFeatureImgArray(){
-    var fs = ["lens.png","resolution.png","zoom.png","lens.png","resolution.png","zoom.png"];
+    var fs = features;
     for (var i=0;i<fs.length;i++){
+        var feature = fs[i];
         var img = new Image();
-        img.src = "images/" + fs[i];
-        features.push({
+        img.src = feature.icon;
+        feature.img = img;
+        feature.reviewed = false;
+       /* features.push({
             img: img,
             reviewed: false
-        });
+        });*/
     }    
 }
 
@@ -132,10 +141,10 @@ function featureInRange(x){
         var pipe = pipes[i];
         var r = pipe.range;
         if (x >= r[0] && x<= r[1]){
-            return true;
+            return parseInt(i);
         }
     }
-    return false;
+    return -1;
 }
 
 function dropFeature(){
@@ -151,9 +160,12 @@ function dropFeature(){
 
     fy = fy + (gravity * 0.6 * Math.pow(time/1000,2));
 
-    if (parseInt(fy) >= pipeHeight && featureInRange(parseInt(fx))){
-        onDropFeatureSuccess(feature);
-        return;
+    if (parseInt(fy) >= pipeHeight ){
+        var rating = featureInRange(parseInt(fx)) + 1;
+        if (rating != 0) {
+            onDropFeatureSuccess(feature, rating);
+            return;
+        }
     }
 
     if (canvas.height - fy < feature.img.height/2){
@@ -164,9 +176,10 @@ function dropFeature(){
     context.drawImage(feature.img, fx, fy, wh, wh);
 }
 
-function onDropFeatureSuccess(feature){
+function onDropFeatureSuccess(feature, rating){
     //mark current feature as reviewed
     feature.reviewed = true;
+    feature.overallRating = rating;
     cfeatureIdx --;
     
     score += 200;
@@ -267,11 +280,65 @@ function animate(startTime) {
     updateScore();
 
     if (stopGame){
-        stop();
+        saveGame();
+       // stop();
         return;
     }
     // request new frame
     requestNewFrame(startTime);
+}
+
+var saveUrl = "/revify/services/review"
+
+var extractBaseUrl = function(){
+    var urlArr = location.href.split('/');
+    var protocol = urlArr[0];
+    var host = urlArr[2];
+    return protocol + '//' + host;
+}
+
+
+function saveGame(){
+    var url = extractBaseUrl() + saveUrl;
+    var featureDTOList = [];
+    for (var i in features){
+        var f = features[i];
+        var feature = {
+            featureID: f.featureID,
+            overallRating: f.overallRating
+        }
+        featureDTOList.push(feature);
+    }
+    var productReviewDTO = {
+        productID: selectedProduct.productID,
+        reviewerID: userID,
+        overallRating: 4,
+        reviewDate: new Date(),
+        featureDTOList: featureDTOList
+    }
+    jQuery.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        url: url,
+        data: JSON.stringify(productReviewDTO),
+        success : onReviewSuccess,
+        error : onReviewError
+    });
+}
+
+var onReviewSuccess = function(response, status, xhr){
+    stop();
+    setTimeout(function(){
+        window.location.href = '/revify/start.html?un=' + userID;
+    }, 3000);
+}
+
+var onReviewError = function (xhr, status, e) {
+    console.log(e);
+    alert("Error in saving your review. Please play again");
 }
 
 function computeSaucerNewPos(startTime){

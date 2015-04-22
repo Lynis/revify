@@ -1,8 +1,11 @@
 package com.revify.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by jchengottusseriy on 3/18/2015.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FeatureDTO {
 
     private long featureID;

@@ -43,7 +43,7 @@ var categoryOnError = function(xhr, status, e){
 };
 //******************** sign in ******************************/
 
-var signinURL = "https://localhost:8443/revify/services/signin";
+var signinURL = "/revify/services/signin";
 
 var spinnerOn = function(){
     $('.disablingDiv').show();
@@ -57,7 +57,7 @@ var spinnerOff = function(){
 
 var signin = function(){
     spinnerOn();
-    jQuery.ajax(signinURL, {
+    jQuery.ajax(extractBaseUrl() + signinURL, {
         dataType: "text",
         success: signinOnSuccess,
         error: signinOnError
