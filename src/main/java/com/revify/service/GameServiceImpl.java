@@ -4,12 +4,13 @@ import com.revify.dto.FeatureDTO;
 import com.revify.dto.ProductDTO;
 import com.revify.dto.ProductReviewDTO;
 import com.revify.entity.*;
-import com.revify.repository.PurchasedProductUserRepository;
-import com.revify.repository.UserRepository;
+import com.revify.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,21 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     private PurchasedProductUserRepository purchasedProductUserRepository;
+
+    @Autowired
+    private PurchasedProductRepository purchasedProductRepository;
+
+    @Autowired
+    private FeatureRepository featureRepository;
+
+    @Autowired
+    private ProductReviewRepository productReviewRepository;
+
+    @Autowired
+    private FeatureReviewRepository featureReviewRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     @Transactional
@@ -71,6 +87,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public void saveProductFeatureRating(ProductReviewDTO productReviewDTO) {
         //1. Get product review id for the given product & reviewer from DB
         //2. If null, create a product review entry for the given product & reviewer; else go to step 3
@@ -78,5 +95,28 @@ public class GameServiceImpl implements GameService {
         //     save the overall rating for the product
         //   Else if featureRatingDTO != null
         //     save the featureRating in DB
+
+        User reviewer = userRepository.findOne(productReviewDTO.getReviewerID());
+        PurchasedProduct purchasedProduct = purchasedProductRepository.findOne(productReviewDTO.getProductID());
+
+        ProductReview productReview = new ProductReview();
+        productReview.setReviewer(reviewer);
+        productReview.setProduct(purchasedProduct);
+        productReview.setReviewDate(productReviewDTO.getReviewDate());
+        productReview.setOverallRating((int)productReviewDTO.getOverallRating());
+        productReviewRepository.save(productReview);
+        entityManager.flush();
+
+
+        for (FeatureDTO featureDTO: productReviewDTO.getFeatureDTOList()){
+            FeatureReview featureReview = new FeatureReview();
+            Feature feature = featureRepository.findOne(featureDTO.getFeatureID());
+            featureReview.setFeature(feature);
+            featureReview.setRating(featureDTO.getOverallRating());
+            featureReview.setProductReview(productReview);
+
+            featureReviewRepository.save(featureReview);
+        }
+        entityManager.flush();
     }
 }

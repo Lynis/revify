@@ -26,8 +26,8 @@ var categoryOnSuccess = function(response, status, xhr){
 		var categoryMenu = $('.dl-menu');
 		for(var i in categories){
 			var category = categories[i];
-			var li = "<li><div><img src=\"" + category.icon +"\"><a href=\"\">"+
-					  "<span>" + category.categoryName + "</span></a></div></li>";
+			var li = "<li><div><img src=\"" + category.icon +"\"><a href='user-reviews.html?cid=" + category.categoryID
+                + "'><span>" + category.categoryName + "</span></a></div></li>";
 			
 			categoryMenu.append(li);
 		}
@@ -43,7 +43,7 @@ var categoryOnError = function(xhr, status, e){
 };
 //******************** sign in ******************************/
 
-var signinURL = "https://localhost:8443/revify/services/signin";
+var signinURL = "/revify/services/signin";
 
 var spinnerOn = function(){
     $('.disablingDiv').show();
@@ -57,7 +57,7 @@ var spinnerOff = function(){
 
 var signin = function(){
     spinnerOn();
-    jQuery.ajax(signinURL, {
+    jQuery.ajax(extractBaseUrl() + signinURL, {
         dataType: "text",
         success: signinOnSuccess,
         error: signinOnError

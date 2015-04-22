@@ -1,9 +1,8 @@
 package com.revify.service;
 
 import com.revify.dto.FeatureDTO;
-import com.revify.entity.Feature;
 import com.revify.entity.FeatureReview;
-import com.revify.repository.FeatureRepository;
+import com.revify.repository.FeatureReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,14 +17,14 @@ import java.util.List;
 public class FeatureServiceImpl implements  FeatureService{
 
     @Autowired
-    private FeatureRepository featureRepository;
+    private FeatureReviewRepository featureReviewRepository;
 
     @Transactional
     @Override
     public List<FeatureDTO> getFeatures(Long categoryID) {
 
         List<FeatureDTO> featureDTOs = new ArrayList<FeatureDTO>();
-        List<FeatureReview> features = featureRepository.findAll();
+        List<FeatureReview> features = featureReviewRepository.findAll();
 
         for(FeatureReview featureReview : features){
             FeatureDTO featureDTO = new FeatureDTO();

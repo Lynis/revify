@@ -3,11 +3,13 @@
  */
 
 
-var reviewPath = "/revify/services/reviews?categoryID=1&range=aggregated";
+var reviewPath = "/revify/services/reviews?categoryID={cid}&range=aggregated";
 
 var loadAggrReviews = function(){
     document.getElementById('featureDropdownValue').innerHTML = "";
     var url = extractBaseUrl() + reviewPath;
+    var cid = location.href.split('=')[1];//cid val
+    url = url.replace('{cid}',cid);
     jQuery.ajax(url, {
         dataType : "json",
         success : reviewOnSuccess,
