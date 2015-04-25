@@ -16,8 +16,7 @@ public class User {
     @Column(name = "user_id", nullable = false)
     private String userID;
 
-   /* @ManyToMany(mappedBy = "userList")
-    private List<PurchasedProduct> purchasedProductList;*/
+    private int score;
 
     @OneToMany(mappedBy = "user")
     private List<PurchasedProductUser> productUsers;
@@ -33,13 +32,13 @@ public class User {
         this.userID = userID;
     }
 
-    /*public List<PurchasedProduct> getPurchasedProductList() {
-        return purchasedProductList;
+    public void setScore(int score) {
+       this.score = score;
     }
 
-    public void setPurchasedProductList(List<PurchasedProduct> purchasedProductList) {
-        this.purchasedProductList = purchasedProductList;
-    }*/
+    public int getScore() {
+        return score;
+    }
 
     public List<ProductReview> getProductReviewList() {
         return productReviewList;
