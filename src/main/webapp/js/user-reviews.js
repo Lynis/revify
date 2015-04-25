@@ -1,7 +1,3 @@
-/**
- * Created by kalyaninirmal on 3/28/2015.
- */
-
 
 var reviewPath = "/revify/services/reviews?categoryID={cid}&range=aggregated";
 
@@ -65,10 +61,10 @@ var reviewOnSuccess = function (response, status, xhr){
 
             col_md_3.appendChild(image);
             col_md_3.appendChild(product_heading);
-            var col_md_5 = document.createElement('div');
-            col_md_5.className = "col-md-5";
+            //var col_md_5 = document.createElement('div');
+            //col_md_5.className = "col-md-5";
             var product_overall_rating = document.createElement('div');
-            product_overall_rating.className = "col-md-3 product-overall-rating";
+            product_overall_rating.className = "col-md-1 product-overall-rating";
             var a = document.createElement('a');
             //a.href = "detailedReviews.html";
             var span1 = document.createElement('span');
@@ -94,12 +90,19 @@ var reviewOnSuccess = function (response, status, xhr){
             rating.appendChild(span1);
             product_overall_rating.appendChild(rating);
             product_overall_rating.appendChild(a);
-            col_md_5.appendChild(product_overall_rating);
+            //col_md_5.appendChild(product_overall_rating);
             row.appendChild(col_md_3);
-            var col_md_9 = document.createElement('div');
-            col_md_9.className = "col-md-9";
+            row.appendChild(product_overall_rating);
+            var feature_list_1 = document.createElement('div');
+            feature_list_1.className = "col-md-4";
+            feature_list_1.style.marginLeft = "60px";
+            feature_list_1.style.borderLeft = "1px solid gray";
+            feature_list_1.style.borderBottom = "1px solid gray";
+            feature_list_1.style.borderTop = "1px solid gray";
+
             var ul_1 = document.createElement('ul');
             ul_1.className = "feature-review-bars";
+            ul_1.style.marginTop = "100px";
 
             for(var i = 0; i < product.productDTO.features.length/2; i++){
 
@@ -154,11 +157,15 @@ var reviewOnSuccess = function (response, status, xhr){
                 ul_1.appendChild(li);
             }
 
-            var col_md_4 = document.createElement('div');
-            col_md_4.className = "col-md-4";
+            var feature_list_2 = document.createElement('div');
+            feature_list_2.className = "col-md-3";
+            feature_list_2.style.borderRight = "1px solid gray";
+            feature_list_2.style.borderBottom = "1px solid gray";
+            feature_list_2.style.borderTop = "1px solid gray";
 
             var ul_2 = document.createElement('ul');
             ul_2.className = "feature-review-bars";
+            ul_2.style.marginTop = "100px";
 
             if(product.productDTO.features.length > 1){
                 var initialValue = Math.floor(product.productDTO.features.length/2);
@@ -215,11 +222,15 @@ var reviewOnSuccess = function (response, status, xhr){
                 }
             }
 
-            col_md_9.appendChild(ul_1);
-            col_md_4.appendChild(ul_2);
-            col_md_5.appendChild(col_md_9);
-            row.appendChild(col_md_5);
-            row.appendChild(col_md_4);
+            var feature_wrapper = document.createElement('div');
+            feature_wrapper.style.border = "1px solid black";
+
+            feature_list_1.appendChild(ul_1);
+            feature_list_2.appendChild(ul_2);
+           // col_md_5.appendChild(col_md_9);
+            //row.appendChild(col_md_5);
+            row.appendChild(feature_list_1);
+            row.appendChild(feature_list_2);
             review_wrapper.appendChild(row);
             container.appendChild(review_wrapper);
             section.appendChild(container);
