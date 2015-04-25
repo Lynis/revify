@@ -1,5 +1,6 @@
 package com.revify.controller;
 
+import com.revify.dto.PlayerDTO;
 import com.revify.dto.ProductDTO;
 import com.revify.dto.ProductReviewDTO;
 import com.revify.service.GameService;
@@ -26,5 +27,10 @@ public class GameController {
     @RequestMapping(consumes = "application/json", produces = "application/json", value = "/review", method = RequestMethod.POST)
     public void saveReview(@RequestBody ProductReviewDTO productReviewDTO){
         gameService.saveProductFeatureRating(productReviewDTO);
+    }
+
+    @RequestMapping(produces = "application/json", value = "/leaderboard", method = RequestMethod.GET)
+    public List<PlayerDTO> getLeaderboard(){
+       return gameService.getLeaderboard();
     }
 }

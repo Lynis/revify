@@ -1,11 +1,13 @@
 package com.revify.service;
 
 import com.revify.dto.FeatureDTO;
+import com.revify.dto.PlayerDTO;
 import com.revify.dto.ProductDTO;
 import com.revify.dto.ProductReviewDTO;
 import com.revify.entity.*;
 import com.revify.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,24 +101,64 @@ public class GameServiceImpl implements GameService {
         User reviewer = userRepository.findOne(productReviewDTO.getReviewerID());
         PurchasedProduct purchasedProduct = purchasedProductRepository.findOne(productReviewDTO.getProductID());
 
-        ProductReview productReview = new ProductReview();
-        productReview.setReviewer(reviewer);
-        productReview.setProduct(purchasedProduct);
-        productReview.setReviewDate(productReviewDTO.getReviewDate());
-        productReview.setOverallRating((int)productReviewDTO.getOverallRating());
-        productReviewRepository.save(productReview);
-        entityManager.flush();
+        ProductReview productReview = productReviewRepository.findByReviewerAndProduct(reviewer, purchasedProduct);
+        if (productReview == null) { //create
+            productReview = new ProductReview();
+            productReview.setReviewer(reviewer);
+            productReview.setProduct(purchasedProduct);
+            productReview.setReviewDate(productReviewDTO.getReviewDate());
+            productReview.setOverallRating((int)productReviewDTO.getOverallRating());
+            productReviewRepository.save(productReview);
+            entityManager.flush();
 
 
-        for (FeatureDTO featureDTO: productReviewDTO.getFeatureDTOList()){
-            FeatureReview featureReview = new FeatureReview();
-            Feature feature = featureRepository.findOne(featureDTO.getFeatureID());
-            featureReview.setFeature(feature);
-            featureReview.setRating(featureDTO.getOverallRating());
-            featureReview.setProductReview(productReview);
+            for (FeatureDTO featureDTO: productReviewDTO.getFeatureDTOList()){
+                FeatureReview featureReview = new FeatureReview();
+                Feature feature = featureRepository.findOne(featureDTO.getFeatureID());
+                featureReview.setFeature(feature);
+                featureReview.setRating(featureDTO.getOverallRating());
+                featureReview.setProductReview(productReview);
 
-            featureReviewRepository.save(featureReview);
+                featureReviewRepository.save(featureReview);
+            }
+            entityManager.flush();
+        } else { //update
+            productReview.setReviewDate(productReviewDTO.getReviewDate());
+            productReview.setOverallRating((int)productReviewDTO.getOverallRating());
+            List<FeatureReview> featureReviews = productReview.getFeatureReviewList();
+            for (FeatureDTO featureDTO: productReviewDTO.getFeatureDTOList()){
+                for (FeatureReview featureReview: featureReviews){
+                    if (featureReview.getFeature().getFeatureID().equals(featureDTO.getFeatureID())){
+                        featureReview.setRating(featureDTO.getOverallRating());
+                    }
+                }
+            }
+
+            productReviewRepository.save(productReview);
         }
-        entityManager.flush();
+
+        reviewer.setScore(productReviewDTO.getScore() + reviewer.getScore());//update the score
+        userRepository.save(reviewer);
+    }
+
+    @Override
+    @Transactional
+    public List<PlayerDTO> getLeaderboard() {
+        List<User> players = userRepository.findAll(new Sort(new Sort.Order(Sort.Direction.DESC, "score")));
+        List<PlayerDTO> playerDTOs = new ArrayList<>();
+        int count = 0;
+        for (User player: players){
+            if (player.getScore() != 0) {
+                PlayerDTO playerDTO = new PlayerDTO();
+                playerDTO.setUserID(player.getUserID());
+                playerDTO.setTotalScore(player.getScore());
+                playerDTO.setNoOfProductsReviewed(player.getProductReviewList().size());
+                playerDTOs.add(playerDTO);
+                count ++;
+                if (count == 10) //top ten
+                   break;
+            }
+        }
+        return playerDTOs;
     }
 }

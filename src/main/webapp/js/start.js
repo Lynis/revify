@@ -3,6 +3,7 @@
  * Start screen JS
  */
 var productPath = "/revify/services/products";
+var leaderboardPath = "/revify/services/leaderboard";
 var userID = location.href.split("=")[1].replace("#","");
 var toBeReviewedProducts = [];
 var reviewedProducts = [];
@@ -52,6 +53,37 @@ var loadProductsOnSuccess = function(response, status, xhr){
 var loadProductsOnError = function(xhr, status, e){
     console.log(e);
     alert("Error in loading purchased products. Please try again");
+};
+
+var loadLeaderboard = function(){
+    var url = extractBaseUrl() + leaderboardPath;
+    jQuery.ajax(url, {
+        dataType : "json",
+        success : loadLeaderboardOnSuccess,
+        error : loadLeaderboardOnError
+    });
+};
+
+var loadLeaderboardOnSuccess = function(response, status, xhr){
+    var html = '<div class="table-responsive"><table class="table table-striped">' +
+        '<thead><tr><th>Player</th><th># of Products Reviewed</th><th>Points</th></tr></thead><tbody>';
+    try{
+        var leaderboard = response;
+        for(var i in leaderboard) {
+            var player = leaderboard[i];
+            html += '<tr><td>'+ player.userID +'</td><td>' + player.noOfProductsReviewed + '</td><td>'+ player.totalScore +'</td></tr>'
+        }
+        html += '</tbody></table></div>';
+        $(".row").html(html);
+    }catch(e){
+        console.log(e);
+        alert("Error loading leaderboard");
+    }
+};
+
+var loadLeaderboardOnError = function(xhr, status, e){
+    console.log(e);
+    alert("Error in loading leaderboard. Please try again");
 };
 
 var populate = function () {
@@ -105,15 +137,7 @@ $(".main>ul>li>a").click(function(){
 
     var id = $(this)[0].id;
     if (id == 'leaderboard'){
-        $(".row").html('<div class="table-responsive"><table class="table table-striped">' +
-        '<thead><tr><th>Player</th><th># of Products Reviewed</th><th>Points</th></tr></thead><tbody>'+
-        '<tr><td>testuser_revify_vijaya</td><td>2</td><td>800</td></tr>' +
-        '<tr><td>@joe</td><td>1</td><td>400</td></tr>' +
-        '<tr><td>@mohul</td><td>1</td><td>400</td></tr>' +
-        '<tr><td>@kalyani</td><td>1</td><td>400</td></tr>' +
-        '</tbody></table></div>');
-
-
+        loadLeaderboard();
     } else {
         loadProductsPurchasedByUser(userID, "afasdadasd");
     }
