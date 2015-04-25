@@ -32,7 +32,9 @@ var sortedReviewOnSuccess = function (response, status, xhr){
     var products = response;
     var section = document.getElementById('section');
     var container =  document.getElementById('container');
-
+    products = products.sort(function(a, b){
+        return b.productDTO.features[0].overallRating - a.productDTO.features[0].overallRating;
+    })
     if(products[0].productDTO.features != null){
 
         for(var p in products)
@@ -77,13 +79,13 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             var ul_1 = document.createElement('ul');
             ul_1.className = "feature-review-bars";
 
-            for(var i = 0; i < product.productDTO.features.length/2; i++){
+            //for(var i = 0; i < product.productDTO.features.length; i++){
 
-                var overallRating = product.productDTO.features[i].overallRating;
+                var overallRating = product.productDTO.features[0].overallRating;
                 var li  = document.createElement('li');
                 var feature_label = document.createElement('div');
                 feature_label.className = "feature-label";
-                feature_label.innerText = product.productDTO.features[i].featureName;
+                feature_label.innerText = product.productDTO.features[0].featureName;
                 var feature_review_bar = document.createElement('div');
                 feature_review_bar.className = "feature-review-bar";
                 var fill = document.createElement('div');
@@ -129,7 +131,7 @@ var sortedReviewOnSuccess = function (response, status, xhr){
                 li.appendChild(feature_rating);
                 li.appendChild(clear);
                 ul_1.appendChild(li);
-            }
+            //}
 
             var col_md_4 = document.createElement('div');
             col_md_4.className = "col-md-4";
@@ -144,15 +146,12 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             priceDiv.innerText = "$" + product.productDTO.price ;
             col_md_4.appendChild(priceDiv);
 
-
-
             //col_md_5.appendChild(product_heading);
             row.appendChild(col_md_5);
             row.appendChild(col_md_4);
             review_wrapper.appendChild(row);
             container.appendChild(review_wrapper);
             section.appendChild(container);
-            sessionStorage.clear();
         }
     }
     else{

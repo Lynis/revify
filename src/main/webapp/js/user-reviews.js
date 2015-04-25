@@ -1,10 +1,14 @@
 
 var reviewPath = "/revify/services/reviews?categoryID={cid}&range=aggregated";
+var cid;
 
 var loadAggrReviews = function(){
     document.getElementById('featureDropdownValue').innerHTML = "";
     var url = extractBaseUrl() + reviewPath;
-    var cid = location.href.split('=')[1];//cid val
+    cid = location.href.split('=')[1];//cid val
+    if(cid == null) {
+        cid = sessionStorage.getItem("categoryID");
+    }
     url = url.replace('{cid}',cid);
     jQuery.ajax(url, {
         dataType : "json",
@@ -265,7 +269,7 @@ function selectedValue(){
     var selectedFeature = document.getElementById('featureDropdownValue');
     if(selectedFeature.value != "") {
         sessionStorage.setItem("featureName", selectedFeature.value);
-        sessionStorage.setItem("categoryID", "1");
+        sessionStorage.setItem("categoryID", cid);
         window.location.href = "sortedReviews.html";
     }
 }
