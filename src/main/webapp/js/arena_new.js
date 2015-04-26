@@ -61,12 +61,28 @@ function init(){
      updateScore();
      //set feature idx
      cfeatureIdx = features.length - 1;
-     // wait one second before starting animation
+     //display instructions
+     drawInstructions();
+
+     // wait five seconds before starting animation
      setTimeout(function() {
         var startTime = (new Date()).getTime();
         animate(startTime);
-     }, 1000);
+     }, 8000);
    }
+}
+
+function drawInstructions(){
+    context.fillStyle = "#fff";
+    var x = (canvas.width/2 - 300);
+    var y = (canvas.height/2 - 150);
+    context.fillRect(x,y, 650, 150);
+
+    context.font = "18pt bold 'Consolas'";
+    context.fillStyle = '#00acc1';
+
+    context.fillText("Press P to Play/Pause", x + 100, y + 50);
+    context.fillText("Press Spacebar to drop Features", x + 100, y + 100);
 }
 
 function loadData(){
