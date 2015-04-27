@@ -32,9 +32,20 @@ var sortedReviewOnSuccess = function (response, status, xhr){
     var products = response;
     var section = document.getElementById('section');
     var container =  document.getElementById('container');
+    var heading = document.getElementById('heading');
+    var span_heading = document.createElement('span');
+    span_heading.style.marginLeft = "10%";
+    span_heading.innerText = products[0].categoryName + " Reviews";
+    heading.appendChild(span_heading);
+    container.appendChild(heading);
+
     products = products.sort(function(a, b){
-        return b.productDTO.features[0].overallRating - a.productDTO.features[0].overallRating;
+        if(b.productDTO.features.length != 0 && a.productDTO.features.length != 0)
+            return b.productDTO.features[0].overallRating - a.productDTO.features[0].overallRating;
+        else
+            return 0;
     })
+
     if(products[0].productDTO.features != null){
 
         for(var p in products)
@@ -153,9 +164,6 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             container.appendChild(review_wrapper);
             section.appendChild(container);
         }
-    }
-    else{
-        sortedReviewOnError();
     }
 }
 
