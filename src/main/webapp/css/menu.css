@@ -14,7 +14,7 @@
 }
 
 .dl-menuwrapper button {
-    background: #fff;/*#ccc;*/
+    background: #3a3f51;/*#ccc;*/
     border: none;
     width: 36px;
     height: 34px;
@@ -32,20 +32,20 @@
 }
 
 .dl-menuwrapper ul {
-    background:  #643771; /*#79a002;*/
+    background:  #fff; /*#79a002;*/
 }
 
 .dl-menuwrapper button:after {
     content: '';
     position: absolute;
     width: 68%;
-    height: 3.5px;
-    background: #643771; /*#79a002;*/
+    height: 3px;
+    background: #fff; /*#79a002;*/
     top: 10px;
     left: 16%;
     box-shadow:
-    0 8px 0 #643771,
-    0 16px 0 #643771;
+    0 6px 0 #fff,
+    0 12px 0 #fff;
 }
 
 
@@ -87,7 +87,7 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
-    color: #fff;
+    color: #3a3f51;
     outline: none;
     vertical-align: middle;   
 }

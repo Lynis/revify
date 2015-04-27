@@ -132,7 +132,7 @@ public class AuthController {
         productService.extractAndSaveProductInfo(apiContext);
 
         //redirect
-        response.sendRedirect("/revify/arena2.html?un=" + username);
+        response.sendRedirect("/revify/start.html?un=" + username);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/authfailure")

@@ -14,7 +14,10 @@ var saucerOptions;
 var cfeatureIdx;
 var ftime; //feature drop time
 var pipeHeight;
-var score = 0;
+var score;
+
+var selectedProduct;
+var userID;
 
 window.requestAnimFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
@@ -24,6 +27,10 @@ window.requestAnimFrame = (function(callback) {
 })();
 
 function init(){
+    score = 0;
+   selectedProduct = JSON.parse(window.sessionStorage.getItem("selectedProduct"));
+   userID = window.sessionStorage.getItem("userName");
+   features = selectedProduct.features;
    window.addEventListener("keypress",keypress,false);
 
    canvas = document.getElementById('arena');
@@ -54,40 +61,67 @@ function init(){
      updateScore();
      //set feature idx
      cfeatureIdx = features.length - 1;
-     // wait one second before starting animation
+     //display instructions
+     drawInstructions();
+
+     // wait five seconds before starting animation
      setTimeout(function() {
         var startTime = (new Date()).getTime();
         animate(startTime);
-     }, 1000);
+     }, 8000);
    }
+}
+
+function drawInstructions(){
+    context.fillStyle = "#fff";
+    var x = (canvas.width/2 - 300);
+    var y = (canvas.height/2 - 150);
+    context.fillRect(x,y, 650, 150);
+
+    context.font = "18pt bold 'Consolas'";
+    context.fillStyle = '#00acc1';
+
+    context.fillText("Press P to Play/Pause", x + 100, y + 50);
+    context.fillText("Press Spacebar to drop Features", x + 100, y + 100);
 }
 
 function loadData(){
     loadFeatureImgArray();
-    loadPlayPauseImgArray();
+    loadPlayPauseBackReplayImgArray();
     loadPipes();
 }
 
 function loadFeatureImgArray(){
-    var fs = ["lens.png","resolution.png","zoom.png","lens.png","resolution.png","zoom.png"];
+    var fs = features;
     for (var i=0;i<fs.length;i++){
+        var feature = fs[i];
         var img = new Image();
-        img.src = "images/" + fs[i];
-        features.push({
+        img.src = feature.icon;
+        feature.img = img;
+        feature.reviewed = false;
+       /* features.push({
             img: img,
             reviewed: false
-        });
+        });*/
     }    
 }
 
-function loadPlayPauseImgArray(){
+function loadPlayPauseBackReplayImgArray(){
     var play = new Image();
-    play.src = "images/play_thin_border.png";
+    play.src = "images/play.png";
     playPause.push(play);
 
     var pause = new Image();
-    pause.src = "images/pause_thin_border.png";
+    pause.src = "images/pause.png";
     playPause.push(pause);
+
+    var back = new Image();
+    back.src = "images/back.png";
+    playPause.push(back);
+
+    var replay = new Image();
+    replay.src = "images/replay.png";
+    playPause.push(replay);
 }
 
 function loadPipes(){
@@ -123,6 +157,14 @@ function keypress(e){
     else if (kc == 32 && !isGamePaused) {
         stopSaucer = true;
         ftime = (new Date()).getTime();
+    } else if (stopGame) {
+        if (kc == 114) {//replay
+            stopGame = false;
+            init();
+        } else if (kc == 98){ //home
+            saveGame();
+           /* window.location.href = '/revify/start.html?un=' + userID;*/
+        }
     }
 }
 
@@ -132,10 +174,10 @@ function featureInRange(x){
         var pipe = pipes[i];
         var r = pipe.range;
         if (x >= r[0] && x<= r[1]){
-            return true;
+            return parseInt(i);
         }
     }
-    return false;
+    return -1;
 }
 
 function dropFeature(){
@@ -151,9 +193,12 @@ function dropFeature(){
 
     fy = fy + (gravity * 0.6 * Math.pow(time/1000,2));
 
-    if (parseInt(fy) >= pipeHeight && featureInRange(parseInt(fx))){
-        onDropFeatureSuccess(feature);
-        return;
+    if (parseInt(fy) >= pipeHeight ){
+        var rating = featureInRange(parseInt(fx)) + 1;
+        if (rating != 0) {
+            onDropFeatureSuccess(feature, rating);
+            return;
+        }
     }
 
     if (canvas.height - fy < feature.img.height/2){
@@ -164,9 +209,10 @@ function dropFeature(){
     context.drawImage(feature.img, fx, fy, wh, wh);
 }
 
-function onDropFeatureSuccess(feature){
+function onDropFeatureSuccess(feature, rating){
     //mark current feature as reviewed
     feature.reviewed = true;
+    feature.overallRating = rating;
     cfeatureIdx --;
     
     score += 200;
@@ -183,9 +229,27 @@ function onDropFeatureFailed(){
 
 function stop(){
     context.clearRect(0,0,canvas.width,canvas.height);
+    var x1 = canvas.width/2 -  100
+    var x2 = canvas.width/2 +  100;
+    var y = canvas.height/2 - 50;
+    var max = 150;
+
+    context.fillStyle = "#fff";
+    context.fillRect((x1 - 200), (y - 150), 650, 300);
+
     context.font = "48pt bold 'Comic Sans MS'";
     context.fillStyle = "red";
-    context.fillText("LEVEL COMPLETE", canvas.width/2-250,canvas.height/2);
+    context.fillText("LEVEL COMPLETE", x1-150,y - 50);
+
+
+    context.drawImage(playPause[2], x1 , y);
+    context.drawImage(playPause[3], x2 , y);
+
+    context.font = "14pt bold 'Consolas'";
+    context.fillStyle = '#00acc1';
+
+    context.fillText("Press B to go home", x1 - playPause[2].width/2 - 10, y + playPause[2].height + 30, max);
+    context.fillText("Press R to replay", x2 - playPause[3].width/2 - 10, y + playPause[3].height + 30, max);
 }
 
 function updateScore(){
@@ -196,31 +260,35 @@ function updateScore(){
 
 function drawPlayPauseButton(){
     var img = isGamePaused ? playPause[0]: playPause[1];
-    context.drawImage(img, canvas.width * 0.93, 20);
+    context.drawImage(img, canvas.width * 0.91, 15);
 }
 
 function drawFeatures(){
     var ctx = context;
     var fstyle = "#ddd";
-    
+    ctx.font = "10pt bold 'Consolas'";
+
     var y = 20;
     var d = 20;
-    var c = 80;
-    var fw = 64,fh = 64;
+    var c = 95;
+    var fw = 70,fh = 64;
     var b = 5;
-    var wh = 74;
+    var wh = 88;
     for (var i=features.length-1;i>=0;i--){
         var x = c*i + d;
         var feature = features[i];
         var img = feature.img;
         
         ctx.beginPath();
-        fstyle = (i == cfeatureIdx)? "#00ff00": feature.reviewed ? "#ff0000" : "#ddd" ;  
+        fstyle = (i == cfeatureIdx)? "#ff0000": feature.reviewed ? "#00ff00" : "#ddd" ;
         ctx.fillStyle = fstyle;
         
         ctx.fillRect(x-b,y-b,wh,wh);
         ctx.stroke();
-        
+
+        ctx.fillStyle = '#000';
+        ctx.fillText(feature.featureName, x, wh+10, wh)
+
         ctx.drawImage(img, x, y, fw, fh);
     }
 }
@@ -231,7 +299,6 @@ function drawPipes () {
         context.drawImage(pipe.img,pipe.x,pipe.y);    
     }
 }
-
 
 function drawSaucer () {
     
@@ -272,6 +339,59 @@ function animate(startTime) {
     }
     // request new frame
     requestNewFrame(startTime);
+}
+
+var saveUrl = "/revify/services/review"
+
+var extractBaseUrl = function(){
+    var urlArr = location.href.split('/');
+    var protocol = urlArr[0];
+    var host = urlArr[2];
+    return protocol + '//' + host;
+}
+
+
+function saveGame(){
+    var url = extractBaseUrl() + saveUrl;
+    var featureDTOList = [];
+    for (var i in features){
+        var f = features[i];
+        var feature = {
+            featureID: f.featureID,
+            overallRating: f.overallRating
+        }
+        featureDTOList.push(feature);
+    }
+    var productReviewDTO = {
+        productID: selectedProduct.productID,
+        reviewerID: userID,
+        overallRating: 4,
+        reviewDate: new Date(),
+        featureDTOList: featureDTOList,
+        score: score
+    }
+    jQuery.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'POST',
+        url: url,
+        data: JSON.stringify(productReviewDTO),
+        success : onReviewSuccess,
+        error : onReviewError
+    });
+}
+
+var onReviewSuccess = function(response, status, xhr){
+   setTimeout(function(){
+        window.location.href = '/revify/start.html?un=' + userID;
+    }, 1000);
+}
+
+var onReviewError = function (xhr, status, e) {
+    console.log(e);
+    alert("Error in saving your review. Please play again");
 }
 
 function computeSaucerNewPos(startTime){

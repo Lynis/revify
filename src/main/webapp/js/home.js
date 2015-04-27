@@ -21,6 +21,7 @@ var extractBaseUrl = function(){
 }
 
 var categoryOnSuccess = function(response, status, xhr){
+
     try{
         var categories = response;
         var categoryMenu = $('.dl-menu');
@@ -35,6 +36,21 @@ var categoryOnSuccess = function(response, status, xhr){
         console.log(e);
         alert("Error loading page");
     }
+
+	try{
+		var categories = response;
+		var categoryMenu = $('.dl-menu');
+		for(var i in categories){
+			var category = categories[i];
+			var li = "<li><div><img src=\"" + category.icon +"\"><a href='user-reviews.html?cid=" + category.categoryID
+                + "'><span>" + category.categoryName + "</span></a></div></li>";
+			
+			categoryMenu.append(li);
+		}
+	}catch(e){
+		console.log(e);
+		alert("Error loading page");		
+	}
 };
 
 var categoryOnError = function(xhr, status, e){
@@ -120,6 +136,8 @@ var latestReviewOnError = function(xhr, status, e){
 
 var signinURL = extractBaseUrl() + "/revify/services/signin";
 
+var signinURL = "/revify/services/signin";
+
 var spinnerOn = function(){
     $('.disablingDiv').show();
     $('#spinner').show();
@@ -132,7 +150,7 @@ var spinnerOff = function(){
 
 var signin = function(){
     spinnerOn();
-    jQuery.ajax(signinURL, {
+    jQuery.ajax(extractBaseUrl() + signinURL, {
         dataType: "text",
         success: signinOnSuccess,
         error: signinOnError

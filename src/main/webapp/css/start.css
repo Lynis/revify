@@ -26,7 +26,7 @@ body{
     color: #fff;
 }
 
-.wrapper>header>span {
+.container>span , .container-fluid>span {
     font-family: 'Quicksand', sans-serif;
     font-size: 32px;
     font-weight: bold;
@@ -56,14 +56,15 @@ body{
     font-weight: bold;
 }
 .product-cards{
-    margin-top: 40px;
-    box-shadow: 10px 10px 1px #3a4a51;
+    margin-top: 80px;
+    margin-left: 150px;
+    /*box-shadow: 10px 10px 1px #3a4a51;*/
 }
 
 .card {
     border: 1px solid #1a7f51;
     border-width: 1px 0 0 1px;
-    height: 160px;
+    height: 240px;
     background-color: #3a3f51;
     color: #fff;
     font-family: 'Roboto Condensed', sans-serif;
@@ -71,27 +72,33 @@ body{
 }
 
 .product{
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     margin: 10px auto;
-    border-radius: 60px;
-    background-color: coral;
+    border-radius: 90px;
+    background-color: #fff;
     text-align: center;
 }
 
+.reviewed {
+    background-color: lightgreen;
+}
+
 .product-img{
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     margin: 10px;
 }
 
 .product-name {
     position: absolute;
-    bottom: 0;
+    bottom: 4;
     right: 0;
     left: 0;
     text-align: center;
-    font-size: 18px;
+}
+.product-name .badge {
+    font-size: 18px; !important;
 }
 
 .loader {
@@ -111,4 +118,53 @@ body.loading {
 
 body.loading .loader{
     display: block;
+}
+
+.main {
+    box-sizing: border-box;
+    float: left;
+    width: 80px;
+    min-height: 720px;
+    background-color: #ececec;
+}
+
+.main>ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main>ul>li {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 10px 0 10px 15px;
+}
+
+.main>ul> li.active:before {
+    background-color: #3a3f51 !important;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -2px;
+    bottom: 0;
+    width: 5px;
+    -webkit-transition: all .05s linear;
+}
+
+.table-responsive {
+    width: 80%;
+}
+.table {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+thead {
+    background-color: #3a3f51;
+}
+th {
+    color: #fff !important;
+    text-align: center;
 }

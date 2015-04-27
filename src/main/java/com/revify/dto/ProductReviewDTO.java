@@ -18,6 +18,8 @@ public class ProductReviewDTO {
 
     private List<FeatureDTO> featureDTOList;
 
+    private int score;
+
     public Timestamp getReviewDate() {
         return reviewDate;
     }
@@ -60,11 +62,11 @@ public class ProductReviewDTO {
         this.overallRating = overallRating;
     }
 
-//    public FeatureRatingDTO getFeatureRatingInfo() {
-//        return featureRatingInfo;
-//    }
-//
-//    public void setFeatureRatingInfo(FeatureRatingDTO featureRatingInfo) {
-//        this.featureRatingInfo = featureRatingInfo;
-//    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }
