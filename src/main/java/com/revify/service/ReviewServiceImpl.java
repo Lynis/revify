@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService {
                 reviewDTO.setOverallRating(review.getOverallRating());
                 reviewDTO.setReviewDate(review.getReviewDate());
                 reviewDTO.setReviwer(review.getReviewer().getUserID());
-
+                reviewDTO.setCategoryName(review.getProduct().getCategory().getCategoryName());
                 reviewDTOList.add(reviewDTO);
                 cnt--;
             }

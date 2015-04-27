@@ -20,6 +20,8 @@ public class LatestReviewDTO {
 
     private String reviwer;
 
+    private String categoryName;
+
     public String getProductName() {
         return productName;
     }
@@ -66,5 +68,13 @@ public class LatestReviewDTO {
 
     public void setReviwer(String reviwer) {
         this.reviwer = reviwer;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }
