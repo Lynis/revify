@@ -79,6 +79,8 @@ var reviewOnSuccess = function (response, status, xhr){
                 span1.innerText = product.productDTO.noOfReviews + " Review";
             a.appendChild(span1);
             var rating = document.createElement('div');
+            var overAllRatingText = document.createElement('div');
+            overAllRatingText.innerHTML = "Overall Rating";
             var span1 = document.createElement('span');
             span1.innerText = product.productDTO.overallRating;
             if(product.productDTO.overallRating == 5)
@@ -92,6 +94,7 @@ var reviewOnSuccess = function (response, status, xhr){
             else if(product.productDTO.overallRating == 1)
                 rating.className = "rating red";
             rating.appendChild(span1);
+            product_overall_rating.appendChild(overAllRatingText);
             product_overall_rating.appendChild(rating);
             product_overall_rating.appendChild(a);
             //col_md_5.appendChild(product_overall_rating);
