@@ -1,5 +1,6 @@
 package com.revify.service;
 
+import com.revify.dto.PlayerDTO;
 import com.revify.dto.ProductDTO;
 import com.revify.dto.ProductReviewDTO;
 
@@ -13,4 +14,6 @@ public interface GameService {
     public List<ProductDTO> getProductsPurchasedByEbayUser(String userID, String token);
 
     public void saveProductFeatureRating(ProductReviewDTO productReviewDTO);
+
+    public List<PlayerDTO> getLeaderboard();
 }
