@@ -11,4 +11,6 @@ import java.util.List;
 public interface CategoryService {
 
     public List<CategoryDTO> findAllCategories();
+
+    public Long getCategoryID(String categoryName);
 }

@@ -203,11 +203,7 @@ li{
 }
 
 .fill-light-red{
-<<<<<<< HEAD
-    background: #ff7519;
-=======
     background: #FF3300;
->>>>>>> upstream/master
 }
 
 .fill-red{
@@ -247,9 +243,7 @@ li{
 	border-color: #c00;
 }
 
-.light-red{
-    border-color: #ff7519;
-}
+
 
 .clear{
 	clear: both;
@@ -266,4 +260,14 @@ li{
     /*z-index: 109;*/
     background-color: #f5f7fa;
     text-align: center;
+}
+
+.border-left-bottom{
+    border-left: 1px solid #b0c4de;
+    border-bottom:1px solid #b0c4de;
+}
+
+.border-right-bottom{
+    border-right: 1px solid #b0c4de;
+    border-bottom:1px solid #b0c4de;
 }
