@@ -49,13 +49,11 @@ var reviewIndividualOnError = function(xhr, status, e){
 
 var reviewIndividualOnSuccess = function (response, status, xhr){
     individualReviewResponse = response;
+    loadAggReviews();
 }
 
 
 var loadReviews = function(){
-
-
-
 
     var reviewsData = aggReviewsResponse;
 
@@ -292,106 +290,108 @@ var loadReviews = function(){
     for(var r in userReviewsData) {
 
         var userReview = userReviewsData[r];
-        var row_indi = document.createElement('row');
-        row_indi.className = "row";
 
-        var col_lg_6 = document.createElement('div');
-        col_lg_6.className = "col-lg-6 col-md-6 col-sm-12 col-xs-12";
+        for(var j = 0; j < userReview.productDTO.productReviewDTOs.length; j++){
+            var row_indi = document.createElement('row');
+            row_indi.className = "row";
 
-        var panel_default = document.createElement('div');
-        panel_default.className = "panel panel-default";
+            var col_lg_6 = document.createElement('div');
+            col_lg_6.className = "col-lg-6 col-md-6 col-sm-12 col-xs-12";
 
-        var panel_heading = document.createElement('div');
-        panel_heading.className = "panel-heading";
-        panel_heading.innerText = "User : ";
+            var panel_default = document.createElement('div');
+            panel_default.className = "panel panel-default";
 
-        var span1 = document.createElement('span');
-        span1.className = "pull-right";
-        //var date = new Date(review.productDTO.productReviewDTOs[0].reviewDate);
-        span1.innerText = "march";
+            var panel_heading = document.createElement('div');
+            panel_heading.className = "panel-heading";
+            panel_heading.innerText = "User : " + userReview.productDTO.productReviewDTOs[j].reviewerID;
 
-        var panel_body = document.createElement('div');
-        panel_body.className = "panel-body";
+            var span1 = document.createElement('span');
+            span1.className = "pull-right";
+            var date = new Date(userReview.productDTO.productReviewDTOs[0].reviewDate);
+            span1.innerText = date.toLocaleDateString();
 
-        var col_lg_2 = document.createElement('div');
-        col_lg_2.className = "col-lg-2 col-md-2 col-sm-2 col-xs-2";
+            var panel_body = document.createElement('div');
+            panel_body.className = "panel-body";
 
-        var span2 = document.createElement('div');
-        span2.className = "overall";
-        span2.innerText = "3";
+            var col_lg_2 = document.createElement('div');
+            col_lg_2.className = "col-lg-2 col-md-2 col-sm-2 col-xs-2";
 
-        var span3 = document.createElement('span');
-        span3.innerText = "Overall";
-        span2.appendChild(span3);
+            var span2 = document.createElement('div');
+            span2.className = "overall";
+            span2.innerText = "3";
 
-        var col_lg_10 = document.createElement('div');
-        col_lg_10.className = "col-lg-10 col-md-10 col-sm-10 col-xs-10";
+            var span3 = document.createElement('span');
+            span3.innerText = "Overall";
+            span2.appendChild(span3);
 
-        var ul = document.createElement('ul');
+            var col_lg_10 = document.createElement('div');
+            col_lg_10.className = "col-lg-10 col-md-10 col-sm-10 col-xs-10";
 
-        for(var i = 0; i < 3; i++){
+            var ul = document.createElement('ul');
 
-            var li = document.createElement('li');
-            li.className = "ratings-bar-style";
+            for(var i = 0; i < userReview.productDTO.productReviewDTOs[j].featureDTOList.length; i++){
 
-            var featureWrap = document.createElement('div');
-            featureWrap.className = "feature-wrap";
+                var li = document.createElement('li');
+                li.className = "ratings-bar-style";
 
-            var span4 = document.createElement('span');
-            span4.innerText = "feature " + i;
+                var featureWrap = document.createElement('div');
+                featureWrap.className = "feature-wrap";
 
-            var strong = document.createElement('strong');
-            strong.className = "pull-right";
-            strong.innerText = "3";
+                var span4 = document.createElement('span');
+                span4.innerText = userReview.productDTO.productReviewDTOs[j].featureDTOList[i].featureName;
 
-            featureWrap.appendChild(span4);
-            featureWrap.appendChild(strong);
+                var strong = document.createElement('strong');
+                strong.className = "pull-right";
+                strong.innerText = userReview.productDTO.productReviewDTOs[j].featureDTOList[i].overallRating;
 
-            var barWrap = document.createElement('div');
-            barWrap.className = "bar-wrap";
+                featureWrap.appendChild(span4);
+                featureWrap.appendChild(strong);
 
-            var a = document.createElement('a');
-            a.className = "votes-wrap";
+                var barWrap = document.createElement('div');
+                barWrap.className = "bar-wrap";
 
-            var ratings = 2;
+                var a = document.createElement('a');
+                a.className = "votes-wrap";
 
-            if(ratings == 5){
-                a.style.width = "93%";
+                var ratings = userReview.productDTO.productReviewDTOs[j].featureDTOList[i].overallRating;
+
+                if(ratings == 5){
+                    a.style.width = "93%";
+                }
+                else if(ratings == 4){
+                    a.style.width = "70%";
+                }
+
+                else if(ratings == 3){
+                    a.style.width = "50%";
+                }
+
+                else if(ratings == 2){
+                    a.style.width = "30%";
+                }
+
+                else {
+                    a.style.width = "10%";
+                }
+
+                barWrap.appendChild(a);
+
+                li.appendChild(featureWrap);
+                li.appendChild(barWrap);
+
+                ul.appendChild(li);
             }
-            else if(ratings == 4){
-                a.style.width = "70%";
-            }
-
-            else if(ratings == 3){
-                a.style.width = "50%";
-            }
-
-            else if(ratings == 2){
-                a.style.width = "30%";
-            }
-
-            else {
-                a.style.width = "10%";
-            }
-
-            barWrap.appendChild(a);
-
-            li.appendChild(featureWrap);
-            li.appendChild(barWrap);
-
-            ul.appendChild(li);
+            col_lg_10.appendChild(ul);
+            col_lg_2.appendChild(span2);
+            panel_body.appendChild(col_lg_2);
+            panel_body.appendChild(col_lg_10);
+            panel_heading.appendChild(span1);
+            panel_default.appendChild(panel_heading);
+            panel_default.appendChild(panel_body);
+            col_lg_6.appendChild(panel_default);
+            row_indi.appendChild(col_lg_6);
+            collapse1.appendChild(row_indi);
         }
-        col_lg_10.appendChild(ul);
-        col_lg_2.appendChild(span2);
-        panel_body.appendChild(col_lg_2);
-        panel_body.appendChild(col_lg_10);
-        panel_heading.appendChild(span1);
-        panel_default.appendChild(panel_heading);
-        panel_default.appendChild(panel_body);
-        col_lg_6.appendChild(panel_default);
-        row_indi.appendChild(col_lg_6);
-        collapse1.appendChild(row_indi);
-
         col_md_10.appendChild(collapse1);
         individualRow.appendChild(col_md_10);
         section.appendChild(individualRow);
@@ -404,4 +404,3 @@ var loadReviews = function(){
 }
 
 loadIndiReview();
-loadAggReviews();
