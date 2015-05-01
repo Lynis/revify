@@ -22,6 +22,8 @@ public class LatestReviewDTO {
 
     private String categoryName;
 
+    private long categoryID;
+
     public String getProductName() {
         return productName;
     }
@@ -76,5 +78,13 @@ public class LatestReviewDTO {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public long getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(long categoryID) {
+        this.categoryID = categoryID;
     }
 }

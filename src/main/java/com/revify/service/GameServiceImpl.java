@@ -145,7 +145,7 @@ public class GameServiceImpl implements GameService {
     @Transactional
     public List<PlayerDTO> getLeaderboard() {
         List<User> players = userRepository.findAll(new Sort(new Sort.Order(Sort.Direction.DESC, "score")));
-        List<PlayerDTO> playerDTOs = new ArrayList<>();
+        List<PlayerDTO> playerDTOs = new ArrayList<PlayerDTO>();
         int count = 0;
         for (User player: players){
             if (player.getScore() != 0) {

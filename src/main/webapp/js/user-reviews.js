@@ -112,16 +112,17 @@ var reviewOnSuccess = function (response, status, xhr){
 
             var feature_list_1 = document.createElement('div');
             feature_list_1.className = "col-md-4";
-            feature_list_1.style.marginLeft = "60px";
+            //feature_list_1.style.marginLeft = "20px";
 
             var ul_1 = document.createElement('ul');
             ul_1.className = "feature-review-bars";
 
+
             if(product.productDTO.features.length >= 1) {
 
-                feature_list_1.style.borderLeft = "1px solid gray";
-                feature_list_1.style.borderBottom = "1px solid gray";
-                feature_list_1.style.borderTop = "1px solid gray";
+                feature_list_1.style.borderLeft = "1px solid #e7e7e7";
+                feature_list_1.style.borderBottom = "1px solid #e7e7e7";
+                feature_list_1.style.borderTop = "1px solid #e7e7e7";
 
                 for (var i = 0; i < product.productDTO.features.length / 2; i++) {
 
@@ -138,32 +139,32 @@ var reviewOnSuccess = function (response, status, xhr){
                     if (overallRating == 5) {
                         feature_rating.className = "feature-rating green";
                         fill.className = "fill-green fill";
-                        fill.style.width = "300px";
-                        fill.setAttribute("data-width", '300');
+                        fill.style.width = "100%";
+                        fill.setAttribute("data-width", '100');
                     }
                     else if (overallRating == 4) {
                         feature_rating.className = "feature-rating light-green";
                         fill.className = "fill-light-green fill";
-                        fill.style.width = "250px";
-                        fill.setAttribute("data-width", '250');
+                        fill.style.width = "80%";
+                        fill.setAttribute("data-width", '80');
                     }
                     else if (overallRating == 3) {
                         feature_rating.className = "feature-rating yellow";
                         fill.className = "fill-yellow fill";
-                        fill.style.width = "200px";
-                        fill.setAttribute("data-width", '200');
+                        fill.style.width = "60%";
+                        fill.setAttribute("data-width", '60');
                     }
                     else if (overallRating == 2) {
                         feature_rating.className = "feature-rating light-red";
                         fill.className = "fill-light-red fill";
-                        fill.style.width = "150px";
-                        fill.setAttribute("data-width", '150');
+                        fill.style.width = "40%";
+                        fill.setAttribute("data-width", '40');
                     }
                     else {
                         feature_rating.className = "feature-rating red";
                         fill.className = "fill-red fill";
-                        fill.style.width = "100px";
-                        fill.setAttribute("data-width", '100');
+                        fill.style.width = "20%";
+                        fill.setAttribute("data-width", '20');
                     }
                     feature_rating.innerText = overallRating;
                     var clear = document.createElement('div');
@@ -178,7 +179,7 @@ var reviewOnSuccess = function (response, status, xhr){
             }
 
             var feature_list_2 = document.createElement('div');
-            feature_list_2.className = "col-md-3";
+            feature_list_2.className = "col-md-4";
 
             var ul_2 = document.createElement('ul');
             ul_2.className = "feature-review-bars";
@@ -186,9 +187,9 @@ var reviewOnSuccess = function (response, status, xhr){
 
             if (product.productDTO.features.length > 1) {
 
-                feature_list_2.style.borderRight = "1px solid gray";
-                feature_list_2.style.borderBottom = "1px solid gray";
-                feature_list_2.style.borderTop = "1px solid gray";
+                feature_list_2.style.borderRight = "1px solid #e7e7e7";
+                feature_list_2.style.borderBottom = "1px solid #e7e7e7";
+                feature_list_2.style.borderTop = "1px solid #e7e7e7";
 
                 var initialValue = Math.floor(product.productDTO.features.length / 2);
                 for (var i = initialValue; i < product.productDTO.features.length; i++) {
@@ -206,32 +207,32 @@ var reviewOnSuccess = function (response, status, xhr){
                     if (overallRating == 5) {
                         feature_rating.className = "feature-rating green";
                         fill.className = "fill-green fill";
-                        fill.style.width = "300px";
-                        fill.setAttribute("data-width", '300');
+                        fill.style.width = "100%";
+                        fill.setAttribute("data-width", '100');
                     }
                     else if (overallRating == 4) {
                         feature_rating.className = "feature-rating light-green";
                         fill.className = "fill-light-green fill";
-                        fill.style.width = "250px";
-                        fill.setAttribute("data-width", '250');
+                        fill.style.width = "80%";
+                        fill.setAttribute("data-width", '80');
                     }
                     else if (overallRating == 3) {
                         feature_rating.className = "feature-rating yellow";
                         fill.className = "fill-yellow fill";
-                        fill.style.width = "200px";
-                        fill.setAttribute("data-width", '200');
+                        fill.style.width = "60%";
+                        fill.setAttribute("data-width", '60');
                     }
                     else if (overallRating == 2) {
                         feature_rating.className = "feature-rating light-red";
                         fill.className = "fill-light-red fill";
-                        fill.style.width = "150px";
-                        fill.setAttribute("data-width", '150');
+                        fill.style.width = "40%";
+                        fill.setAttribute("data-width", '40');
                     }
                     else {
                         feature_rating.className = "feature-rating red";
                         fill.className = "fill-red fill";
-                        fill.style.width = "100px";
-                        fill.setAttribute("data-width", '100');
+                        fill.style.width = "20%";
+                        fill.setAttribute("data-width", '20');
                     }
                     var clear = document.createElement('div');
                     clear.className = "clear";
