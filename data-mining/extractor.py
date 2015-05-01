@@ -23,7 +23,7 @@ class UniqueNounsExtractor:
 			relevantWords = [word for word in tokens if word not in self.stopwords]
 			for word, tag in pos_tag(relevantWords):
 				if word not in self.uniqueNouns:
-					if (tag == 'NN' or tag == 'NNP' or tag == 'NNS' or tag == 'NNPS'):
+					if tag == 'NN': # or tag == 'NNS' or tag == 'NNPS')
 						self.uniqueNouns.append(word)
 
 		return self.uniqueNouns

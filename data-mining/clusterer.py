@@ -22,7 +22,7 @@ def get_words(titles):
     for title in job_titles:
         for word in title.split():
             words.add(normalize_word(word))
-    print words
+    #print words
     return list(words)
 
 def max_wup_similiarity_score(word1,word2):
@@ -52,7 +52,7 @@ def vectorspaced(words, word):
 
 if __name__ == '__main__':
 
-    filename = 'unique-nouns-extractor-output\cameras.txt'
+    filename = 'unique-nouns-extractor-output\laptops.txt'
     if len(sys.argv) == 2:
         filename = sys.argv[1]
 
@@ -60,19 +60,31 @@ if __name__ == '__main__':
     	print 'Starting clustering at - ' + strftime("%Y-%m-%d %H:%M:%S")
 
         nouns = [word.decode('utf-8') for word in product_file.readline().split(' ')]
-        
+        k = 4
         #stemmed = [normalize_word(word) for word in nouns]
-        clusterer = KMeansClusterer(8, euclidean_distance) #GAAClusterer(5)
+        clusterer = KMeansClusterer(k, euclidean_distance) #GAAClusterer(5)
         vectors = [vectorspaced(nouns, word) for word in nouns]
         
         clusters = clusterer.cluster(vectors,True)
         
         print "Done clustering at - " + strftime("%Y-%m-%d %H:%M:%S")
-        print "clusters:" + str(clusters)
+        #print "clusters:" + str(clusters)
         #print "means:" + str(clusterer.means())
+        map = {}
+        for i in range(0,k):
+            map[i] = []
 
-        sorted_and_zipped = sorted(zip(clusters, nouns))
-        with open("clustered.txt") as o:
-        	o.write(filename)
-        	o.write(sorted_and_zipped)
-        	o.close()
+        zipped = zip(clusters,nouns)
+        for key, val in zipped:
+            map[key].append(val)
+
+        print map
+
+        sorted_and_zipped = sorted(zipped)
+        #print sorted_and_zipped
+        f = open("clustered_laptop.txt", 'w+');
+        f.write(str(map) + "\n============Sorted And Zipped============\n")
+        f.write(str(sorted_and_zipped) + "\n")
+        f.write(filename + "\n")
+        f.write("============End=================\n")
+        f.close()
