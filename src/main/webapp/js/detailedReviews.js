@@ -150,11 +150,9 @@ var detailedReviewOnSuccess = function (response, status, xhr){
             col_lg_6.appendChild(panel_default);
             row.appendChild(col_lg_6);
         }
-
         container.appendChild(row);
         section.appendChild(productName);
         section.appendChild(container);
-        sessionStorage.clear();
     }
 }
 

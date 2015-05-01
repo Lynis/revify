@@ -98,8 +98,8 @@ public class ProductServiceImpl implements ProductService {
                         }
                         Category category = categoryRepository.findByCategoryName(categoryName);
                         if(category == null){
-                            System.out.println(categoryName + " does not exist!");
-                           return;
+                            System.out.println(categoryName + " is not supported!");
+                            continue;
                         }
 
                         double startPrice = item.getStartPrice().getValue();
@@ -145,7 +145,7 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-    public OrderType[] getOrders(ApiContext apiContext){
+    private OrderType[] getOrders(ApiContext apiContext){
         // Make api call to GetOrders
         GetOrdersCall orderApi = new GetOrdersCall(apiContext);
 
@@ -177,7 +177,7 @@ public class ProductServiceImpl implements ProductService {
         return orders;
     }
 
-    public ItemType getItem(String itemID, ApiContext apiContext){
+    private ItemType getItem(String itemID, ApiContext apiContext){
         GetItemCall itemApi = new GetItemCall(apiContext);
         DetailLevelCodeType[] detailLevels = new DetailLevelCodeType[]{
           DetailLevelCodeType.RETURN_ALL,

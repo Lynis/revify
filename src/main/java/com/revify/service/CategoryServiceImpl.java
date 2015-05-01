@@ -34,4 +34,11 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categoryDTOs;
     }
+
+    @Override
+    @Transactional
+    public Long getCategoryID(String categoryName) {
+        Category category = categoryRepository.findByCategoryName(categoryName);
+        return category.getCategoryID();
+    }
 }
