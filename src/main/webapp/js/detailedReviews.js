@@ -3,13 +3,16 @@
  */
 
 
-//var detailedReviewPath = "/revify/services/reviews?productID=1&range=individual";
+var detailedReviewPath = "/revify/services/reviews?productID={pid}&range=individual";
 
 var loadDetailedReviews = function(){
 
-    var productId = sessionStorage.getItem("productID");
-    var detailedReviewPath = "/revify/services/reviews?productID="+productId+"&range=individual";
+    //var productId = sessionStorage.getItem("productID");
+    //var detailedReviewPath = "/revify/services/reviews?productID="+productId+"&range=individual";
     var url = extractBaseUrl() + detailedReviewPath;
+    var pid_temp = location.href.split('=')[1];
+    var pid = pid_temp.split('&')[0];
+    url = url.replace('{pid}',pid);
     jQuery.ajax(url, {
         dataType : "json",
         success : detailedReviewOnSuccess,

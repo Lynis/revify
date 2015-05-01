@@ -55,7 +55,6 @@ ul{
 }
 
 .login>a{
-
     font-size: 16px;
     color: #fff;
     float: right;
@@ -85,12 +84,19 @@ a:hover {
 
 
 .wrapper>section{
-    position: relative;
+   /* position: relative;
     height: 100%;
     margin-left: 0;
     background-color: #f2f2f2;
-    margin-top: 80px;
-    background-color: #f2f2f2;    
+    margin-top: 80px;*/
+    background-color: #f2f2f2;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    background-size: 100% 100%;
+    overflow-x: hidden;
 }
 
 .content-wrapper{
@@ -265,11 +271,11 @@ p{
     left: 0;
     right: 0;
     bottom: 0;
-    height: 60px;
+    height: 40px;
     border-top: 1px solid #e4eaec;
-    padding: 20px;
     background-color: #f5f7fa;
     text-align: center;
+    padding-top: 5px;
 }
 
 /*@media only screen and (min-width: 768px)
@@ -341,4 +347,8 @@ hr{
     float: right;
     /*margin: 5px 0 10px;*/
     background: #cbcbcb;
+}
+
+footer>p {
+    font-size: 18px !important;
 }

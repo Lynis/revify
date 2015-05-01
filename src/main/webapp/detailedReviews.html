@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/layout.css">
     <link rel="stylesheet" type="text/css" href="css/detailed.css">
     <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -25,20 +26,31 @@
 </head>
 <body>
 <div class="wrapper">
+    <div class="disablingDiv"></div>
     <header>
         <nav class="navbar navbar-background navbar-fixed-top">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <a href="home.html"><span class="logo">Revify</span></a>
+
+                        <div class="dl-menuwrapper">
+                            <button class="dl-trigger"></button>
+                            <ul class="dl-menu">
+                            </ul>
+                        </div>
                     </div>
                     <div class="login col-md-6">
-                        <a class="text-uppercase" href="start.html">Log In</a>
-                        <img src="images/login-icon-purple.png">
+                        <a id="login" class="text-uppercase" href="#">Log In</a>
+                        <img src="images/login-icon2.png">
+
                     </div>
                 </div>
             </div>
         </nav>
+        <div id="spinner" class="spinner" style="display:none;">
+            <img id="img-spinner" src="images/ajax-loader-circle-big.gif" alt="Loading"/>
+        </div>
     </header>
     <section id = "section">
         <span style="float:right; margin-top:1%">
@@ -52,6 +64,9 @@
     <footer>
         <span>© Copyright Revify</span>
     </footer>
+
+    <script src="js/home.js"></script>
+
 </div>
 
 </body>
