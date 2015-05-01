@@ -5,6 +5,7 @@ import com.revify.entity.Feature;
 import com.revify.entity.FeatureReview;
 import com.revify.entity.ProductReview;
 import com.revify.entity.PurchasedProduct;
+import com.revify.repository.CategoryRepository;
 import com.revify.repository.PurchasedProductRepository;
 import com.revify.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,16 @@ import java.util.*;
 public class ReviewServiceImpl implements ReviewService {
 
     private final PurchasedProductRepository productRepository;
-
+    private final CategoryRepository categoryRepository;
     private final ReviewRepository reviewRepository;
 
     private static final int REVIEWS_PER_ROW = 4;
 
     @Autowired
-    public ReviewServiceImpl(PurchasedProductRepository productRepository, ReviewRepository reviewRepository){
+    public ReviewServiceImpl(PurchasedProductRepository productRepository, ReviewRepository reviewRepository, CategoryRepository categoryRepository){
         this.productRepository = productRepository;
         this.reviewRepository  = reviewRepository;
+        this.categoryRepository = categoryRepository;
 
     }
 
@@ -129,6 +131,7 @@ public class ReviewServiceImpl implements ReviewService {
                 }
                 productDTO.setFeatures(featureDTOList);
                 reviewDTO.setProductDTO(productDTO);
+                reviewDTO.setCategoryName(categoryRepository.findOne(categoryID).getCategoryName());
                 aggReviewDTOList.add(reviewDTO);
             }
         }
@@ -200,6 +203,8 @@ public class ReviewServiceImpl implements ReviewService {
     public List<ReviewDTO> getSortedReviews(Long categoryID, String featureName){
 
         List<ReviewDTO> sortedReviewDTOList = new ArrayList<ReviewDTO>();
+        CategoryDTO categoryDTO = new CategoryDTO();
+
 
         List<PurchasedProduct> purchasedProductList = productRepository.findAll();
 
@@ -260,10 +265,13 @@ public class ReviewServiceImpl implements ReviewService {
                     }
                 }
                 productDTO.setFeatures(featureDTOList);
+                reviewDTO.setCategoryName(categoryRepository.findOne(categoryID).getCategoryName());
                 reviewDTO.setProductDTO(productDTO);
                 sortedReviewDTOList.add(reviewDTO);
             }
         }
         return sortedReviewDTOList;
     }
+
+
 }
