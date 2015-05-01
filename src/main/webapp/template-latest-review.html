@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
     <header>
         <nav class="navbar navbar-background navbar-fixed-top">
             <div class="container">
@@ -48,17 +48,11 @@
     <section id="section">
         <div class="container-fluid" id="container">
 
-            <div class="row category-heading text-center">
-                <span style="margin-left: 10%">Olympus 24x Zoom Camera</span>
+            <div class="row category-heading text-center" id="heading">
+                <!--<span style="margin-left: 10%">Olympus 24x Zoom Camera</span>-->
             </div>
-
-            <div class="review-wrapper">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="images/products/olympus-zoom.jpg" class="img-responsive" id="2">
-                    </div>
-
-                    <div class="col-md-5" style="border-left: 1px solid #e7e7e7">
+         </div>
+                   <!-- <div class="col-md-5" style="border-left: 1px solid #e7e7e7">
                             <div class="col-md-3 product-overall-rating">
                                 <div class="rating light-green">
                                     <span>4</span>
@@ -80,186 +74,214 @@
                                     <li>
                                         <div class="feature-label">Shutter Speed</div>
                                         <div class="feature-review-bar">
-                                            <div class="fill-light-red fill" data-width="150" style="width: 150px;">
+                                            <div class="fill-light-red fill" data-width="150" style="width: 150px;">-->
 
-                                            </div>
-                                        </div>
-                                        <div class="feature-rating light-red">2</div>
-                                        <div class="clear">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="feature-label">Feature1</div>
-                                        <div class="feature-review-bar">
-                                            <div class="fill-red fill" data-width="100" style="width: 100px;"></div>
-                                        </div><div class="feature-rating red">1</div>
-                                        <div class="clear"></div>
-                                    </li>
-                                    <li>
-                                        <div class="feature-label">Feature2</div>
-                                        <div class="feature-review-bar">
-                                            <div class="fill-light-red fill" data-width="150" style="width: 150px;">
+            <!--<div class="review-wrapper" id="reviewWrapper">
+                <div class="row" id="row">
+                    <!--<div class="col-md-3" >-->
+                        <!--<img src="images/products/olympus-zoom.jpg" class="img-responsive" id="2">-->
+                    <!--</div>-->
 
-                                            </div>
-                                        </div>
-                                        <div class="feature-rating light-red">2</div>
-                                        <div class="clear">
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="feature-label">Feature3</div>
-                                        <div class="feature-review-bar">
-                                            <div class="fill-red fill" data-width="100" style="width: 100px;"></div>
-                                        </div><div class="feature-rating red">1</div>
-                                        <div class="clear"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                    </div>
-                    <div class="col-md-4">
-                            <ul class="feature-review-bars">
-                                <li>
-                                    <div class="feature-label">Shutter Speed</div>
-                                    <div class="feature-review-bar">
-                                        <div class="fill-light-red fill" data-width="150" style="width: 150px;"></div>
-                                    </div>
-                                    <div class="feature-rating light-red">2</div>
-                                    <div class="clear"></div>
-                                </li>
-                                <li>
-                                    <div class="feature-label">Display</div>
-                                    <div class="feature-review-bar">
-                                        <div class="fill-yellow fill" data-width="200" style="width: 200px;"></div>
-                                    </div>
-                                    <div class="feature-rating yellow">3</div>
-                                    <div class="clear">
-                                    </div>
-                                </li>
-                            </ul>
-                    </div>
-                </div>
+                    <!--<div class="col-md-5" style="border-left: 1px solid #e7e7e7" id="col_md_5">-->
+                            <!--<div class="col-md-3 product-overall-rating" id="col_md_3">-->
+                                <!--&lt;!&ndash;<div class="rating light-green">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span>4</span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--<div class="text-center">-->
+                                    <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#user-reviews" style="margin-top:15px">4 Reviews</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-md-9" id="featureList1">-->
+                                <!--<ul class="feature-review-bars">-->
+                                    <!--<li>-->
+                                        <!--<div class="feature-label">Lens</div>-->
+                                        <!--<div class="feature-review-bar">-->
+                                            <!--<div class="fill-red fill" data-width="100" style="width: 100px;"></div>-->
+                                        <!--</div><div class="feature-rating red">1</div>-->
+                                        <!--<div class="clear"></div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="feature-label">Shutter Speed</div>-->
+                                        <!--<div class="feature-review-bar">-->
+                                            <!--<div class="fill-light-red fill" data-width="150" style="width: 150px;">-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="feature-rating light-red">2</div>-->
+                                        <!--<div class="clear">-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="feature-label">Feature1</div>-->
+                                        <!--<div class="feature-review-bar">-->
+                                            <!--<div class="fill-red fill" data-width="100" style="width: 100px;"></div>-->
+                                        <!--</div><div class="feature-rating red">1</div>-->
+                                        <!--<div class="clear"></div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="feature-label">Feature2</div>-->
+                                        <!--<div class="feature-review-bar">-->
+                                            <!--<div class="fill-light-red fill" data-width="150" style="width: 150px;">-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="feature-rating light-red">2</div>-->
+                                        <!--<div class="clear">-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="feature-label">Feature3</div>-->
+                                        <!--<div class="feature-review-bar">-->
+                                            <!--<div class="fill-red fill" data-width="100" style="width: 100px;"></div>-->
+                                        <!--</div><div class="feature-rating red">1</div>-->
+                                        <!--<div class="clear"></div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+            <!--</div>-->
+                    <!--<div class="col-md-4" id="featureList2">-->
+                            <!--<ul class="feature-review-bars">-->
+                                <!--<li>-->
+                                    <!--<div class="feature-label">Shutter Speed</div>-->
+                                    <!--<div class="feature-review-bar">-->
+                                        <!--<div class="fill-light-red fill" data-width="150" style="width: 150px;"></div>-->
+                                    <!--</div>-->
+                                    <!--<div class="feature-rating light-red">2</div>-->
+                                    <!--<div class="clear"></div>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<div class="feature-label">Display</div>-->
+                                    <!--<div class="feature-review-bar">-->
+                                        <!--<div class="fill-yellow fill" data-width="200" style="width: 200px;"></div>-->
+                                    <!--</div>-->
+                                    <!--<div class="feature-rating yellow">3</div>-->
+                                    <!--<div class="clear">-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
                 <!-- Individual Reviews-->
-                <div class="row" style="border-top:1px solid #e7e7e7">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div id="user-reviews" class="collapse">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">User : 1<span class="pull-right">4/23/2015</span></div>
-                                        <div class="panel-body">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                <div class="overall">4<span>Overall</span></div></div>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                                <ul>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Lens</span><strong class="pull-right">1</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 10%;"></a></div></li>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">2</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>
-                                                    </li>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Display</span><strong class="pull-right">3</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">User : 1<span class="pull-right">4/24/2015</span></div>
-                                        <div class="panel-body">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                <div class="overall">4<span>Overall</span></div>
-                                            </div>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><ul><li class="ratings-bar-style">
-                                                <div class="feature-wrap"><span>Lens</span><strong class="pull-right">2</strong>
-                                                </div>
-                                                <div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>
-                                            </li>
-                                                <li class="ratings-bar-style">
-                                                    <div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">3</strong></div>
-                                                    <div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>
-                                                </li>
-                                                <li class="ratings-bar-style">
-                                                    <div class="feature-wrap"><span>Display</span><strong class="pull-right">4</strong></div>
-                                                    <div class="bar-wrap"><a class="votes-wrap" style="width: 70%;"></a></div>
-                                                </li>
-                                            </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">User : 1<span class="pull-right">4/23/2015</span></div>
-                                        <div class="panel-body">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                <div class="overall">4<span>Overall</span></div></div>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                                <ul>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Lens</span><strong class="pull-right">1</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 10%;"></a></div></li>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">2</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>
-                                                    </li>
-                                                    <li class="ratings-bar-style">
-                                                        <div class="feature-wrap"><span>Display</span><strong class="pull-right">3</strong></div>
-                                                        <div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">User : 1<span class="pull-right">4/24/2015</span></div>
-                                        <div class="panel-body">
-                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                <div class="overall">4<span>Overall</span></div>
-                                            </div>
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><ul><li class="ratings-bar-style">
-                                                <div class="feature-wrap"><span>Lens</span><strong class="pull-right">2</strong>
-                                                </div>
-                                                <div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>
-                                            </li>
-                                                <li class="ratings-bar-style">
-                                                    <div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">3</strong></div>
-                                                    <div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>
-                                                </li>
-                                                <li class="ratings-bar-style">
-                                                    <div class="feature-wrap"><span>Display</span><strong class="pull-right">4</strong></div>
-                                                    <div class="bar-wrap"><a class="votes-wrap" style="width: 70%;"></a></div>
-                                                </li>
-                                            </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                </div>
-            </div>
+                <!--<div class="row" style="border-top:1px solid #e7e7e7" id="individualreviews">-->
+                    <!--<div class="col-md-1"></div>-->
+                    <!--<div class="col-md-10">-->
+                        <!--<div id="user-reviews" class="collapse">-->
+                            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-heading">User : 1<span class="pull-right">4/23/2015</span></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="overall">4<span>Overall</span></div></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Lens</span><strong class="pull-right">1</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 10%;"></a></div></li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">2</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Display</span><strong class="pull-right">3</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-heading">User : 1<span class="pull-right">4/24/2015</span></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="overall">4<span>Overall</span></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><ul><li class="ratings-bar-style">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="feature-wrap"><span>Lens</span><strong class="pull-right">2</strong>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">3</strong></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="feature-wrap"><span>Display</span><strong class="pull-right">4</strong></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 70%;"></a></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-heading">User : 1<span class="pull-right">4/23/2015</span></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="overall">4<span>Overall</span></div></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Lens</span><strong class="pull-right">1</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 10%;"></a></div></li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">2</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="feature-wrap"><span>Display</span><strong class="pull-right">3</strong></div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<div class="panel panel-default">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-heading">User : 1<span class="pull-right">4/24/2015</span></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="panel-body">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="overall">4<span>Overall</span></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><ul><li class="ratings-bar-style">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="feature-wrap"><span>Lens</span><strong class="pull-right">2</strong>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 30%;"></a></div>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="feature-wrap"><span>Shutter Speed</span><strong class="pull-right">3</strong></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 50%;"></a></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<li class="ratings-bar-style">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="feature-wrap"><span>Display</span><strong class="pull-right">4</strong></div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div class="bar-wrap"><a class="votes-wrap" style="width: 70%;"></a></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-1"></div>-->
+        <!--</div>-->
+        <!--</div>-->
 
-        </div>
+        <!--</div>-->
     </section>
 
     <footer>
         <p>©Company Copyright</p>
     </footer>
-
     <script src="js/home.js"></script>
-    <script src="js/user-reviews.js"></script>
+    <script src="js/latest-review.js"></script>
 </div>
 
 </body>

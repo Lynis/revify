@@ -203,6 +203,10 @@ li{
 }
 
 .fill-light-red{
+<<<<<<< HEAD
+    /*background: #ff7519;*/
+=======
+>>>>>>> upstream/master
     background: #FF3300;
 }
 
