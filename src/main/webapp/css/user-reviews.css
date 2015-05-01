@@ -254,9 +254,9 @@ li{
     left: 0;
     right: 0;
     bottom: 0;
-    height: 60px;
+    height: 40px;
     border-top: 1px solid #e4eaec;
-    padding: 20px;
+    padding: 5px;
     /*z-index: 109;*/
     background-color: #f5f7fa;
     text-align: center;
