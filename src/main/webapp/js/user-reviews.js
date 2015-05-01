@@ -59,11 +59,6 @@ var reviewOnSuccess = function (response, status, xhr){
             image.src = product.productDTO.image;
             image.className = "img-responsive";
             image.id = product.productDTO.productID;
-            image.onclick = function () {
-                var productId = this.id;
-                sessionStorage.setItem("productID", productId);
-                window.location.href = "detailedReviews.html";
-            };
             var product_heading = document.createElement('div');
             product_heading.className = "text-center product-heading";
             product_heading.innerText = product.productDTO.productName;
@@ -75,12 +70,9 @@ var reviewOnSuccess = function (response, status, xhr){
             var product_overall_rating = document.createElement('div');
             product_overall_rating.className = "col-md-1 product-overall-rating";
             var a = document.createElement('a');
-            a.onclick = function () {
-                var productId = this.id;
-                sessionStorage.setItem("productID", productId);
-                window.location.href = "detailedReviews.html";
-            };
-            //a.href = "detailedReviews.html";
+            var productId = product.productDTO.productID;
+            a.href = "detailedReviews.html?pid="+productId;
+
             var span1 = document.createElement('span');
             span1.className = "review-count";
             if (product.productDTO.noOfReviews > 1)

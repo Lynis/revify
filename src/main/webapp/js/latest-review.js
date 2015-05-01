@@ -1,12 +1,15 @@
 
-var reviewPath = "/revify/services/reviews?categoryID=3&range=aggregated";
-var detailedReviewPath = "/revify/services/reviews?productID=3&range=individual";
+var reviewPath = "/revify/services/reviews?categoryID={cid}&range=aggregated";
+var detailedReviewPath = "/revify/services/reviews?productID={pid}&range=individual";
 var aggReviewsResponse;
 var individualReviewResponse;
-
+var pid;
 
 var loadAggReviews = function(){
     var url_aggregated = extractBaseUrl() + reviewPath;
+    var cid_temp = location.href.split('=')[1];
+    var cid = cid_temp.split('&')[0];
+    url_aggregated = url_aggregated.replace('{cid}', cid);
     jQuery.ajax(url_aggregated, {
         dataType : "json",
         success : reviewAggOnSuccess,
@@ -16,6 +19,9 @@ var loadAggReviews = function(){
 
 var loadIndiReview = function(){
     var url_individual = extractBaseUrl() + detailedReviewPath;
+    var pid_temp = location.href.split('=')[1];
+    pid = pid_temp.split('&')[0];
+    url_individual = url_individual.replace('{pid}', pid);
     jQuery.ajax(url_individual, {
         dataType : "json",
         success : reviewIndividualOnSuccess,
@@ -56,6 +62,9 @@ var reviewIndividualOnSuccess = function (response, status, xhr){
 var loadReviews = function(){
 
     var reviewsData = aggReviewsResponse;
+    if(reviewsData.length == 0){
+        alert("Sorry,latest reviews are not available");
+    }
 
     var wrapper = document.getElementById('wrapper');
     var section = document.getElementById('section');
@@ -77,7 +86,7 @@ var loadReviews = function(){
 
         var review = reviewsData[r];
 
-        if(review.productDTO.productID == "3"){
+        if(review.productDTO.productID == pid){
 
             var span1 = document.createElement('span');
             span1.style.marginLeft = "10%";
@@ -292,6 +301,7 @@ var loadReviews = function(){
         var userReview = userReviewsData[r];
 
         for(var j = 0; j < userReview.productDTO.productReviewDTOs.length; j++){
+
             var row_indi = document.createElement('row');
             row_indi.className = "row";
 
