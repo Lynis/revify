@@ -18,7 +18,7 @@ body{
 
 .wrapper>header{
     background-color: #3a3f51;
-    height: 50px;
+    height: 80px;
     position: absolute;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@ body{
 
 .wrapper>section {
     position: absolute;
-    top: 50px;
+    top: 81px;
     left: 0;
     right: 0;
     bottom: 40px;
@@ -167,4 +167,12 @@ thead {
 th {
     color: #fff !important;
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+    float: right;
 }
