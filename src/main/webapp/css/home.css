@@ -55,17 +55,17 @@ ul{
 }
 
 .login>a{
-
     font-size: 16px;
     color: #fff;
     float: right;
     margin-top: 10px;
+    margin-left: 10px;
     font-weight: bold;
 }
 
 .login>img{
     float: right;
-    margin-top: 5px; 
+    margin-top: 5px;
 }
 
 a:hover {

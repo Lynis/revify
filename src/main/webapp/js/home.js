@@ -123,7 +123,8 @@ var latestReviewOnSuccess = function(response, status, e){
 
                 var reviewCard = "<div class=\"col-md-3 col-sm-6 col-xs-12\">" +
                     "<div class=\"review-panel review-card\"><div class=\"review-card-image review-border\">" +
-                    "<a href=\"latest-review.html?pid="+ review.productID+"&cid="+categoryID +"\"><img class=\"img-responsive\" src=\"" + review.image + "\">" +
+                    "<a href=\"latest-review.html?pid="+ review.productID+ "&cid=" + review.categoryID + "\">" +
+                    "<img class=\"img-responsive\" src=\"" + review.image + "\">" +
                     "</a></div><div class=\"review-panel-body\">" +
                     "<div class=\"row row-table review-border\"><div class=\"col-xs-12 text-center pv-lg\">" +
                     "<span data-toggle=\"tooltip\" title=\"" + review.productName  + "\" class=\"fs-20 text-bold\">" + review.productName.substring(0, 15) + "..." + "</span></div></div>" +

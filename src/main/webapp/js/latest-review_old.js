@@ -7,10 +7,8 @@ var pid;
 
 var loadAggReviews = function(){
     var url_aggregated = extractBaseUrl() + reviewPath;
-    var cid_temp_1 = location.href.split('=')[1];
-    //var cid_temp_2 = cid_temp_1.split('&')[1];
-    //var cid = cid_temp_1.split('=')[1];
-    var cid = location.href.split('=')[2];
+    var cid_temp = location.href.split('=')[1];
+    var cid = cid_temp.split('&')[0];
     url_aggregated = url_aggregated.replace('{cid}', cid);
     jQuery.ajax(url_aggregated, {
         dataType : "json",
@@ -21,9 +19,8 @@ var loadAggReviews = function(){
 
 var loadIndiReview = function(){
     var url_individual = extractBaseUrl() + detailedReviewPath;
-    var pid_temp_1 = location.href.split('=')[1];
-    pid = pid_temp_1.split('&')[0];
-
+    var pid_temp = location.href.split('=')[1];
+    pid = pid_temp.split('&')[0];
     url_individual = url_individual.replace('{pid}', pid);
     jQuery.ajax(url_individual, {
         dataType : "json",
@@ -40,6 +37,7 @@ var extractBaseUrl = function(){
 }
 
 var reviewAggOnSuccess = function (response, status, xhr){
+
     aggReviewsResponse = response;
     loadReviews();
 }
@@ -64,7 +62,6 @@ var reviewIndividualOnSuccess = function (response, status, xhr){
 var loadReviews = function(){
 
     var reviewsData = aggReviewsResponse;
-
     if(reviewsData.length == 0){
         alert("Sorry,latest reviews are not available");
     }
