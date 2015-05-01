@@ -1,6 +1,9 @@
 /**
- *
+ * Vijaya Kedar
  */
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 
 var categoryPath = "/revify/services/categories";
 
@@ -66,10 +69,11 @@ var latestReviewOnSuccess = function(response, status, e){
         var reviewContainer = $('#review-container');
         if(reviews!= null && reviews.length != 0){
             var category = reviews[0].categoryName;
+            var categoryID = reviews[0].categoryID;
             var latestReviewStr = "Latest Reviews";
             var reviewHeadingTemplate  = " <div class=\"row\"><div class=\"col-md-12 review-heading\">" +
                 "<span class=\"review-heading-left-block\">" + "categoryHolder" + "</span>"+
-                "<a href=\"user-reviews.html\"><span class=\"review-heading-right-block\">See more</span></a></div></div>";
+                "<a href=\"user-reviews.html?cid=" + categoryID +"\"><span class=\"review-heading-right-block\">See more</span></a></div></div>";
             var row = "<div class=\"row\"></div>";
 
             var categoryName = latestReviewStr.replace(" ", " " + category + " ");
@@ -87,23 +91,60 @@ var latestReviewOnSuccess = function(response, status, e){
                 var date = new Date(review.reviewDate);
                 var reviewTime = date.toDateString();
 
+                var ratingColor;
+                var ratingWidth;
+
+                switch (review.overallRating){
+                    case 1:
+                        ratingColor = "fill-red";
+                        ratingWidth = 10;
+                        break;
+
+                    case 2:
+                        ratingColor = "fill-light-red";
+                        ratingWidth = 20;
+                        break;
+
+                    case 3:
+                        ratingColor = "fill-yellow";
+                        ratingWidth = 30;
+                        break;
+
+                    case 4:
+                        ratingColor = "fill-light-green";
+                        ratingWidth = 40;
+                        break;
+
+                    case 5:
+                        ratingColor = "fill-green";
+                        ratingWidth = 55;
+                        break;
+                }
+
                 var reviewCard = "<div class=\"col-md-3 col-sm-6 col-xs-12\">" +
                     "<div class=\"review-panel review-card\"><div class=\"review-card-image review-border\">" +
-                    "<a href=\"\"><img class=\"img-responsive\" src=\"" + review.image + "\">" +
+                    "<a href=\"latest-review.html?pid="+ review.productID +"\"><img class=\"img-responsive\" src=\"" + review.image + "\">" +
                     "</a></div><div class=\"review-panel-body\">" +
                     "<div class=\"row row-table review-border\"><div class=\"col-xs-12 text-center pv-lg\">" +
-                    "<span class=\"fs-20 text-bold\">" + review.productName.substring(0, 15) + "..." + "</span></div></div>" +
+                    "<span data-toggle=\"tooltip\" title=\"" + review.productName  + "\" class=\"fs-20 text-bold\">" + review.productName.substring(0, 15) + "..." + "</span></div></div>" +
                     "<div class=\"row row-table review-border\"><div class=\"col-xs-4 text-center pv-lg\">" +
-                    "<img src=\"images/heart-small.png\" class=\"rv-pd img-responsive\"></div><div class=\"col-xs-8 pv-lg text-right fs-14\">" +
+                    "<img src=\"images/heart-blue.png\" class=\"rv-pd img-responsive\"></div>" +
+
+                    "<div class=\"col-xs-8 pv-lg text-right fs-14\">" +
                     "<div class=\"m0 text-bold fs-22\">" + review.overallRating + "</div>" +
-                    "<div class=\"text-uppercase fs-14\">Rating</div></div></div>" +
+
+                    "<div class=\"product-review-bar\">" +
+                    "<div class=\"" + ratingColor + " fill\" data-width=\"" + ratingWidth  + "\" style=\"width:" + ratingWidth  +"px;\">" +"</div>" +
+                    "</div> </div> </div>" +
+
                     "<div class=\"row row-table\"><div class=\"col-xs-4 text-center pv-lg\">" +
-                    "<span>by <span class=\"reviewer\">" + review.reviwer + "</span></span>" + "</div> <div class=\"col-xs-8 pv-lg text-right\">" +
-                    "<span>" + reviewTime + "</span></div></div></div></div></div>";
+                    "<span>by <span class=\"reviewer\" data-toggle=\"tooltip\" title=\""+ review.reviwer +"\">" + review.reviwer.substring(0,10) + "..." + "</span></span>" + "</div> <div class=\"col-xs-8 pv-lg text-right\">" +
+                    "<span style=\"color:#3333FF\">" + reviewTime + "</span></div></div></div></div></div>";
 
                 reviewCardRow.append(reviewCard);
             }
 
+            $('[data-toggle="tooltip"]').tooltip();
         }
     }catch(e){
         console.log(e);
