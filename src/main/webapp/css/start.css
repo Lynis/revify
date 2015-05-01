@@ -76,7 +76,7 @@ body{
     height: 180px;
     margin: 10px auto;
     border-radius: 90px;
-    background-color: #fff;
+    background-color: coral;
     text-align: center;
 }
 
@@ -85,9 +85,9 @@ body{
 }
 
 .product-img{
-    width: 140px;
-    height: 140px;
-    margin: 10px;
+    width: 100px;
+    height: 100px;
+    margin: 40px;
 }
 
 .product-name {
