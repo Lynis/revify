@@ -37,6 +37,7 @@ var getMonthIndex = function(monthName){
 var productNameList = new Array();
 var productMap = new Object();
 var reviewMap = new Object();
+var numberRatingMap = new Object();
 
 
 
@@ -49,11 +50,14 @@ var feedbackOnSuccess = function(response,status,xhr){
         productNameList.push(productName);
         var monthlyRatingArray = new Array(12);
         var monthlyFeatureRatingArray = new Array(12);
+        var monthlyRatingCountArray = new Array(12);
         var feedback = feedbackData[i];
         var overallProductRating = feedback.feedbackProductDTO.productReviewMap;
         var monthlyReviewCount = feedback.feedbackProductDTO.reviewCountMap;
         var monthlyFeatureReviewCount = feedback.feedbackProductDTO.featureRatingMap;
         for (var m in monthlyReviewCount){
+            var monthlyRatingCount = monthlyReviewCount[m];
+            monthlyRatingCountArray[m] = monthlyRatingCount;
             var temp;
             for(var key in monthlyFeatureReviewCount){
                 temp = monthlyFeatureReviewCount[key];
@@ -63,6 +67,7 @@ var feedbackOnSuccess = function(response,status,xhr){
             monthlyRatingArray[m] = overallProductRating[m];
             var productValue = monthlyRatingArray;
             productMap[productName] = productValue; //****This map will store Product Name as a key and an array of all monthly ratings with Index.
+            numberRatingMap[productName] = monthlyRatingCountArray;
         }
     }
 
@@ -75,11 +80,12 @@ var feedbackOnSuccess = function(response,status,xhr){
         }
     }
 
-
     series_1 = [];
     for(var k = 0; k < productNameList.length; k++){
         var list_1  = getProductList(productNameList[k]);
+        var list_2 = getReviewCountList(productNameList[k]);
         var seriesInput_1 = new Array(12);
+        var seriesInput_2 = new Array(12);
         for(var i = 0 ; i < list_1.length ;i++){
             if(typeof list_1[i] == 'undefined') {
                 seriesInput_1[i] = 0;
@@ -90,14 +96,29 @@ var feedbackOnSuccess = function(response,status,xhr){
         }
         series_1.push({
             name : productNameList[k],
+            type : 'spline',
             data: seriesInput_1
+        })
+
+        for(var i = 0 ; i < list_2.length ;i++){
+            if(typeof list_2[i] == 'undefined') {
+                seriesInput_2[i] = 0;
+            }
+            else {
+                seriesInput_2[i] = list_2[i];
+            }
+        }
+        series_1.push({
+            name : productNameList[k],
+            type : 'column',
+            yAxis: 1,
+            data: seriesInput_2
         })
     }
     plotGraph();
 }
 
 var getProductList = function (k){
-    //alert(productMap[k]);
     return productMap[k];
 }
 
@@ -105,9 +126,13 @@ var getReviewList = function(k){
     return reviewMap[k];
 }
 
+var getReviewCountList = function(k){
+    return numberRatingMap[k];
+}
 
 
-var plotGraph = function (){
+
+var plotGraph = function () {
     $('#chart1').highcharts({
         title: {
             text: 'Average Ratings of all products in one year',
@@ -117,23 +142,35 @@ var plotGraph = function (){
             text: '',
             x: -20
         },
-        xAxis: {
+        xAxis: [{
             categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            min:0,
+        }],
+        yAxis: [{ //Primary y axis
+            min: 0,
             title: {
-                text: 'Number of Product Ratings'
+                text: 'Average Product Rating'
             },
             plotLines: [{
                 value: 0,
                 width: 1,
                 color: '#808080'
             }]
+        },{ //Secondary y axis
+            title : {
+                text: 'Number of Product Ratings'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: false
         },
-        //tooltip: {
-        //    valueSuffix: ''
-        //},
         legend: {
             layout: 'vertical',
             align: 'right',
@@ -144,18 +181,27 @@ var plotGraph = function (){
         plotOptions: {
             series: {
                 cursor: 'pointer',
-                point : {
-                    events :{
-                        click : function(){
-                            //alert(this.series.name);
-                            plotGauge(this.category, this.y);
+                point: {
+                    events: {
+                        click: function () {
+                            //plotGauge(this.category, this.y);
                             plotFeatureChart(this.category, this.series.name);
                         }
                     }
                 }
+            },
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                    style: {
+                        textShadow: '0 0 3px black'
+                    }
+                }
             }
         },
-        series : series_1
+        series: series_1
     });
 }
 
@@ -192,7 +238,7 @@ var plotFeatureChart = function (monthName, productName) {
 
     $('#chart2').highcharts({
         chart: {
-            type: 'column'
+            type: 'bar'
         },
         title: {
             text: 'Average Feature Rating of '+ productName
@@ -203,21 +249,28 @@ var plotFeatureChart = function (monthName, productName) {
         xAxis: {
             categories: xAxisFeatures,
             title: {
-                text: null
-            }
-        },
-        yAxis: {
+                text: 'Rating for '+ productName
+            },
             min: 0,
             title: {
-                text: 'Rating for '+ productName,
+                text: null,
                 align: 'high'
             },
             labels: {
                 overflow: 'justify'
             }
         },
-         legend: {
-                    enabled: false
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rating for '+ productName,
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        legend: {
+            enabled: false
         },
         tooltip: {
             valueSuffix: ''
@@ -241,7 +294,7 @@ var plotFeatureChart = function (monthName, productName) {
 
 //Gauge
 
-var plotGauge = function (monthName, rating) {
+/*var plotGauge = function (monthName, rating) {
 
     $('#gauge').highcharts({
         chart: {
@@ -334,6 +387,6 @@ var plotGauge = function (monthName, rating) {
             }
         }]
     });
-}
+}*/
 
 loadFeedback();
