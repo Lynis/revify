@@ -8,6 +8,8 @@ import com.revify.entity.Category;
 import com.revify.entity.PurchasedProduct;
 import com.revify.entity.PurchasedProductUser;
 import com.revify.entity.User;
+import com.revify.hystrix.GetItemCommand;
+import com.revify.hystrix.GetOrdersCommand;
 import com.revify.repository.CategoryRepository;
 import com.revify.repository.PurchasedProductRepository;
 import com.revify.repository.PurchasedProductUserRepository;
@@ -169,7 +171,8 @@ public class ProductServiceImpl implements ProductService {
         OrderType[] orders = null;
 
         try {
-            orders = orderApi.getOrders();
+            //orders = orderApi.getOrders();
+            orders = new GetOrdersCommand(orderApi).execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,7 +190,8 @@ public class ProductServiceImpl implements ProductService {
         itemApi.setDetailLevel(detailLevels);
         ItemType item = null;
         try {
-            item = itemApi.getItem(itemID);
+            //item = itemApi.getItem(itemID);
+            item = new GetItemCommand(itemApi, itemID).execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

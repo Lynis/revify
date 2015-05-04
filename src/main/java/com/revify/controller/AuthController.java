@@ -6,6 +6,8 @@ package com.revify.controller;
 import com.ebay.sdk.*;
 import com.ebay.sdk.call.FetchTokenCall;
 import com.ebay.sdk.call.GetSessionIDCall;
+import com.revify.hystrix.FetchTokenCommand;
+import com.revify.hystrix.GetSessionIDCommand;
 import com.revify.service.AuthHelper;
 import com.revify.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,13 +89,15 @@ public class AuthController {
 
         session.setAttribute("apiContext", apiContext);
 
-        GetSessionIDCall api = new GetSessionIDCall(apiContext);
-        api.setRuName(runame);
+        //GetSessionIDCall api = new GetSessionIDCall(apiContext);
+        //api.setRuName(runame);
 
         String ruParams = "params=" + runame + "-" + env;
 
         try {
-            String sessionID = api.getSessionID();
+            //String sessionID = api.getSessionID();
+            GetSessionIDCommand getSessionIDCommand = new GetSessionIDCommand(runame, apiContext);
+            String sessionID = getSessionIDCommand.execute();
             String encodedSessionIDString = URLEncoder.encode(sessionID, "UTF-8");
 
             session.setAttribute("sessionID", sessionID);
@@ -120,12 +124,12 @@ public class AuthController {
 
         String eBayToken = null;
         try {
-            eBayToken = api.fetchToken();
+            eBayToken = new FetchTokenCommand(api).execute();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        String tokenExpiry = api.getHardExpirationTime().getTime().toString();
         //Set eBayToken
         apiContext.getApiCredential().seteBayToken(eBayToken);
 
