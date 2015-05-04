@@ -104,31 +104,31 @@ var sortedReviewOnSuccess = function (response, status, xhr){
 
                 var feature_rating = document.createElement('div');
                 if(overallRating == 5){
-                    feature_rating.className = "feature-rating green";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-green fill";
-                    fill.style.width = "300px";
-                    fill.setAttribute("data-width", '300');
+                    fill.style.width = "100%";
+                    fill.setAttribute("data-width", '100');
                 }
                 else if(overallRating == 4){
-                    feature_rating.className = "feature-rating light-green";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-light-green fill";
-                    fill.style.width = "250px";
-                    fill.setAttribute("data-width", '250');
+                    fill.style.width = "80%";
+                    fill.setAttribute("data-width", '80');
                 }
                 else if(overallRating == 3){
-                    feature_rating.className = "feature-rating yellow";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-yellow fill";
-                    fill.style.width = "200px";
-                    fill.setAttribute("data-width", '200');
+                    fill.style.width = "60%";
+                    fill.setAttribute("data-width", '60');
                 }
                 else if(overallRating == 2){
-                    feature_rating.className = "feature-rating light-red";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-light-red fill";
-                    fill.style.width = "150px";
-                    fill.setAttribute("data-width", '150');
+                    fill.style.width = "20%";
+                    fill.setAttribute("data-width", '20');
                 }
                 else {
-                    feature_rating.className = "feature-rating red";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-red fill";
                     fill.style.width = "100px";
                     fill.setAttribute("data-width", '100');

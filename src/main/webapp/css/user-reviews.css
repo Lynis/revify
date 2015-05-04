@@ -145,7 +145,7 @@ li{
 	font-size: 55px;
 	font-weight: 100;
 	text-align: center;
-	border-bottom: 8px solid #a6a6a6;
+	/*border-bottom: 8px solid #a6a6a6;*/
 }
 
 .review-count{
@@ -164,8 +164,8 @@ li{
 }
 
 .feature-review-bars{
-	width: 340px;
-	padding: 5px 0px 25px 0px!important;
+	width: 380px;
+	padding: 10px 0px 10px 35px!important;
 }
 
 .feature-review-bar{
@@ -173,7 +173,7 @@ li{
 	height: 15px;
 	float: left;
 	margin: 5px 0 10px;
-	background: #f4f4f4;
+	background: #B9B2B2;
 }
 
 .feature-label{
@@ -210,17 +210,32 @@ li{
 	background: #c00;
 }
 
+/*.feature-rating{*/
+	/*line-height: 15px;*/
+	/*float: left;*/
+	/*display: inline-block;*/
+	/*width: 25px;*/
+	/*height: 20px;*/
+	/*margin: 5px 0 0 15px;*/
+	/*border-bottom: 3px solid transparent;*/
+	/*text-align: center;*/
+/*}*/
+
 .feature-rating{
-	line-height: 15px;
-	float: left;
-	display: inline-block;
-	width: 25px;
-	height: 20px;
-	margin: 5px 0 0 15px;
-	border-bottom: 3px solid transparent;
-	text-align: center;
+    float: right;
+    display: inline-block;
+    width: 25px;
+    height: 22px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    /*border: 3px solid;*/
+    border-radius: 50px;
 }
 
+.blue{
+    background: #380e99;
+}
 
 .green{
 	border-color: #390;

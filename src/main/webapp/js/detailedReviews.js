@@ -109,27 +109,33 @@ var detailedReviewOnSuccess = function (response, status, xhr){
                 barWrap.className = "bar-wrap";
 
                 var a = document.createElement('a');
-                a.className = "votes-wrap";
+                //a.className = "votes-wrap";
 
                 var ratings = review.productDTO.productReviewDTOs[j].featureDTOList[i].overallRating;
 
                 if(ratings == 5){
-                    a.style.width = "93%";
+                    a.style.width = "94%";
+                    a.className = "votes-wrap-green";
                 }
+
                 else if(ratings == 4){
-                    a.style.width = "70%";
+                    a.style.width = "80%";
+                    a.className = "votes-wrap-light-green";
                 }
 
                 else if(ratings == 3){
-                    a.style.width = "50%";
+                    a.style.width = "60%";
+                    a.className = "votes-wrap-yellow";
                 }
 
                 else if(ratings == 2){
-                    a.style.width = "30%";
+                    a.style.width = "40%";
+                    a.className = "votes-wrap-light-red";
                 }
 
                 else {
-                    a.style.width = "10%";
+                    a.style.width = "20%";
+                    a.className = "votes-wrap-red";
                 }
 
                 //var span5 = document.createElement('span');
