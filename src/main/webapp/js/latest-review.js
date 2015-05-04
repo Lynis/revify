@@ -7,9 +7,6 @@ var pid;
 
 var loadAggReviews = function(){
     var url_aggregated = extractBaseUrl() + reviewPath;
-    var cid_temp_1 = location.href.split('=')[1];
-    //var cid_temp_2 = cid_temp_1.split('&')[1];
-    //var cid = cid_temp_1.split('=')[1];
     var cid = location.href.split('=')[2];
     url_aggregated = url_aggregated.replace('{cid}', cid);
     jQuery.ajax(url_aggregated, {
@@ -81,6 +78,11 @@ var loadReviews = function(){
     var individualRow =  document.createElement('div');
     individualRow.className = "row";
     individualRow.style.borderTop = "1px solid #e7e7e7";
+
+    var col_md_1 = document.createElement('div');
+    col_md_1.className = "col-md-1";
+
+    individualRow.appendChild(col_md_1);
 
     var col_md_10 =  document.createElement('div');
     col_md_10.className = "col-md-10";
@@ -178,31 +180,31 @@ var loadReviews = function(){
                 document.createAttribute("data-width");
                 var feature_rating = document.createElement('div');
                 if (overallRating == 5) {
-                    feature_rating.className = "feature-rating green";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-green fill";
                     fill.style.width = "300px";
                     fill.setAttribute("data-width", '300');
                 }
                 else if (overallRating == 4) {
-                    feature_rating.className = "feature-rating light-green";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-light-green fill";
                     fill.style.width = "250px";
                     fill.setAttribute("data-width", '250');
                 }
                 else if (overallRating == 3) {
-                    feature_rating.className = "feature-rating yellow";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-yellow fill";
                     fill.style.width = "200px";
                     fill.setAttribute("data-width", '200');
                 }
                 else if (overallRating == 2) {
-                    feature_rating.className = "feature-rating light-red";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-light-red fill";
                     fill.style.width = "150px";
                     fill.setAttribute("data-width", '150');
                 }
                 else {
-                    feature_rating.className = "feature-rating red";
+                    feature_rating.className = "feature-rating blue";
                     fill.className = "fill-red fill";
                     fill.style.width = "100px";
                     fill.setAttribute("data-width", '100');
@@ -244,34 +246,34 @@ var loadReviews = function(){
                     var feature_rating = document.createElement('div');
                     feature_rating.innerText = overallRating;
                     if (overallRating == 5) {
-                        feature_rating.className = "feature-rating green";
+                        feature_rating.className = "feature-rating blue";
                         fill.className = "fill-green fill";
-                        fill.style.width = "300px";
-                        fill.setAttribute("data-width", '300');
+                        fill.style.width = "100%";
+                        fill.setAttribute("data-width", '100');
                     }
                     else if (overallRating == 4) {
-                        feature_rating.className = "feature-rating light-green";
+                        feature_rating.className = "feature-rating blue";
                         fill.className = "fill-light-green fill";
-                        fill.style.width = "250px";
-                        fill.setAttribute("data-width", '250');
+                        fill.style.width = "80%";
+                        fill.setAttribute("data-width", '80');
                     }
                     else if (overallRating == 3) {
-                        feature_rating.className = "feature-rating yellow";
+                        feature_rating.className = "feature-rating blue";
                         fill.className = "fill-yellow fill";
-                        fill.style.width = "200px";
-                        fill.setAttribute("data-width", '200');
+                        fill.style.width = "60%";
+                        fill.setAttribute("data-width", '60');
                     }
                     else if (overallRating == 2) {
-                        feature_rating.className = "feature-rating light-red";
+                        feature_rating.className = "feature-rating blue";
                         fill.className = "fill-light-red fill";
-                        fill.style.width = "150px";
-                        fill.setAttribute("data-width", '150');
+                        fill.style.width = "40%";
+                        fill.setAttribute("data-width", '40');
                     }
                     else {
-                        feature_rating.className = "feature-rating red";
+                        feature_rating.className = "feature-rating blue";
                         fill.className = "fill-red fill";
-                        fill.style.width = "100px";
-                        fill.setAttribute("data-width", '100');
+                        fill.style.width = "20%";
+                        fill.setAttribute("data-width", '20');
                     }
                     var clear = document.createElement('div');
                     clear.className = "clear";
@@ -303,10 +305,10 @@ var loadReviews = function(){
 
         var userReview = userReviewsData[r];
 
-        for(var j = 0; j < userReview.productDTO.productReviewDTOs.length; j++){
+        var row_indi = document.createElement('row');
+        row_indi.className = "row";
 
-            var row_indi = document.createElement('row');
-            row_indi.className = "row";
+        for(var j = 0; j < userReview.productDTO.productReviewDTOs.length; j++){
 
             var col_lg_6 = document.createElement('div');
             col_lg_6.className = "col-lg-6 col-md-6 col-sm-12 col-xs-12";
@@ -369,22 +371,27 @@ var loadReviews = function(){
                 var ratings = userReview.productDTO.productReviewDTOs[j].featureDTOList[i].overallRating;
 
                 if(ratings == 5){
-                    a.style.width = "93%";
+                    a.style.width = "94%";
+                    a.className = "votes-wrap-green";
                 }
                 else if(ratings == 4){
-                    a.style.width = "70%";
+                    a.style.width = "80%";
+                    a.className = "votes-wrap-light-green";
                 }
 
                 else if(ratings == 3){
-                    a.style.width = "50%";
+                    a.style.width = "60%";
+                    a.className = "votes-wrap-yellow";
                 }
 
                 else if(ratings == 2){
-                    a.style.width = "30%";
+                    a.style.width = "40%";
+                    a.className = "votes-wrap-light-red";
                 }
 
                 else {
-                    a.style.width = "10%";
+                    a.style.width = "20%";
+                    a.className = "votes-wrap-red";
                 }
 
                 barWrap.appendChild(a);
@@ -406,6 +413,7 @@ var loadReviews = function(){
             collapse1.appendChild(row_indi);
         }
         col_md_10.appendChild(collapse1);
+        individualRow.appendChild(col_md_1);
         individualRow.appendChild(col_md_10);
         section.appendChild(individualRow);
     }
