@@ -1,7 +1,9 @@
-var feedbackPath = "/revify/services/feedback?userID=1";
+var feedbackPath = "/revify/services/feedback?userID={uid}";
 
 var loadFeedback = function(){
     var url = extractBaseUrl() + feedbackPath;
+    var uid = location.href.split('=')[1];
+    url = url.replace('{uid}',uid);
     jQuery.ajax(url,{
         dataType : "json",
         success : feedbackOnSuccess,
@@ -263,7 +265,7 @@ var plotFeatureChart = function (monthName, productName) {
         yAxis: {
             min: 0,
             title: {
-                text: 'Rating for '+ productName,
+                text: 'Rating for '+ productName
             },
             labels: {
                 overflow: 'justify'
