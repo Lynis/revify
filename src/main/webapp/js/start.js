@@ -2,6 +2,7 @@
  *
  * Start screen JS
  */
+
 var productPath = "/revify/services/products";
 var leaderboardPath = "/revify/services/leaderboard";
 var userID = location.href.split("=")[1].replace("#","");
@@ -97,7 +98,7 @@ var populate = function () {
         var product = toBeReviewedProducts[i];
         var imageTag = "<img class='product-img' src='"+product.image + "'>";
         var anchorTag = "<a id='p_" + i + "' href='#' class='marker'>" + imageTag + "</a>";
-        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product'>" + anchorTag + " </div><div class='product-name'><span class='badge'>" + product.productName.trunc(20) + "</span></div><div>";
+        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product'>" + anchorTag + " </div><div class='product-name'><span data-toggle='tooltip' class='badge' title='"+ product.productName + "'>" + product.productName.trunc(20) + "</span></div><div>";
         cardsRow.append(col);
         cnt++;
     }
@@ -105,8 +106,8 @@ var populate = function () {
 
     for(var i in reviewedProducts){
         var product = reviewedProducts[i];
-        var imageTag = "<img class='product-img' src='"+product.image + "'>";
-        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><div class='product reviewed'>" + imageTag + " </div><div class='product-name'><span class='badge'>" + product.productName.trunc(20) + "</span></div><div>";
+        var imageTag = "<img class='product-img-r' src='"+product.image + "'>";
+        var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'><span data-toggle=\"tooltip\"  title=\"Overall Rating\" class='rating-span badge pull-right'>" + product.overallRating + "</span><div class='product reviewed'>" + imageTag + " </div><div class='product-name'><span data-toggle='tooltip' class='badge' title='"+ product.productName + "'>" + product.productName.trunc(20) + "</span></div><div>";
         cardsRow.append(col);
         cnt++;
     }
@@ -114,6 +115,7 @@ var populate = function () {
         var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'></div>";
         cardsRow.append(col);
     }
+    $("[data-toggle=\"tooltip\"]").tooltip();
 };
 
 var toBeReviewedProductsOnClick = function(){

@@ -90,6 +90,12 @@ body{
     margin: 40px;
 }
 
+.product-img-r{
+    width: 100px;
+    height: 100px;
+    margin: 33px;
+}
+
 .product-name {
     position: absolute;
     bottom: 4;
@@ -169,10 +175,16 @@ th {
     text-align: center;
 }
 
-a {
+.feedback {
     text-decoration: none;
     color: #fff;
     font-weight: 300;
     font-size: 18px;
     float: right;
+}
+
+.rating-span {
+    font-weight: bold;
+    margin-top: 2px;
+    font-size: 18px !important;
 }

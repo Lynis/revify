@@ -80,6 +80,7 @@ public class GameServiceImpl implements GameService {
             for(ProductReview review: reviewedProducts){
                 if (review.getProduct().equals(purchasedProduct)){
                     productDTO.setReviewed(true);
+                    productDTO.setOverallRating(review.getOverallRating());
                     break;
                 }
             }
