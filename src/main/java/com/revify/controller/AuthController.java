@@ -5,7 +5,6 @@ package com.revify.controller;
  */
 import com.ebay.sdk.*;
 import com.ebay.sdk.call.FetchTokenCall;
-import com.ebay.sdk.call.GetSessionIDCall;
 import com.revify.hystrix.FetchTokenCommand;
 import com.revify.hystrix.GetSessionIDCommand;
 import com.revify.service.AuthHelper;
@@ -16,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Date;
 
 @RestController
 public class AuthController {
@@ -35,6 +36,8 @@ public class AuthController {
     public static final String RUNAME = "runame";
     public static final String SANDBOX_API_URL = "sandboxAPIUrl";
     public static final String EBAY_API_URL = "ebayAPIUrl";
+    public static final String COOKIE_SEPARATER = "###";
+    public static final String REVIFY_COOKIE_NAME = "revifyCredentials";
 
     @Autowired
     ProductService productService;
@@ -113,6 +116,18 @@ public class AuthController {
         return "";
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/logout")
+    public void logout(HttpServletResponse response) throws IOException {
+        // save token information in cookie
+        Cookie cookie = new Cookie(REVIFY_COOKIE_NAME, "");
+        //cookie.setSecure(true);
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        response.sendRedirect("/revify/home.html");
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/authsuccess", produces = "application/json")
     public void onAuthSuccess(HttpSession session, @Param("username") String username, HttpServletResponse response) throws IOException {
         // Get fetch token
@@ -129,11 +144,23 @@ public class AuthController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String tokenExpiry = api.getHardExpirationTime().getTime().toString();
+
+        long tokenExpiry = (api.getHardExpirationTime().getTime().getTime()- new Date().getTime())/1000;
+
         //Set eBayToken
         apiContext.getApiCredential().seteBayToken(eBayToken);
 
+        //Get products purchased by the user and save
         productService.extractAndSaveProductInfo(apiContext);
+
+        // save token information in cookie
+        Cookie cookie = new Cookie(REVIFY_COOKIE_NAME, username + COOKIE_SEPARATER + eBayToken);
+        //cookie.setSecure(true);
+        cookie.setMaxAge((int) tokenExpiry);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        System.out.println("Token expiration time in seconds:" + tokenExpiry);
 
         //redirect
         response.sendRedirect("/revify/start.html?un=" + username);
