@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `revify` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `revify`;
 -- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: revify
@@ -18,47 +16,14 @@ USE `revify`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
---
-
-DROP TABLE IF EXISTS `category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
-  `icon` varchar(255) DEFAULT NULL,
-  `category_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `category`
 --
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES ('images/camera-icon.png',1,'Camera'),('images/laptop-icon.png',2,'Laptop'),('images/phone-icon.png',3,'Cell Phone'),('images/tv-icon.png',4,'TV'),('images/book-icon.png',5,'Books'),('images/car-icon.png',6,'Cars'),('images/tablet-icon.png',7,'Tablet'),('images/toy-icon.png',8,'Toys'),('images/watch-icon.png',9,'Watch'),('images/shoe-icon.png',10,'Shoes');
+INSERT INTO `category` VALUES ('images/icons/camera-icon.png',1,'Digital Cameras'),('images/icons/laptop-icon.png',2,'Laptop'),('images/icons/phone-icon.png',3,'Cell Phones & Smartphones'),('images/icons/tv-icon.png',4,'TV'),('images/icons/tablet-icon.png',7,'Tablet'),('images/icons/toy-icon.png',8,'Toys'),('images/icons/watch-icon.png',9,'Wristwatches'),('images/icons/shoe-icon.png',10,'Shoes');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `feature`
---
-
-DROP TABLE IF EXISTS `feature`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `feature` (
-  `feature_id` bigint(20) NOT NULL,
-  `feature_name` varchar(255) DEFAULT NULL,
-  `icon` varchar(255) DEFAULT NULL,
-  `category_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`feature_id`),
-  KEY `FK_l9jwj9o9o7ue1je32nb6ijghq` (`category_id`),
-  CONSTRAINT `FK_l9jwj9o9o7ue1je32nb6ijghq` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `feature`
@@ -66,28 +31,9 @@ CREATE TABLE `feature` (
 
 LOCK TABLES `feature` WRITE;
 /*!40000 ALTER TABLE `feature` DISABLE KEYS */;
+INSERT INTO `feature` VALUES (1,'Lens',NULL,1),(2,'Shutter Speed',NULL,1),(3,'Display',NULL,1);
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `feature_review`
---
-
-DROP TABLE IF EXISTS `feature_review`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `feature_review` (
-  `feature_review_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `rating` int(11) DEFAULT NULL,
-  `feature_id` bigint(20) NOT NULL,
-  `product_review_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`feature_review_id`),
-  KEY `FK_a18etco6vp5heypsoqrvkai95` (`feature_id`),
-  KEY `FK_hk156clcquhvckt9isii0sft7` (`product_review_id`),
-  CONSTRAINT `FK_a18etco6vp5heypsoqrvkai95` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`),
-  CONSTRAINT `FK_hk156clcquhvckt9isii0sft7` FOREIGN KEY (`product_review_id`) REFERENCES `product_review` (`product_review_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `feature_review`
@@ -95,30 +41,9 @@ CREATE TABLE `feature_review` (
 
 LOCK TABLES `feature_review` WRITE;
 /*!40000 ALTER TABLE `feature_review` DISABLE KEYS */;
+INSERT INTO `feature_review` VALUES (1,1,1,1),(2,2,2,1),(3,3,3,1),(4,4,1,4),(5,5,2,4),(6,4,3,4),(7,3,1,3),(8,3,1,8),(9,4,2,3),(10,3,2,8),(11,2,1,9),(12,3,2,9),(13,4,3,9);
 /*!40000 ALTER TABLE `feature_review` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `product_review`
---
-
-DROP TABLE IF EXISTS `product_review`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product_review` (
-  `product_review_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `overall_rating` int(11) DEFAULT NULL,
-  `review_date` timestamp NULL DEFAULT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  PRIMARY KEY (`product_review_id`),
-  KEY `FK_hkyxlio8psyrs6biegu21rgto` (`user_id`),
-  KEY `FK_3jj4m8cx6b30ur3h817wi6npj` (`product_id`,`user_id`),
-  CONSTRAINT `FK_3jj4m8cx6b30ur3h817wi6npj` FOREIGN KEY (`product_id`, `user_id`) REFERENCES `purchased_product_user` (`product_id`, `user_id`),
-  CONSTRAINT `FK_59pjh8ssspqs6yypt6kqxtb8r` FOREIGN KEY (`product_id`) REFERENCES `purchased_product` (`product_id`),
-  CONSTRAINT `FK_hkyxlio8psyrs6biegu21rgto` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `product_review`
@@ -126,28 +51,9 @@ CREATE TABLE `product_review` (
 
 LOCK TABLES `product_review` WRITE;
 /*!40000 ALTER TABLE `product_review` DISABLE KEYS */;
-INSERT INTO `product_review` VALUES (1,4,'2015-03-23 08:30:00','1','1'),(2,3,'2015-03-23 09:30:00','4','1'),(3,3,'2015-03-24 10:06:00','8','6'),(4,2,'2015-03-24 10:06:00','2','2'),(5,3,'2015-03-24 10:06:00','3','2'),(6,3,'2015-03-24 10:12:00','5','3'),(7,4,'2015-03-24 10:12:00','6','4'),(8,2,'2015-03-24 10:12:00','7','5');
+INSERT INTO `product_review` VALUES (1,4,'2015-04-23 08:30:00','1','1'),(2,3,'2015-04-23 09:30:00','4','1'),(3,3,'2015-04-24 10:06:00','8','6'),(4,2,'2015-04-24 10:06:00','2','2'),(5,3,'2015-04-24 10:06:00','3','2'),(6,3,'2015-04-24 10:12:00','5','3'),(7,4,'2015-04-24 10:12:00','6','4'),(8,2,'2015-04-24 10:12:00','7','5'),(9,4,'2015-04-24 10:12:00','1','1');
 /*!40000 ALTER TABLE `product_review` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `purchased_product`
---
-
-DROP TABLE IF EXISTS `purchased_product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `purchased_product` (
-  `product_id` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `price` double DEFAULT NULL,
-  `product_name` varchar(255) DEFAULT NULL,
-  `category_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`product_id`),
-  KEY `FK_3u8o5y01r1cln5abec6lc8l8n` (`category_id`),
-  CONSTRAINT `FK_3u8o5y01r1cln5abec6lc8l8n` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `purchased_product`
@@ -155,29 +61,9 @@ CREATE TABLE `purchased_product` (
 
 LOCK TABLES `purchased_product` WRITE;
 /*!40000 ALTER TABLE `purchased_product` DISABLE KEYS */;
-INSERT INTO `purchased_product` VALUES ('1','images/products/olympus-zoom.jpg',449.99,'Olympus 24x Zoom Camera',1),('2','images/products/nikon-d7200.jpg',1129.99,'Nikon D7200',1),('3','images/products/iphone6-plus.jpg',249.99,'Apple iPhone 6 Plus',3),('4','images/products/samsung-galaxy-s5.jpg',29.99,'Samsung Galaxy S5',3),('5','images/products/nokia-lumia635.jpg',46.99,'Nokia Lumia 635',3),('6','images/products/htc-desire816.jpg',179.99,'HTC Desire 816',3),('7','images/products/canon-powershot-sx500.jpg',75,'Canon Powershot SX 500',1),('8','images/products/gopro-hero4.jpg',329,'GoPro HERO4',1);
+INSERT INTO `purchased_product` VALUES ('013803229820','http://i.ebayimg.com/00/z/V~kAAOxyJU1SNI9d/$T2eC16ZHJGEFFm-5brogBSNI9c,7+w~~_7.JPG?set_id=89040003C1',240,'Canon PowerShot G16 12.1 MP Digital Camera - Black',1),('018208015191','http://i.ebayimg.com/00/z/WxoAAOxyRNJSb-of/$T2eC16Z,!)!FIdU)K)f,BSb-ofR8qg~~_7.JPG?set_id=89040003C1',88,'Nikon D D5300 24.2 MP Digital SLR Camera - Black (Body only) (Latest Model)',1),('027242862319','http://i.ebayimg.com/00/$(KGrHqFHJFYFD1bLi!J+BR!Vc!c2MQ~~_7.JPG?set_id=89040003C1',10,'Sony Cyber-shot DSC-TF1 16.1 MP Digital Camera - Red (Latest Model)',1),('1','images/products/olympus-zoom.jpg',449.99,'Olympus 24x Zoom Camera',1),('2','images/products/nikon-d7200.jpg',1129.99,'Nikon D7200',1),('3','images/products/iphone6-plus.jpg',249.99,'Apple iPhone 6 Plus',3),('4','images/products/samsung-galaxy-s5.jpg',29.99,'Samsung Galaxy S5',3),('4718487630424','http://i.ebayimg.com/00/$T2eC16JHJHwE9n8igtftBRdpRRFv,!~~_7.JPG?set_id=89040003C1',149.99,'HTC One M7 - 32GB - Black (Unlocked) Smartphone',3),('5','images/products/nokia-lumia635.jpg',46.99,'Nokia Lumia 635',3),('6','images/products/htc-desire816.jpg',179.99,'HTC Desire 816',3),('610214632074','http://i.ebayimg.com/00/s/MzA2WDI1Nw==/z/z6oAAOSwDk5UBzYk/$_7.JPG?set_id=89040003C1',29.99,'Nokia Lumia 521 - 8GB - White (T-Mobile) Smartphone',3),('7','images/products/canon-powershot-sx500.jpg',75,'Canon Powershot SX 500',1),('8','images/products/gopro-hero4.jpg',329,'GoPro HERO4',1),('8714574610665','http://i.ebayimg.com/00/$(KGrHqZHJBQFIHyJOg,ZBSHqZpj9T!~~_7.JPG?set_id=89040003C1',980,'Canon EOS 70D 20.2 MP Digital SLR Camera - Black (Kit w/ EF-S IS STM 18-55mm',1);
 /*!40000 ALTER TABLE `purchased_product` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `purchased_product_user`
---
-
-DROP TABLE IF EXISTS `purchased_product_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `purchased_product_user` (
-  `product_id` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `product_product_id` varchar(255) DEFAULT NULL,
-  `user_user_id` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`product_id`,`user_id`),
-  KEY `FK_eqlvm2985dve00rvi34dr8jtj` (`product_product_id`),
-  KEY `FK_4s9wt4lgymnxlnidtft67r3l1` (`user_user_id`),
-  CONSTRAINT `FK_4s9wt4lgymnxlnidtft67r3l1` FOREIGN KEY (`user_user_id`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `FK_eqlvm2985dve00rvi34dr8jtj` FOREIGN KEY (`product_product_id`) REFERENCES `purchased_product` (`product_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `purchased_product_user`
@@ -185,22 +71,9 @@ CREATE TABLE `purchased_product_user` (
 
 LOCK TABLES `purchased_product_user` WRITE;
 /*!40000 ALTER TABLE `purchased_product_user` DISABLE KEYS */;
-INSERT INTO `purchased_product_user` VALUES ('1 ','1','1','1'),('1','2','1','2'),('2','1','2','1'),('2','2','2','2'),('3','1','3','1'),('3','2','3','2'),('4','1','4','1'),('4','2','4','2'),('5','3','5','3'),('6','4','6','4'),('7','5','7','5'),('8','6','8','6');
+INSERT INTO `purchased_product_user` VALUES ('013803229820','testuser_revify_vijaya','013803229820','testuser_revify_vijaya'),('018208015191','testuser_vijayakedar','018208015191','testuser_vijayakedar'),('027242862319','testuser_vijayakedar','027242862319','testuser_vijayakedar'),('1 ','1','1','1'),('1','2','1','2'),('2','1','2','1'),('2','2','2','2'),('3','1','3','1'),('3','2','3','2'),('4','1','4','1'),('4','2','4','2'),('4718487630424','testuser_revify_vijaya','4718487630424','testuser_revify_vijaya'),('5','3','5','3'),('6','4','6','4'),('610214632074','testuser_revify_vijaya','610214632074','testuser_revify_vijaya'),('7','5','7','5'),('8','6','8','6'),('8714574610665','testuser_revify_vijaya','8714574610665','testuser_revify_vijaya');
 /*!40000 ALTER TABLE `purchased_product_user` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `user_id` varchar(255) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -208,7 +81,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('1'),('2'),('3'),('4'),('5'),('6');
+INSERT INTO `user` VALUES ('1',0),('2',0),('3',0),('4',0),('5',0),('6',0),('testuser_revify_vijaya',0),('testuser_vijayakedar',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -221,4 +94,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-25 15:18:57
+-- Dump completed on 2015-05-05  0:51:31
