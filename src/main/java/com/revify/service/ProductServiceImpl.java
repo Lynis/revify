@@ -55,12 +55,28 @@ public class ProductServiceImpl implements ProductService {
     public void extractAndSaveProductInfo(ApiContext apiContext) {
 
         List<ItemType> itemList = new ArrayList<ItemType>();
+        User user;
         OrderType[] orders = getOrders(apiContext);
 
-        for(OrderType order: orders){
-
-            String userId = order.getBuyerUserID();
+        if(orders!=null) {
+            String userId = orders[0].getBuyerUserID();
             System.out.println("User id:" + userId);
+            // check if user exists
+            if(!userRepository.exists(userId)) {
+                user = new User();
+                user.setUserID(userId);
+                userRepository.save(user);
+                entityManager.flush();
+                //saveUser(user);
+            }else{
+                user = userRepository.findOne(userId);
+            }
+        }
+        else{
+            return;
+        }
+
+        for(OrderType order: orders){
 
             TransactionArrayType transactionArray = order.getTransactionArray();
             TransactionType[] transactions = transactionArray.getTransaction();
@@ -72,22 +88,14 @@ public class ProductServiceImpl implements ProductService {
                 ProductListingDetailsType productListingDetails =  item.getProductListingDetails();
 
                 if(productListingDetails != null) {
-                    // check if user exists
-                    User user;
-                    PurchasedProduct purchasedProduct;
 
-                    if(!userRepository.exists(userId)) {
-                        user = new User();
-                        user.setUserID(userId);
-                        userRepository.save(user);
-                        entityManager.flush();
-                        //saveUser(user);
-                    }else{
-                        user = userRepository.findOne(userId);
-                    }
+                    PurchasedProduct purchasedProduct;
 
                     // Check if the product already exists in the repository
                     String productID = productListingDetails.getUPC();
+                    if(productID == null){
+                        return;
+                    }
                     System.out.println("UPC:" + productID);
                     if(!productRepository.exists(productID)){
                         // create a new product and save
@@ -98,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
                         if(categoryName.contains(COLON)){
                             categoryName = categoryName.substring(categoryName.indexOf(COLON) + 1, categoryName.length());
                         }
-                        Category category = categoryRepository.findByCategoryName(categoryName);
+                        Category category = categoryRepository.findByCategoryName(categoryName.trim());
                         if(category == null){
                             System.out.println(categoryName + " is not supported!");
                             continue;
