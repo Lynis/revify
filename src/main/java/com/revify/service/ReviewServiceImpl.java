@@ -141,7 +141,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public List<ReviewDTO> getIndividualReview(Long productID){
+    public List<ReviewDTO> getIndividualReview(String productID){
 
         List<ReviewDTO> individualReviewDTOList = new ArrayList<ReviewDTO>();
         List<PurchasedProduct> reviewsList = productRepository.findAll();
@@ -149,7 +149,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         for(PurchasedProduct purchasedProduct : reviewsList){
 
-            if(purchasedProduct.getProductID().equals(Long.toString(productID))){
+            if(purchasedProduct.getProductID().equals(productID)){
 
                 System.out.println("productID : " + productID);
                 ReviewDTO reviewDTO = new ReviewDTO();

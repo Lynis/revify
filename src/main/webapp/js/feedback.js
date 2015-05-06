@@ -41,8 +41,6 @@ var productMap = new Object();
 var reviewMap = new Object();
 var numberRatingMap = new Object();
 
-
-
 var feedbackOnSuccess = function(response,status,xhr){
     var feedbackData = response;
 
@@ -60,11 +58,7 @@ var feedbackOnSuccess = function(response,status,xhr){
         for (var m in monthlyReviewCount){
             var monthlyRatingCount = monthlyReviewCount[m];
             monthlyRatingCountArray[m] = monthlyRatingCount;
-            var temp;
-            for(var key in monthlyFeatureReviewCount){
-                temp = monthlyFeatureReviewCount[key];
-            }
-            monthlyFeatureRatingArray[m] = temp;
+            monthlyFeatureRatingArray[m] = monthlyFeatureReviewCount[m];
             reviewMap[productName] = monthlyFeatureRatingArray;
             monthlyRatingArray[m] = overallProductRating[m];
             var productValue = monthlyRatingArray;
@@ -72,50 +66,45 @@ var feedbackOnSuccess = function(response,status,xhr){
             numberRatingMap[productName] = monthlyRatingCountArray;
         }
     }
-
-    //****Gives Rating of all months for all Products
-    for(var k = 0; k < productNameList.length; k++) {
-        var name = productNameList[k];
-        var list = getProductList(name);  //****This is the array which contains monthly rating as Index
-        for(var i=0 ; i<list.length;i++){
-           // alert("Product Name : " + name + "Month : " + getMonthName(parseInt(i)) + ". Overall rating : " + list[i]);
-        }
-    }
-
     series_1 = [];
     for(var k = 0; k < productNameList.length; k++){
         var list_1  = getProductList(productNameList[k]);
         var list_2 = getReviewCountList(productNameList[k]);
+
         var seriesInput_1 = new Array(12);
         var seriesInput_2 = new Array(12);
-        for(var i = 0 ; i < list_1.length ;i++){
-            if(typeof list_1[i] == 'undefined') {
-                seriesInput_1[i] = 0;
-            }
-            else {
-                seriesInput_1[i] = list_1[i];
-            }
-        }
-        series_1.push({
-            name : productNameList[k],
-            type : 'spline',
-            data: seriesInput_1
-        })
 
-        for(var i = 0 ; i < list_2.length ;i++){
-            if(typeof list_2[i] == 'undefined') {
-                seriesInput_2[i] = 0;
+        if(list_1 != null){
+            for(var i = 0 ; i < list_1.length ;i++){
+                if(typeof list_1[i] == 'undefined') {
+                    seriesInput_1[i] = 0;
+                }
+                else {
+                    seriesInput_1[i] = list_1[i];
+                }
             }
-            else {
-                seriesInput_2[i] = list_2[i];
-            }
+            series_1.push({
+                name : productNameList[k],
+                type : 'spline',
+                data: seriesInput_1
+            })
         }
-        series_1.push({
-            name : productNameList[k],
-            type : 'column',
-            yAxis: 1,
-            data: seriesInput_2
-        })
+        if(list_2 != null){
+            for(var i = 0 ; i < list_2.length ;i++){
+                if(typeof list_2[i] == 'undefined') {
+                    seriesInput_2[i] = 0;
+                }
+                else {
+                    seriesInput_2[i] = list_2[i];
+                }
+            }
+            series_1.push({
+                name : productNameList[k],
+                type : 'column',
+                yAxis: 1,
+                data: seriesInput_2
+            })
+        }
     }
     plotGraph();
 }
