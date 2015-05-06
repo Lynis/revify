@@ -111,7 +111,8 @@ var populate = function () {
         cardsRow.append(col);
         cnt++;
     }
-    while (cnt++ < 15) {
+    var l = screen.height <= 768 ? 9:15;
+    while (cnt++ < l) {
         var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'></div>";
         cardsRow.append(col);
     }

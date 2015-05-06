@@ -120,7 +120,7 @@ var reviewOnSuccess = function (response, status, xhr){
                 //feature_list_1.style.borderBottom = "1px solid #e7e7e7";
                 //feature_list_1.style.borderTop = "1px solid #e7e7e7";
 
-                for (var i = 0; i < product.productDTO.features.length / 2; i++) {
+                for (var i = 0; i < (product.productDTO.features.length + 1)/ 2; i++) {
 
                     var overallRating = product.productDTO.features[i].overallRating;
                     var li = document.createElement('li');
@@ -183,10 +183,16 @@ var reviewOnSuccess = function (response, status, xhr){
 
             if (product.productDTO.features.length > 1) {
 
+
                 var initialValue = Math.floor(product.productDTO.features.length / 2);
                 if(product.productDTO.features.length%2 != 0){
                     initialValue = initialValue + 1;
                 }
+                feature_list_2.style.borderRight = "1px solid #e7e7e7";
+                feature_list_2.style.borderBottom = "1px solid #e7e7e7";
+                feature_list_2.style.borderTop = "1px solid #e7e7e7";
+
+
                 for (var i = initialValue; i < product.productDTO.features.length; i++) {
                     var overallRating = product.productDTO.features[i].overallRating;
                     var li = document.createElement('li');
