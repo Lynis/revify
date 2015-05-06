@@ -31,7 +31,7 @@ public class ReviewController {
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "range=individual", produces = "application/json")
-    public List<ReviewDTO> getIndividualReview(@RequestParam(required = true, value = "productID") Long productID){
+    public List<ReviewDTO> getIndividualReview(@RequestParam(required = true, value = "productID") String productID){
         return reviewService.getIndividualReview(productID);
     }
 
