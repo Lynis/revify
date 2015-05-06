@@ -80,7 +80,7 @@ var loadLeaderboardOnSuccess = function(response, status, xhr){
             html += '<tr><td>'+ player.userID +'</td><td>' + player.noOfProductsReviewed + '</td><td>'+ player.totalScore +'</td></tr>'
         }
         html += '</tbody></table></div>';
-        $(".row").html(html);
+        $("div.product-cards>div.row").html(html);
     }catch(e){
         console.log(e);
         alert("Error loading leaderboard");
