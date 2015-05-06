@@ -233,6 +233,9 @@ var loadReviews = function(){
             if (review.productDTO.features.length > 1) {
 
                 var initialValue = Math.floor(review.productDTO.features.length / 2);
+                if(review.productDTO.features.length%2 != 0){
+                    initialValue = initialValue + 1;
+                }
                 for (var i = initialValue; i < review.productDTO.features.length; i++) {
                     var overallRating = review.productDTO.features[i].overallRating;
                     var li = document.createElement('li');

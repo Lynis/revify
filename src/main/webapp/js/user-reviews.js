@@ -117,8 +117,8 @@ var reviewOnSuccess = function (response, status, xhr){
             if(product.productDTO.features.length >= 1) {
 
                 feature_list_1.style.borderLeft = "1px solid #e7e7e7";
-                feature_list_1.style.borderBottom = "1px solid #e7e7e7";
-                feature_list_1.style.borderTop = "1px solid #e7e7e7";
+                //feature_list_1.style.borderBottom = "1px solid #e7e7e7";
+                //feature_list_1.style.borderTop = "1px solid #e7e7e7";
 
                 for (var i = 0; i < product.productDTO.features.length / 2; i++) {
 
@@ -183,11 +183,10 @@ var reviewOnSuccess = function (response, status, xhr){
 
             if (product.productDTO.features.length > 1) {
 
-                feature_list_2.style.borderRight = "1px solid #e7e7e7";
-                feature_list_2.style.borderBottom = "1px solid #e7e7e7";
-                feature_list_2.style.borderTop = "1px solid #e7e7e7";
-
                 var initialValue = Math.floor(product.productDTO.features.length / 2);
+                if(product.productDTO.features.length%2 != 0){
+                    initialValue = initialValue + 1;
+                }
                 for (var i = initialValue; i < product.productDTO.features.length; i++) {
                     var overallRating = product.productDTO.features[i].overallRating;
                     var li = document.createElement('li');
@@ -241,13 +240,6 @@ var reviewOnSuccess = function (response, status, xhr){
                     ul_2.appendChild(li);
                 }
             }
-            else  {
-                feature_list_1.style.borderLeft = "1px solid gray";
-                feature_list_1.style.borderBottom = "1px solid gray";
-                feature_list_1.style.borderTop = "1px solid gray";
-                feature_list_1.style.borderRight = "1px solid gray";
-            }
-
             feature_list_1.appendChild(ul_1);
             feature_list_2.appendChild(ul_2);
             //col_md_5.appendChild(col_md_9);
