@@ -286,3 +286,28 @@ li{
     border-right: 1px solid #b0c4de;
     border-bottom:1px solid #b0c4de;
 }
+
+.disablingDiv
+{
+    background-color: rgba(205, 205, 205, 0.80);
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; /* half width of the spinner gif */
+    margin-top: -50px; /* half height of the spinner gif */
+    text-align:center;
+    z-index:1234;
+    overflow: auto;
+    width: 100px; /* width of the spinner gif */
+    height: 102px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
