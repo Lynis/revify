@@ -188,7 +188,7 @@ function dropFeature(){
     
     var fx = saucerOptions.x + saucerOptions.img.width/2 - 20;
     var fy = saucerOptions.y + saucerOptions.img.height;
-    var wh = 64;
+    var wh = 48;
     var time = (new Date()).getTime() - ftime;
 
     var gravity = 250;    
@@ -273,9 +273,9 @@ function drawFeatures(){
     var y = 20;
     var d = 20;
     var c = 95;
-    var fw = 70,fh = 64;
+    var fw = 55,fh = 48;
     var b = 5;
-    var wh = 88;
+    var wh = 82;
     for (var i=features.length-1;i>=0;i--){
         var x = c*i + d;
         var feature = features[i];
