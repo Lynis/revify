@@ -180,7 +180,7 @@ var reviewOnSuccess = function (response, status, xhr){
             ul_2.style.marginTop = "100px";
 
             if (product.productDTO.features.length > 1) {
-                var initialValue;
+                var initialValue = product.productDTO.features.length/2;
                 if((product.productDTO.features.length)%2 != 0){
                     initialValue = initialValue + 1;
                 }
