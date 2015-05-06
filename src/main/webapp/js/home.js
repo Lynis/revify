@@ -36,8 +36,8 @@ var loadNavBar = function(){
             "Welcome <span style=\"color:#b0c4de\">"  + userName + "</span> !</a>";
 
         var welcomeText2 = "<a href=\"#\" data-popover=\"true\" data-placement=\"bottom\" data-html=true data-content=\"<ul>" +
-        "<li><a href='/revify/start.html?un={userName}' target='blank'>Provide Reviews</a></li>" +
-        "<li><a href='/revify/services/logout' target='blank' >Logout</a></li>" +
+        "<li><a href='/revify/start.html?un={userName}' target='_self'>Provide Reviews</a></li>" +
+        "<li><a href='/revify/services/logout' target='_self' >Logout</a></li>" +
         "</ul>\">Welcome " + "<span style=\"color:#b0c4de\">" + userName + "</span>" + " !</a>";
         welcomeText2 = welcomeText2.replace("{userName}", userName);
         loginEle.append(welcomeText2);

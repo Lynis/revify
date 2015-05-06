@@ -104,8 +104,9 @@ public class ProductServiceImpl implements ProductService {
 
                         String categoryName = item.getPrimaryCategory().getCategoryName();
                         if(categoryName.contains(COLON)){
-                            categoryName = categoryName.substring(categoryName.indexOf(COLON) + 1, categoryName.length());
+                            categoryName = categoryName.substring(categoryName.lastIndexOf(COLON) + 1, categoryName.length());
                         }
+
                         Category category = categoryRepository.findByCategoryName(categoryName.trim());
                         if(category == null){
                             System.out.println(categoryName + " is not supported!");

@@ -167,7 +167,7 @@ public class AuthController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/authfailure")
-    public void onAuthFailure(){
-
+    public void onAuthFailure(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/revify/home.html");
     }
 }
