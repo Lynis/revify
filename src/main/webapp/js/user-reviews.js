@@ -1,10 +1,11 @@
 
 var reviewPath = "/revify/services/reviews?categoryID={cid}&range=aggregated";
+var cid;
 
 var loadAggrReviews = function(){
     //document.getElementById('featureDropdownValue').innerHTML = "";
     var url = extractBaseUrl() + reviewPath;
-    var cid = location.href.split('=')[1];//cid val
+    cid = location.href.split('=')[1];//cid val
     if(cid != null){
         sessionStorage.setItem("categoryID", cid);
     }
@@ -45,7 +46,6 @@ var reviewOnSuccess = function (response, status, xhr){
     for(var p in products)
     {
         var product = products[p];
-
         if(product.productDTO.features!=null) {
 
             var review_wrapper = document.createElement('div');
@@ -117,10 +117,8 @@ var reviewOnSuccess = function (response, status, xhr){
             if(product.productDTO.features.length >= 1) {
 
                 feature_list_1.style.borderLeft = "1px solid #e7e7e7";
-                //feature_list_1.style.borderBottom = "1px solid #e7e7e7";
-                //feature_list_1.style.borderTop = "1px solid #e7e7e7";
 
-                for (var i = 0; i < (product.productDTO.features.length + 1)/ 2; i++) {
+                for (var i = 0; i < (product.productDTO.features.length)/2; i++) {
 
                     var overallRating = product.productDTO.features[i].overallRating;
                     var li = document.createElement('li');
@@ -182,17 +180,13 @@ var reviewOnSuccess = function (response, status, xhr){
             ul_2.style.marginTop = "100px";
 
             if (product.productDTO.features.length > 1) {
-
-
-                var initialValue = Math.floor(product.productDTO.features.length / 2);
-                if(product.productDTO.features.length%2 != 0){
+                var initialValue;
+                if((product.productDTO.features.length)%2 != 0){
                     initialValue = initialValue + 1;
                 }
-                //feature_list_2.style.borderRight = "1px solid #e7e7e7";
-                //feature_list_2.style.borderBottom = "1px solid #e7e7e7";
-                //feature_list_2.style.borderTop = "1px solid #e7e7e7";
-
-
+                else{
+                    initialValue = Math.floor(product.productDTO.features.length/2);
+                }
                 for (var i = initialValue; i < product.productDTO.features.length; i++) {
                     var overallRating = product.productDTO.features[i].overallRating;
                     var li = document.createElement('li');
@@ -283,7 +277,7 @@ function selectedValue(){
     var selectedFeature = document.getElementById('featureDropdownValue');
     if(selectedFeature.value != "") {
         sessionStorage.setItem("featureName", selectedFeature.value);
-        sessionStorage.setItem("categoryID", "1");
+        sessionStorage.setItem("categoryID", cid);
         window.location.href = "sortedReviews.html";
     }
 }
