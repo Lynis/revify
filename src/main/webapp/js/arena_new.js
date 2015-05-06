@@ -34,8 +34,8 @@ function init(){
    window.addEventListener("keypress",keypress,false);
 
    canvas = document.getElementById('arena');
-   canvas.width = screen.width * 0.7;
-   canvas.height = screen.height - (0.1 * screen.height);
+   canvas.width = screen.width * 0.8;
+   canvas.height = screen.height - (0.2 * screen.height);
    context = canvas.getContext('2d');
    amplitude = canvas.width/2 - (0.1 * canvas.width);
    
@@ -68,7 +68,7 @@ function init(){
      setTimeout(function() {
         var startTime = (new Date()).getTime();
         animate(startTime);
-     }, 8000);
+     }, 2000);
    }
 }
 
@@ -126,12 +126,14 @@ function loadPlayPauseBackReplayImgArray(){
 
 function loadPipes(){
     var y = canvas.height - (canvas.height * 0.18);
+    var pipeWidth = canvas.width/5 - 100;
+
     pipeHeight = parseInt(y);
     var d = 50;
     for (var i=1;i<=5;i++){
         var img = new Image();
         img.src = "images/pipe" + i + ".png";
-        var x = d + (i-1)*270;
+        var x = d + (i-1)*190;
         var range = [];
 
         range.push(x + 10);
@@ -296,7 +298,7 @@ function drawFeatures(){
 function drawPipes () {
     for (var i in pipes){
         var pipe = pipes[i];
-        context.drawImage(pipe.img,pipe.x,pipe.y);    
+        context.drawImage(pipe.img,pipe.x,pipe.y);
     }
 }
 
