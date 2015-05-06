@@ -22,6 +22,11 @@ var loadProductsPurchasedByUser = function(user,token){
         error : loadProductsOnError
     });
 };
+
+$('#feedback').click(function () {
+   location.href = "/revify/feedback.html?un=" + userID;
+});
+
 var extractBaseUrl = function(){
     var urlArr = location.href.split('/');
     var protocol = urlArr[0];
@@ -75,7 +80,7 @@ var loadLeaderboardOnSuccess = function(response, status, xhr){
             html += '<tr><td>'+ player.userID +'</td><td>' + player.noOfProductsReviewed + '</td><td>'+ player.totalScore +'</td></tr>'
         }
         html += '</tbody></table></div>';
-        $(".row").html(html);
+        $("div.product-cards>div.row").html(html);
     }catch(e){
         console.log(e);
         alert("Error loading leaderboard");
@@ -88,7 +93,7 @@ var loadLeaderboardOnError = function(xhr, status, e){
 };
 
 var populate = function () {
-    var cardsRow = $('.row');
+    var cardsRow = $('div.product-cards>div.row');
     cardsRow.html('');
 
   /*  var col = "<div class='col-lg-3 col-md-3 col-sm-4 col-xs-4 card'></div>";
@@ -111,7 +116,7 @@ var populate = function () {
         cardsRow.append(col);
         cnt++;
     }
-    var l = screen.height <= 768 ? 9:15;
+    var l = screen.height <= 700 ? 9:15;
     while (cnt++ < l) {
         var col = "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-4 card'></div>";
         cardsRow.append(col);

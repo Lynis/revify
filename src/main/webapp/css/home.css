@@ -259,11 +259,11 @@ a:hover {
 }
 
 
-p{
+/*p{
     text-align: center;
     font-size: 25px;
     color:#747704;
-}
+}*/
 
 
 .wrapper>footer{
@@ -347,8 +347,4 @@ hr{
     float: right;
     /*margin: 5px 0 10px;*/
     background: #cbcbcb;
-}
-
-footer>p {
-    font-size: 18px !important;
 }
