@@ -40,10 +40,16 @@ var sortedReviewOnSuccess = function (response, status, xhr){
     container.appendChild(heading);
 
     products = products.sort(function(a, b){
-        if(b.productDTO.features.length != 0 && a.productDTO.features.length != 0)
-            return b.productDTO.features[0].overallRating - a.productDTO.features[0].overallRating;
-        else
+        try{
+            if(b.productDTO.features.length != 0 && a.productDTO.features.length != 0)
+                return b.productDTO.features[0].overallRating - a.productDTO.features[0].overallRating;
+            else
+                return 0;
+        }
+        catch(Err){
             return 0;
+        }
+
     })
 
     if(products[0].productDTO.features != null){
@@ -64,11 +70,11 @@ var sortedReviewOnSuccess = function (response, status, xhr){
             image.id = product.productDTO.productID;
             image.width = 200;
             image.height = 200;
-            image.onclick = function(){
-                var productId = this.id;
-                sessionStorage.setItem("productID", productId);
-                window.location.href = "detailedReviews.html";
-            };
+            //image.onclick = function(){
+            //    var productId = this.id;
+            //    sessionStorage.setItem("productID", productId);
+            //    window.location.href = "detailedReviews.html";
+            //};
 
             var product_heading = document.createElement('div');
             product_heading.className = "text-center product-heading";
