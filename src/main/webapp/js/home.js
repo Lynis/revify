@@ -136,7 +136,7 @@ var latestReviewOnSuccess = function(response, status, e){
                     "</div> </div> </div>" +
 
                     "<div class=\"row row-table\"><div class=\"col-xs-4 text-center pv-lg\">" +
-                    "<span>by <span class=\"reviewer\" data-toggle=\"tooltip\" title=\""+ review.reviwer +"\">" + review.reviwer.substring(0,10) + "..." + "</span></span>" + "</div> <div class=\"col-xs-8 pv-lg text-right\">" +
+                    "<span>by <span class=\"reviewer\" data-toggle=\"tooltip\" title=\""+ review.reviwer +"\">" + review.reviwer.substring(0,5) + "..." + "</span></span>" + "</div> <div class=\"col-xs-8 pv-lg text-right\">" +
                     "<span style=\"color:#3333FF\">" + reviewTime + "</span></div></div></div></div></div>";
 
                 reviewCardRow.append(reviewCard);
