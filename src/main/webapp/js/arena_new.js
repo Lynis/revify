@@ -133,7 +133,7 @@ function loadPipes(){
     for (var i=1;i<=5;i++){
         var img = new Image();
         img.src = "images/pipe" + i + ".png";
-        var x = d + (i-1)*190;
+        var x = d + (i-1)*210;
         var range = [];
 
         range.push(x + 10);
