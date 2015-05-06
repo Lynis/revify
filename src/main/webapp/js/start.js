@@ -93,7 +93,7 @@ var loadLeaderboardOnError = function(xhr, status, e){
 };
 
 var populate = function () {
-    var cardsRow = $('.row');
+    var cardsRow = $('div.product-cards>div.row');
     cardsRow.html('');
 
   /*  var col = "<div class='col-lg-3 col-md-3 col-sm-4 col-xs-4 card'></div>";

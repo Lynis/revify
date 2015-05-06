@@ -8,6 +8,28 @@ body{
     margin: 0;
 }
 
+.logo{
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    padding-left: 20px;
+    float: left;
+}
+
+.navbar{
+    height: 80px;
+    font-size: 14px !important;
+    font-weight: 600;
+    transform: translate3d(0,0,0);
+    z-index: 4;
+    background-position: 0 -724px;
+}
+
+.navbar>.container>.row {
+    margin: 12px 0;
+}
+
+
 .wrapper {
     position: relative;
     width: 100%;
@@ -26,7 +48,7 @@ body{
     color: #fff;
 }
 
-.container>span , .container-fluid>span {
+ .container-fluid>span {
     font-family: 'Quicksand', sans-serif;
     font-size: 32px;
     font-weight: bold;
